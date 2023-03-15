@@ -7,6 +7,9 @@ export const Wrapper = styled.div`
     max-width: 1920px;
     height: 100vh;
     max-height: 1080px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     background: url(${BackgroundImage});
     background-size: cover;
