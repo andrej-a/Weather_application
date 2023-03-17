@@ -1,8 +1,9 @@
 import React from 'react';
 
 import Header from '@/components/Header';
+import MainContainer from '@/components/MainContainer';
+import WeatherContainer from '@/components/WeatherContainer';
 
-import MainContainer from '../MainContainer';
 import { InterfaceWrapper } from './styles';
 
 const UserInterface = () => {
@@ -10,6 +11,7 @@ const UserInterface = () => {
         <InterfaceWrapper>
             <Header />
             <MainContainer />
+            <WeatherContainer />
         </InterfaceWrapper>
     );
 };

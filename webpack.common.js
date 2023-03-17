@@ -41,7 +41,7 @@ module.exports = {
                 use: ['file-loader'],
             },
             {
-                test: /\.(jpg|png)$/,
+                test: /\.(jpg|png|svg)$/,
                 use: {
                     loader: 'url-loader',
                 },
@@ -51,7 +51,7 @@ module.exports = {
     resolve: {
         extensions: ['*', '.js', '.jsx', '.ts', '.tsx', '.json'],
         alias: {
-            '@': path.resolve(__dirname, 'src')
+            '@': path.resolve(__dirname, 'src'),
         },
     },
 };

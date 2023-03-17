@@ -10,6 +10,7 @@ export const CalendarWrapper = styled.div`
     flex-direction: column;
 
     @media (max-width: ${laptop}px) {
+        height: 80%;
         flex-direction: row-reverse;
     }
 `;

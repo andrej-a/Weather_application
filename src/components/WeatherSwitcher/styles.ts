@@ -11,6 +11,7 @@ export const SwitchWrapper = styled.div`
     align-items: flex-end;
     gap: 35px;
     padding: 5px;
+    padding-bottom: 15px;
 
     @media (max-width: ${laptop}px) {
         width: 100%;
