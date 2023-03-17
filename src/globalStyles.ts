@@ -7,6 +7,7 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
     transition: all .3s ease;
+    font-family: "Inter";
   }
 `;
 export default GlobalStyle;

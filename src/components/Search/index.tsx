@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { SubmitHandler,useForm } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -15,7 +15,7 @@ import {
 } from './styles';
 
 const Search = () => {
-    const [showElasticContainer, setShowElasticContainer] = useState(true);
+    const [showElasticContainer, setShowElasticContainer] = useState(false);
     const schema = yup
         .object({
             search: yup.string().required().min(1),
@@ -53,7 +53,8 @@ const Search = () => {
                 <SubmitButton
                     disabled={Object.keys(errors).length > 0}
                     type="submit"
-                    value="Search">
+                    value="Search"
+                >
                     Search
                 </SubmitButton>
                 {showElasticContainer && (
@@ -62,7 +63,8 @@ const Search = () => {
                             onClick={() => {
                                 setShowElasticContainer(false);
                                 setValue('search', 'Minsk');
-                            }}>
+                            }}
+                        >
                             Minsk
                         </ElasticItem>
                         <ElasticItem>Minsk</ElasticItem>
@@ -76,7 +78,8 @@ const Search = () => {
                         <CloseElasticContainer
                             onClick={() => {
                                 setShowElasticContainer(false);
-                            }}>
+                            }}
+                        >
                             Close
                         </CloseElasticContainer>
                     </ElasticContainer>
