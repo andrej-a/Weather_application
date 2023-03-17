@@ -38,6 +38,7 @@ const Search = () => {
             <Form action="" onSubmit={handleSubmit(formSubmit)}>
                 <Input
                     type="text"
+                    autoComplete="off"
                     {...register('search', {
                         onChange: handleSubmit(formSubmit),
                     })}
