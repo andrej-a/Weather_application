@@ -1,13 +1,13 @@
 import React from 'react';
 
-import DailyWeather from '@/components/DailyWeather';
-
+import HourlyWeather from '../HourlyWeather';
 import { Wrapper } from './styles';
 
 const WeatherContainer = () => {
     return (
         <Wrapper>
-            <DailyWeather />
+            {/* <DailyWeather /> */}
+            <HourlyWeather />
         </Wrapper>
     );
 };

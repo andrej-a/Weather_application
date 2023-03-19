@@ -8,6 +8,7 @@ export const Wrapper = styled.div`
     height: 30%;
     backdrop-filter: blur(7.5px);
     background: rgba(217, 217, 217, 0.2);
+    padding: 5px;
 
     @media (max-width: ${laptop}px) {
         height: 50%;

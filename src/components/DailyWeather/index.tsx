@@ -20,7 +20,7 @@ const DailyWeather = () => {
                 <ReactSVG src={SunSVG} />
                 <WeatherDataWrapper>
                     <Date>17.03.2023</Date>
-                    <WeatherData>4</WeatherData>
+                    <WeatherData>5</WeatherData>
                 </WeatherDataWrapper>
             </DailyWeatherCard>
             <DailyWeatherCard>

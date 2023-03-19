@@ -11,7 +11,7 @@ export const SwitchWrapper = styled.div`
     align-items: flex-end;
     gap: 35px;
     padding: 5px;
-    padding-bottom: 15px;
+    padding-bottom: 5px;
 
     @media (max-width: ${laptop}px) {
         width: 100%;
@@ -28,7 +28,6 @@ export const DailyWeatherButton = styled.button`
     border: 0;
     border-radius: 10px;
     font-size: 25px;
-    line-height: 31px;
     cursor: pointer;
     background: #000;
     color: #fff;
@@ -36,6 +35,10 @@ export const DailyWeatherButton = styled.button`
     &:hover {
         background: #fff;
         color: #000;
+    }
+
+    @media (max-width: ${laptop}px) {
+        padding: 3px 40px;
     }
 
     @media (max-width: ${mobileL}px) {

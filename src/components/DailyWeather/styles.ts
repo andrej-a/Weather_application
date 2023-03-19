@@ -38,8 +38,8 @@ export const DailyWeatherCard = styled.div`
         }
 
         @media (max-width: ${tablet}px) {
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             padding-top: 10px;
         }
     }
@@ -64,7 +64,6 @@ export const WeatherDataWrapper = styled.div`
     align-items: center;
     gap: 10px;
     padding: 5px;
-
     @media (max-width: ${laptop}px) {
         width: 70%;
         height: 100%;
@@ -81,8 +80,6 @@ export const Date = styled.div`
     color: #000;
     font-size: 20px;
     font-weight: 400;
-    line-height: 30px;
-
     @media (max-width: ${mobileL}px) {
         font-size: 15px;
     }

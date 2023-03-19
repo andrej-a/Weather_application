@@ -43,7 +43,6 @@ export const LogInButton = styled.button`
     border: 0;
     border-radius: 10px;
     font-size: 25px;
-    line-height: 31px;
     cursor: pointer;
     background: #000;
     color: #fff;
@@ -61,8 +60,9 @@ export const LogInButton = styled.button`
     @media (max-width: ${tablet}px) {
         width: 50px;
         height: auto;
-        padding: 0;
+        padding: 2px 0;
         font-size: 15px;
+        border-radius: 0;
     }
 `;
 
