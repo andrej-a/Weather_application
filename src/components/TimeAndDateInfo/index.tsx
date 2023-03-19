@@ -1,12 +1,32 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+
+import IDate from '@/types/IDate';
+import getCurrentDate from '@/utils/getCurrentDate';
 
 import { DateWrapper, TimeAndDateInfoWrapper, TimeWrapper } from './styles';
 
 const TimeAndDateInfo = () => {
+    const [currentDate, setCurrentDate] = useState<IDate>(getCurrentDate());
+    const timerRef = useRef(0);
+    const { hours, minutes, day, date, month, year } = currentDate;
+
+    useEffect(() => {
+        timerRef.current = window.setInterval(() => {
+            setCurrentDate(getCurrentDate());
+        }, 1000 * 60);
+        return () => {
+            clearInterval(timerRef.current);
+        };
+    }, []);
+
     return (
         <TimeAndDateInfoWrapper>
-            <TimeWrapper>12:20 PM</TimeWrapper>
-            <DateWrapper>Monday, 2 February 2023</DateWrapper>
+            <TimeWrapper>
+                {hours}:{minutes}
+            </TimeWrapper>
+            <DateWrapper>
+                {day},{date} {month} {year}
+            </DateWrapper>
         </TimeAndDateInfoWrapper>
     );
 };
