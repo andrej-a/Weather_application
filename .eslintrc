@@ -1,13 +1,13 @@
 {
-    "parser": "@babel/eslint-parser",
-    "plugins": ["prettier", "simple-import-sort", "cypress"],
+    "parser": "@typescript-eslint/parser",
+    "plugins": ["prettier", "simple-import-sort", "@typescript-eslint", "cypress"],
     "extends": ["airbnb", "airbnb/hooks", "prettier"],
     "parserOptions": {
         "requireConfigFile": false,
         "babelOptions": {
             "presets": ["@babel/preset-react"]
-         }
-      },
+        }
+    },
     "env": {
         "node": true,
         "browser": true,
@@ -37,6 +37,8 @@
         "import/no-duplicates": "error",
         "arrow-parens": ["error", "as-needed"],
         "semi": "error",
+        "no-shadow": "off",
+        "react/jsx-props-no-spreading": "off",
         "prefer-destructuring": "off",
         "react/destructuring-assignment": "off",
         "array-callback-return": "off",
@@ -46,15 +48,7 @@
         "import/no-cycle": "off",
         "react/jsx-indent": ["error", 4],
         "react/jsx-indent-props": ["error", 4],
-        "import/no-extraneous-dependencies": [
-            "error",
-            {
-                "devDependencies": [
-                    "webpack.common.js",
-                    "webpack.prod.js"
-                ]
-            }
-        ],
+        "import/no-extraneous-dependencies": "off",
         "max-len": [
             "warn",
             {
