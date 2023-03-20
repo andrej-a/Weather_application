@@ -25,7 +25,7 @@ const TimeAndDateInfo = () => {
                 {hours}:{minutes}
             </TimeWrapper>
             <DateWrapper>
-                {day},{date} {month} {year}
+                {day}, {date} {month} {year}
             </DateWrapper>
         </TimeAndDateInfoWrapper>
     );

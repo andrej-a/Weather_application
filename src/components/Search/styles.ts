@@ -66,9 +66,18 @@ export const SubmitButton = styled.button`
     &:hover {
         background: #fff;
         color: #000;
+
+        &:disabled {
+            cursor: not-allowed;
+            background: grey;
+            color: #fff;
+        }
     }
+
     &:disabled {
         cursor: not-allowed;
+        background: grey;
+        color: #fff;
     }
 
     @media (max-width: ${mobileL}px) {
@@ -109,7 +118,7 @@ export const ElasticItem = styled.div`
     z-index: 3;
 
     width: 100%;
-    height: 25px;
+    height: auto;
     display: flex;
     align-items: center;
     padding-left: 5px;
