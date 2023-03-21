@@ -2,6 +2,7 @@ const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     entry: './src/index.tsx',
@@ -18,6 +19,9 @@ module.exports = {
         new HtmlWebpackPlugin({
             title: 'Weather Application',
             template: './public/index.html',
+        }),
+        new CopyWebpackPlugin({
+            patterns: [{ from: 'public/icons', to: 'icons' }],
         }),
     ],
     module: {
