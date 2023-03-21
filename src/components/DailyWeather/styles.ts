@@ -9,6 +9,7 @@ export const DailyWeatherWrapper = styled.div`
 
     display: flex;
     justify-content: space-around;
+    align-items: center;
     flex-wrap: wrap;
 
     overflow: hidden;
@@ -25,8 +26,7 @@ export const DailyWeatherCard = styled.div`
 
     overflow: hidden;
 
-    svg {
-        fill: #fff;
+    img {
         width: 90px;
         height: 90px;
 
@@ -38,8 +38,8 @@ export const DailyWeatherCard = styled.div`
         }
 
         @media (max-width: ${tablet}px) {
-            width: 40px;
-            height: 40px;
+            width: 60px;
+            height: 60px;
             padding-top: 10px;
         }
     }

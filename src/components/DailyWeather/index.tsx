@@ -1,10 +1,11 @@
 import React from 'react';
-import { ReactSVG } from 'react-svg';
+import { ClockLoader } from 'react-spinners';
 
-import CloudRainSun from '@/assets/svg/cloud_rain_sun.svg';
-import SunSVG from '@/assets/svg/cloud_strong.svg';
-import CloudSvg from '@/assets/svg/cloud_sun.svg';
+import { useAppSelector } from '@/hooks/useStore';
+import dailyWeatherSelector from '@/store/selectors/dailyWeather';
+import constants from '@/types/constants';
 
+import '@/utils/dailyWeatherAdapter';
 import {
     DailyWeatherCard,
     DailyWeatherWrapper,
@@ -13,58 +14,32 @@ import {
     WeatherDataWrapper,
 } from './styles';
 
+const { NO_WEATHER_DATA, SPINNER_COLOR } = constants;
 const DailyWeather = () => {
+    const { dailyWeatherList, isDailyWeatherLoading } =
+        useAppSelector(dailyWeatherSelector);
     return (
         <DailyWeatherWrapper>
-            <DailyWeatherCard>
-                <ReactSVG src={SunSVG} />
-                <WeatherDataWrapper>
-                    <Date>17.03.2023</Date>
-                    <WeatherData>5</WeatherData>
-                </WeatherDataWrapper>
-            </DailyWeatherCard>
-            <DailyWeatherCard>
-                <ReactSVG src={CloudSvg} />
-                <WeatherDataWrapper>
-                    <Date>17.03.2023</Date>
-                    <WeatherData>4</WeatherData>
-                </WeatherDataWrapper>
-            </DailyWeatherCard>
-            <DailyWeatherCard>
-                <ReactSVG src={SunSVG} />
-                <WeatherDataWrapper>
-                    <Date>17.03.2023</Date>
-                    <WeatherData>4</WeatherData>
-                </WeatherDataWrapper>
-            </DailyWeatherCard>
-            <DailyWeatherCard>
-                <ReactSVG src={CloudRainSun} />
-                <WeatherDataWrapper>
-                    <Date>17.03.2023</Date>
-                    <WeatherData>4</WeatherData>
-                </WeatherDataWrapper>
-            </DailyWeatherCard>
-            <DailyWeatherCard>
-                <ReactSVG src={SunSVG} />
-                <WeatherDataWrapper>
-                    <Date>17.03.2023</Date>
-                    <WeatherData>4</WeatherData>
-                </WeatherDataWrapper>
-            </DailyWeatherCard>
-            <DailyWeatherCard>
-                <ReactSVG src={SunSVG} />
-                <WeatherDataWrapper>
-                    <Date>17.03.2023</Date>
-                    <WeatherData>4</WeatherData>
-                </WeatherDataWrapper>
-            </DailyWeatherCard>
-            <DailyWeatherCard>
-                <ReactSVG src={SunSVG} />
-                <WeatherDataWrapper>
-                    <Date>17.03.2023</Date>
-                    <WeatherData>4</WeatherData>
-                </WeatherDataWrapper>
-            </DailyWeatherCard>
+            {isDailyWeatherLoading ? (
+                <ClockLoader color={SPINNER_COLOR} />
+            ) : dailyWeatherList.length > 0 ? (
+                dailyWeatherList.map(({ id, date, temperature, code }) => {
+                    return (
+                        <DailyWeatherCard key={id}>
+                            <img
+                                src={`./icons/${code}.png`}
+                                alt={`weatherCode-${code}`}
+                            />
+                            <WeatherDataWrapper>
+                                <Date>{date}</Date>
+                                <WeatherData>{temperature}</WeatherData>
+                            </WeatherDataWrapper>
+                        </DailyWeatherCard>
+                    );
+                })
+            ) : (
+                NO_WEATHER_DATA
+            )}
         </DailyWeatherWrapper>
     );
 };

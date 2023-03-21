@@ -45,6 +45,8 @@
         "react/jsx-filename-extension": "off",
         "no-return-assign": "off",
         "no-nested-ternary": "off",
+        "camelcase": "off",
+        "no-sequences": "off",
         "no-param-reassign": "off",
         "react/prefer-stateless-function": "off",
         "react/jsx-one-expression-per-line": "off",

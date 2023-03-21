@@ -5,6 +5,7 @@ import * as yup from 'yup';
 import { useAppDispatch, useAppSelector } from '@/hooks/useStore';
 import { checkCache } from '@/store/slices/citiesCache';
 import { setTargetCity } from '@/store/slices/citiesList';
+import { startDailyWeatherFetch } from '@/store/slices/dailyWeatherList';
 import ICity from '@/types/ICitiesList';
 import { yupResolver } from '@hookform/resolvers/yup';
 
@@ -22,6 +23,8 @@ const Search = () => {
     const { cities, isLoadingCityList, targetCity } = useAppSelector(
         state => state.citiesState,
     );
+    console.log(targetCity);
+
     const dispatch = useAppDispatch();
     const schema = yup
         .object({
@@ -38,7 +41,7 @@ const Search = () => {
         defaultValues: { search: '' },
     });
     const formSubmit: SubmitHandler<{ search: string }> = data => {
-        console.log(data);
+        dispatch(startDailyWeatherFetch(targetCity));
     };
     const handleChange: SubmitHandler<{ search: string }> = ({ search }) => {
         dispatch(checkCache(search));
@@ -73,9 +76,7 @@ const Search = () => {
                     id="search"
                 />
                 <SubmitButton
-                    disabled={
-                        Object.keys(errors).length > 0 || !targetCity.name
-                    }
+                    disabled={Object.keys(errors).length > 0 || !targetCity.id}
                     type="submit"
                     value="Search"
                 >
