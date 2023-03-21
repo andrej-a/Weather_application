@@ -1,6 +1,7 @@
 import { call, debounce, put } from 'redux-saga/effects';
 
 import getDailyWeatherInfo from '@/api/getDailyWeatherInfo';
+import { setWeatherToCache } from '@/store/slices/weatherCache';
 import { numberConstants } from '@/types/constants';
 import ICity from '@/types/ICitiesList';
 import IDailyWeather from '@/types/IDailyWeather';
@@ -23,6 +24,13 @@ function* dailyWeatherWorker({ payload }: IPayload<ICity>) {
             payload,
         );
         yield put(setDailyWeatherList(weatherList));
+        yield put(
+            setWeatherToCache({
+                city: `${payload.name}-${payload.country}`,
+                timeOfTheLastUpdateOfDailyWeather: new Date().getTime(),
+                dailyWeatherList: weatherList,
+            }),
+        );
     } catch (error) {
         console.log(error, 'ERROR');
         yield put(failureDailyWeatherFetch());

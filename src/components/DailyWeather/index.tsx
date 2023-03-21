@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ClockLoader } from 'react-spinners';
 
-import { useAppSelector } from '@/hooks/useStore';
+import { useAppDispatch, useAppSelector } from '@/hooks/useStore';
+import citySelector from '@/store/selectors/citySelector';
 import dailyWeatherSelector from '@/store/selectors/dailyWeather';
+import { checkWeatherCache } from '@/store/slices/weatherCache';
 import constants from '@/types/constants';
 
 import '@/utils/dailyWeatherAdapter';
@@ -18,6 +20,16 @@ const { NO_WEATHER_DATA, SPINNER_COLOR } = constants;
 const DailyWeather = () => {
     const { dailyWeatherList, isDailyWeatherLoading } =
         useAppSelector(dailyWeatherSelector);
+    const { targetCity } = useAppSelector(citySelector);
+    const { id, name, country } = targetCity;
+    const dispatch = useAppDispatch();
+
+    useEffect(() => {
+        if (id) {
+            dispatch(checkWeatherCache(`${name}-${country}`));
+        }
+    }, [country, dispatch, id, name]);
+
     return (
         <DailyWeatherWrapper>
             {isDailyWeatherLoading ? (

@@ -8,6 +8,10 @@ enum constants {
     WEATHER_API_KEY = '9fzu1x7usaymscfvnxirv13evh7tj722tenk9n9c',
     NO_WEATHER_DATA = 'No weather data here',
     SPINNER_COLOR = '#000',
+    WEATHER_CACHE_SLICE_NAME = 'weatherCache',
+    MAIN_SLICE_NAME = 'mainSlice',
+    DAILY_TYPE_OF_THE_WEATHER = 'Daily',
+    HOURLY_TYPE_OF_THE_WEATHER = 'Hourly',
 }
 
 export enum numberConstants {

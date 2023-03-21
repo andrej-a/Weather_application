@@ -5,6 +5,8 @@ import createSagaMiddleware from 'redux-saga';
 import citiesCache from '@/store/slices/citiesCache';
 import citiesState from '@/store/slices/citiesList';
 import dailyWeatherState from '@/store/slices/dailyWeatherList';
+import mainSlice from '@/store/slices/main';
+import weatherCach from '@/store/slices/weatherCache';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 
 import rootSaga from './sagas';
@@ -12,19 +14,21 @@ import rootSaga from './sagas';
 const persistConfig = {
     key: 'root',
     storage,
-    whitelist: ['citiesCache'],
+    whitelist: ['mainSlice', 'citiesCache', 'weatherCach'],
 };
 const rootReducer = combineReducers({
     citiesState,
     citiesCache,
     dailyWeatherState,
+    weatherCach,
+    mainSlice,
 });
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 const sagaMiddleware = createSagaMiddleware();
 
 export const store = configureStore({
     reducer: persistedReducer,
-    devTools: process.env.NODE_ENV !== 'production',
+    devTools: true,
     middleware: getDefaultMiddleware =>
         getDefaultMiddleware().concat(sagaMiddleware),
 });

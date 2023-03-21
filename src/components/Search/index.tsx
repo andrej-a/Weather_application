@@ -3,9 +3,11 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
 import { useAppDispatch, useAppSelector } from '@/hooks/useStore';
+import dailyWeatherSelector from '@/store/selectors/dailyWeather';
 import { checkCache } from '@/store/slices/citiesCache';
 import { setTargetCity } from '@/store/slices/citiesList';
 import { startDailyWeatherFetch } from '@/store/slices/dailyWeatherList';
+import { checkWeatherCache } from '@/store/slices/weatherCache';
 import ICity from '@/types/ICitiesList';
 import { yupResolver } from '@hookform/resolvers/yup';
 
@@ -23,6 +25,8 @@ const Search = () => {
     const { cities, isLoadingCityList, targetCity } = useAppSelector(
         state => state.citiesState,
     );
+    const { isDailyWeatherLoading } = useAppSelector(dailyWeatherSelector);
+    const { name, country, id } = targetCity;
     console.log(targetCity);
 
     const dispatch = useAppDispatch();
@@ -41,7 +45,7 @@ const Search = () => {
         defaultValues: { search: '' },
     });
     const formSubmit: SubmitHandler<{ search: string }> = data => {
-        dispatch(startDailyWeatherFetch(targetCity));
+        dispatch(checkWeatherCache(`${name}-${country}`));
     };
     const handleChange: SubmitHandler<{ search: string }> = ({ search }) => {
         dispatch(checkCache(search));
@@ -54,6 +58,7 @@ const Search = () => {
         <SearchWrapper>
             <Form action="" onSubmit={handleSubmit(formSubmit)}>
                 <Input
+                    disabled={isLoadingCityList}
                     type="text"
                     autoComplete="off"
                     {...register('search', {
@@ -76,7 +81,12 @@ const Search = () => {
                     id="search"
                 />
                 <SubmitButton
-                    disabled={Object.keys(errors).length > 0 || !targetCity.id}
+                    disabled={
+                        Object.keys(errors).length > 0 ||
+                        !id ||
+                        isLoadingCityList ||
+                        isDailyWeatherLoading
+                    }
                     type="submit"
                     value="Search"
                 >

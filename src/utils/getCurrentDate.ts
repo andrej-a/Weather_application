@@ -3,6 +3,7 @@ import IDate from '@/types/IDate';
 
 const getCurrentDate = (): IDate => {
     const currentDate: Date = new Date();
+
     return {
         hours: `${
             currentDate.getHours() <= 9
