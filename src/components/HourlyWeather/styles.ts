@@ -12,9 +12,10 @@ export const HourlyWeatherWrapper = styled.div`
     height: 100%;
     display: flex;
     justify-content: space-around;
+    align-items: center;
     flex-wrap: wrap;
 
-    overflow: hidden;
+    overflow: auto;
 `;
 
 export const LeftArrowContainer = styled.div`
@@ -53,12 +54,13 @@ export const HourlyWeatherCard = styled(DailyWeatherCard)`
 
     @media (max-width: ${laptop}px) {
         width: 30%;
-        height: 30%;
+        height: 35%;
         flex-direction: row;
     }
 
     @media (max-width: ${tablet}px) {
         flex-direction: column;
+        height: 34%;
     }
 `;
 

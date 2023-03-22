@@ -4,7 +4,11 @@ import IDailyWeather from '@/types/IDailyWeather';
 
 import setCorrectDateFormat from './setCorrectDateFormat';
 
-const dailyWeatherAdapter = (responce: any): IDailyWeather[] => {
+const dailyWeatherAdapter = (responce: {
+    daily: {
+        data: { day: string; all_day: { temperature: number }; icon: number }[];
+    };
+}): IDailyWeather[] => {
     const result: IDailyWeather[] = [];
     responce.daily.data.map(
         ({

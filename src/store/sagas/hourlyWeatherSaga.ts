@@ -1,7 +1,6 @@
 import { call, debounce, put, select } from 'redux-saga/effects';
 
-import getDailyWeatherInfo from '@/api/getDailyWeatherInfo';
-import { setWeatherToCache } from '@/store/slices/weatherCache';
+import getHourlyWeatherInfo from '@/api/getHourlyWeatherInfo';
 import { numberConstants } from '@/types/constants';
 import ICity from '@/types/ICitiesList';
 import IDailyWeather from '@/types/IDailyWeather';
@@ -10,22 +9,23 @@ import IWeatherCache from '@/types/IWeatherCache';
 
 import { weatherCacheSelector } from '../selectors/weatherCacheSelector';
 import {
-    failureDailyWeatherFetch,
-    fetchDailyWeather,
-    setDailyWeatherList,
-    startDailyWeatherFetch,
-} from '../slices/dailyWeatherList';
+    hourlyWeatherFetch,
+    hourlyWeatherFetchFailure,
+    setHourlyWeatherList,
+    startHourlyWeatherFetch,
+} from '../slices/hourlyWeatherList';
+import { setWeatherToCache } from '../slices/weatherCache';
 
 const { REQUEST_DEBOUNCE } = numberConstants;
 
-function* dailyWeatherWorker({ payload }: IPayload<ICity>) {
+export function* hourlyWeatherWorker({ payload }: IPayload<ICity>) {
     try {
-        yield put(fetchDailyWeather());
-        const weatherList: IDailyWeather[] = yield call(
-            getDailyWeatherInfo,
+        yield put(hourlyWeatherFetch());
+        const hourlyWeatherList: IDailyWeather[] = yield call(
+            getHourlyWeatherInfo,
             payload,
         );
-        yield put(setDailyWeatherList(weatherList));
+        yield put(setHourlyWeatherList(hourlyWeatherList));
 
         const weatherCache: IWeatherCache[] = yield select(
             weatherCacheSelector,
@@ -39,31 +39,31 @@ function* dailyWeatherWorker({ payload }: IPayload<ICity>) {
                 setWeatherToCache({
                     ...weatherCache[index],
                     city: `${payload.name}-${payload.country}`,
-                    timeOfTheLastUpdateOfDailyWeather: new Date().getTime(),
-                    dailyWeatherList: weatherList,
+                    timeOfTheLastUpdateOfHourlyWeather: new Date().getTime(),
+                    hourlyWeatherList,
                 }),
             );
         } else {
             yield put(
                 setWeatherToCache({
                     city: `${payload.name}-${payload.country}`,
-                    timeOfTheLastUpdateOfDailyWeather: new Date().getTime(),
-                    timeOfTheLastUpdateOfHourlyWeather: 0,
-                    dailyWeatherList: weatherList,
-                    hourlyWeatherList: [],
+                    timeOfTheLastUpdateOfDailyWeather: 0,
+                    timeOfTheLastUpdateOfHourlyWeather: new Date().getTime(),
+                    dailyWeatherList: [],
+                    hourlyWeatherList,
                 }),
             );
         }
     } catch (error) {
-        console.log(error, 'ERROR');
-        yield put(failureDailyWeatherFetch());
+        console.log('ERROR', error);
+        yield put(hourlyWeatherFetchFailure());
     }
 }
 
-export function* dailyWeatherWatcher() {
+export function* hourlyWeatherWatcher() {
     yield debounce(
         REQUEST_DEBOUNCE,
-        startDailyWeatherFetch,
-        dailyWeatherWorker,
+        startHourlyWeatherFetch,
+        hourlyWeatherWorker,
     );
 }

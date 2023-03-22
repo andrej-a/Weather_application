@@ -6,7 +6,6 @@ import { useAppDispatch, useAppSelector } from '@/hooks/useStore';
 import dailyWeatherSelector from '@/store/selectors/dailyWeather';
 import { checkCache } from '@/store/slices/citiesCache';
 import { setTargetCity } from '@/store/slices/citiesList';
-import { startDailyWeatherFetch } from '@/store/slices/dailyWeatherList';
 import { checkWeatherCache } from '@/store/slices/weatherCache';
 import ICity from '@/types/ICitiesList';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -27,8 +26,6 @@ const Search = () => {
     );
     const { isDailyWeatherLoading } = useAppSelector(dailyWeatherSelector);
     const { name, country, id } = targetCity;
-    console.log(targetCity);
-
     const dispatch = useAppDispatch();
     const schema = yup
         .object({

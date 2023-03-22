@@ -14,14 +14,20 @@ const weatherCache = createSlice({
         checkWeatherCache: (_, { payload }: IPayload<string>) => {
             payload;
         },
-        setWeatherToCache: (state, { payload }: IPayload<IWeatherCache>) => {
-            const index = state.weatherCache.findIndex(
+        setWeatherToCache: (
+            { weatherCache },
+            { payload }: IPayload<IWeatherCache>,
+        ) => {
+            const index = weatherCache.findIndex(
                 el => el.city === payload.city,
             );
             if (index !== -1) {
-                state.weatherCache[index] = payload;
+                weatherCache[index] = {
+                    ...weatherCache[index],
+                    ...payload,
+                };
             } else {
-                state.weatherCache = [...state.weatherCache, payload];
+                weatherCache.push(payload);
             }
         },
     },

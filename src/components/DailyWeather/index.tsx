@@ -28,7 +28,7 @@ const DailyWeather = () => {
         if (id) {
             dispatch(checkWeatherCache(`${name}-${country}`));
         }
-    }, [country, dispatch, id, name]);
+    }, []);
 
     return (
         <DailyWeatherWrapper>

@@ -12,6 +12,7 @@ enum constants {
     MAIN_SLICE_NAME = 'mainSlice',
     DAILY_TYPE_OF_THE_WEATHER = 'Daily',
     HOURLY_TYPE_OF_THE_WEATHER = 'Hourly',
+    HOURLY_WEATHER_SLICE_NAME = 'hourlyWeatherState',
 }
 
 export enum numberConstants {

@@ -13,7 +13,7 @@ const TimeAndDateInfo = () => {
     useEffect(() => {
         timerRef.current = window.setInterval(() => {
             setCurrentDate(getCurrentDate());
-        }, 1000 * 60);
+        }, 1000 * 20);
         return () => {
             clearInterval(timerRef.current);
         };
