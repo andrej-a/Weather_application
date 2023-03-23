@@ -52,7 +52,9 @@ const Search = () => {
     };
 
     useEffect(() => {
-        setValue('search', name);
+        if (id) {
+            setValue('search', `${name}-${country}`);
+        }
     }, [id]);
     return (
         <SearchWrapper>

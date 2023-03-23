@@ -3,6 +3,8 @@ import { v4 as uuidv4 } from 'uuid';
 import constants from '@/types/constants';
 import ICity from '@/types/ICitiesList';
 
+const swithcher = require('ai-switcher-translit');
+
 interface responceAnswer {
     suggestions: [
         {
@@ -41,7 +43,9 @@ const getCurrentPositionByCoords = async ({
 
         const result: ICity = {
             id: uuidv4(),
-            name: responce.suggestions[0].data.city,
+            name: swithcher.getSwitch(responce.suggestions[0].data.city, {
+                type: 'translit',
+            }),
             latitude,
             longitude,
             country: responce.suggestions[0].data.country_iso_code,

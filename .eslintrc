@@ -52,6 +52,7 @@
         "react/prefer-stateless-function": "off",
         "react/jsx-one-expression-per-line": "off",
         "no-underscore-dangle": "off",
+        "no-useless-computed-key": "off",
         "import/no-cycle": "off",
         "react/jsx-indent": ["error", 4],
         "react/jsx-indent-props": ["error", 4],

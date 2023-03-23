@@ -28,12 +28,14 @@ export const TimeWrapper = styled.div`
     font-size: 3vw;
     line-height: 50px;
 
-    color: #000000;
+    color: transparent;
+    -webkit-text-stroke: 1.5px black;
 
     @media (max-width: ${tablet}px) {
         padding-left: 0;
         justify-content: center;
         font-size: 30px;
+        -webkit-text-stroke: 1px black;
     }
     @media (max-width: ${mobileL}px) {
         padding-left: 0;

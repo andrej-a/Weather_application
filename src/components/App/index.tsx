@@ -18,15 +18,11 @@ const App = () => {
         const currentUserPosition: ICity = (await getCurrentPositionByCoords(
             pos,
         )) as ICity;
-
-        if (currentUserPosition.id) {
+        const { id, name, country } = currentUserPosition;
+        if (id) {
             dispatch(setTargetCity(currentUserPosition));
-            dispatch(checkCache(currentUserPosition.name));
-            dispatch(
-                checkWeatherCache(
-                    `${currentUserPosition.name}-${currentUserPosition.country}`,
-                ),
-            );
+            dispatch(checkCache(name));
+            dispatch(checkWeatherCache(`${name}-${country}`));
         }
     };
 

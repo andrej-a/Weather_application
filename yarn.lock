@@ -1950,6 +1950,11 @@ aggregate-error@^3.0.0:
     clean-stack "^2.0.0"
     indent-string "^4.0.0"
 
+ai-switcher-translit@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/ai-switcher-translit/-/ai-switcher-translit-1.0.2.tgz#edb5b4d10457de71e32d1c60e1797f5418239883"
+  integrity sha512-emSfxJKUbkynQ1IYq9JDA63v2ec6EeiY8Q1AMveynjdFX3UTdQLBeltpxPHrktBWZzZ2nj7Y+d5eNs4pLwKevA==
+
 ajv-formats@^2.1.1:
   version "2.1.1"
   resolved "https://registry.npmjs.org/ajv-formats/-/ajv-formats-2.1.1.tgz"

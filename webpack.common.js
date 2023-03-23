@@ -21,7 +21,10 @@ module.exports = {
             template: './public/index.html',
         }),
         new CopyWebpackPlugin({
-            patterns: [{ from: 'public/icons', to: 'icons' }],
+            patterns: [
+                { from: 'public/icons', to: 'icons' },
+                { from: 'public/images', to: 'images' },
+            ],
         }),
     ],
     module: {

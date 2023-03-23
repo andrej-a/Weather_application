@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
-import BackgroundImage from '@/assets/images/sunny_weather.jpg';
-
-export const Wrapper = styled.div`
+export const Wrapper = styled.div<{ params: string }>`
     width: 100vw;
     max-width: 1920px;
     height: 100vh;
@@ -11,6 +9,6 @@ export const Wrapper = styled.div`
     justify-content: center;
     align-items: center;
 
-    background: url(${BackgroundImage});
+    background: url(${({ params }) => params});
     background-size: cover;
 `;

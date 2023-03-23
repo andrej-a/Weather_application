@@ -15,7 +15,6 @@ import rootSaga from './sagas';
 const persistConfig = {
     key: 'root',
     storage,
-    whitelist: ['mainSlice', 'citiesCache', 'weatherCach'],
 };
 const rootReducer = combineReducers({
     citiesState,
