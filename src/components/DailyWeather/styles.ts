@@ -13,6 +13,10 @@ export const DailyWeatherWrapper = styled.div`
     flex-wrap: wrap;
 
     overflow: hidden;
+
+    @media (max-width: ${tablet}px) {
+        overflow: auto;
+    }
 `;
 
 export const DailyWeatherCard = styled.div`
@@ -28,11 +32,10 @@ export const DailyWeatherCard = styled.div`
 
     img {
         width: 90px;
-        height: 90px;
+        height: 80px;
 
         @media (max-width: ${laptop}px) {
             width: 80px;
-            height: 80px;
             flex-direction: row;
             justify-content: space-between;
         }
@@ -52,6 +55,7 @@ export const DailyWeatherCard = styled.div`
 
     @media (max-width: ${tablet}px) {
         flex-direction: column;
+        height: 40%;
     }
 `;
 

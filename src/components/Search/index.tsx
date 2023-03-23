@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
@@ -48,9 +48,12 @@ const Search = () => {
         dispatch(checkCache(search));
     };
     const onHandleTargetCity = (city: ICity) => () => {
-        setValue('search', city.name);
         dispatch(setTargetCity(city));
     };
+
+    useEffect(() => {
+        setValue('search', name);
+    }, [id]);
     return (
         <SearchWrapper>
             <Form action="" onSubmit={handleSubmit(formSubmit)}>

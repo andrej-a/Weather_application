@@ -47,6 +47,7 @@
         "no-nested-ternary": "off",
         "camelcase": "off",
         "no-sequences": "off",
+        "react-hooks/exhaustive-deps": "off",
         "no-param-reassign": "off",
         "react/prefer-stateless-function": "off",
         "react/jsx-one-expression-per-line": "off",
@@ -55,6 +56,7 @@
         "react/jsx-indent": ["error", 4],
         "react/jsx-indent-props": ["error", 4],
         "import/no-extraneous-dependencies": "off",
+        "no-undef": "off",
         "max-len": [
             "warn",
             {

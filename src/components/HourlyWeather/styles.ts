@@ -52,6 +52,11 @@ export const RightArrowContainer = styled(LeftArrowContainer)`
 export const HourlyWeatherCard = styled(DailyWeatherCard)`
     width: 12.5%;
 
+    img {
+        width: 60px;
+        height: 80px;
+    }
+
     @media (max-width: ${laptop}px) {
         width: 30%;
         height: 35%;
@@ -60,7 +65,7 @@ export const HourlyWeatherCard = styled(DailyWeatherCard)`
 
     @media (max-width: ${tablet}px) {
         flex-direction: column;
-        height: 34%;
+        height: 50%;
     }
 `;
 

@@ -25,12 +25,12 @@ export const Form = styled.form`
     align-items: center;
     gap: 15px;
 
-    @media (max-width: ${tablet}px) {
-        flex-direction: row;
+    @media (max-width: ${laptop}px) {
+        gap: 10px;
     }
 
-    @media (max-width: ${mobileL}px) {
-        gap: 10px;
+    @media (max-width: ${tablet}px) {
+        flex-direction: row;
     }
 `;
 
@@ -78,6 +78,12 @@ export const SubmitButton = styled.button`
         cursor: not-allowed;
         background: grey;
         color: #fff;
+    }
+
+    @media (max-width: ${laptop}px) {
+        width: 130px;
+        height: 30px;
+        font-size: 20px;
     }
 
     @media (max-width: ${mobileL}px) {

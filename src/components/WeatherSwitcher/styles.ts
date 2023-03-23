@@ -15,7 +15,7 @@ export const SwitchWrapper = styled.div`
 
     @media (max-width: ${laptop}px) {
         width: 100%;
-        height: 20%;
+        height: 15%;
         align-items: center;
     }
 `;
@@ -39,11 +39,11 @@ export const DailyWeatherButton = styled.button`
 
     @media (max-width: ${laptop}px) {
         padding: 3px 40px;
+        font-size: 20px;
     }
 
     @media (max-width: ${mobileL}px) {
         padding: 3px 14px;
-        font-size: 20px;
     }
 `;
 export const HourlyWeatherButton = styled(DailyWeatherButton)``;
