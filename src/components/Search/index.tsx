@@ -11,6 +11,7 @@ import ICity from '@/types/ICitiesList';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import {
+    CloseElasticContainer,
     ElasticContainer,
     ElasticItem,
     Form,
@@ -54,6 +55,7 @@ const Search = () => {
     useEffect(() => {
         if (id) {
             setValue('search', `${name}-${country}`);
+            setShowElasticContainer(false);
         }
     }, [id]);
     return (
@@ -70,13 +72,6 @@ const Search = () => {
                         if (!showElasticContainer) {
                             setShowElasticContainer(true);
                         }
-                    }}
-                    onBlur={() => {
-                        setTimeout(() => {
-                            if (showElasticContainer) {
-                                setShowElasticContainer(false);
-                            }
-                        }, 100);
                     }}
                     placeholder="Serach..."
                     name="search"

@@ -2,10 +2,12 @@ import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { ClockLoader } from 'react-spinners';
 
 import UserInterface from '@/components/UserInterface';
-import { useAppSelector } from '@/hooks/useStore';
+import { useAppDispatch, useAppSelector } from '@/hooks/useStore';
+import citySelector from '@/store/selectors/citySelector';
 import dailyWeatherSelector from '@/store/selectors/dailyWeather';
 import hourlyWeatherSelector from '@/store/selectors/hourlyWeatherSelector';
 import mainSelector from '@/store/selectors/mainSelector';
+import { setImageReading, setWeatherCodeForImage } from '@/store/slices/main';
 import constants from '@/types/constants';
 import getImageAccordingToWeather from '@/utils/getImageAccordingToWeather';
 
@@ -16,31 +18,27 @@ const Main = () => {
     const { typeOfTheWeather } = useAppSelector(mainSelector);
     const { dailyWeatherList } = useAppSelector(dailyWeatherSelector);
     const { hourlyWeatherList } = useAppSelector(hourlyWeatherSelector);
-
-    const [weatherCode, setWeatherCode] = useState(0);
-    const [isImageReady, setIsImageReady] = useState(false);
+    const { isImageReady, weatherCode } = useAppSelector(mainSelector);
+    const {
+        targetCity: { id },
+    } = useAppSelector(citySelector);
+    const dispatch = useAppDispatch();
 
     useLayoutEffect(() => {
-        if (dailyWeatherList.length) {
-            setWeatherCode(
+        console.log(id, 'ID');
+
+        dispatch(
+            setWeatherCodeForImage(
                 getImageAccordingToWeather(
                     dailyWeatherList,
                     hourlyWeatherList,
                     typeOfTheWeather,
+                    id,
+                    isImageReady,
                 ),
-            );
-            setIsImageReady(true);
-        }
-        if (hourlyWeatherList.length) {
-            setWeatherCode(
-                getImageAccordingToWeather(
-                    dailyWeatherList,
-                    hourlyWeatherList,
-                    typeOfTheWeather,
-                ),
-            );
-            setIsImageReady(true);
-        }
+            ),
+        );
+        dispatch(setImageReading(true));
     }, [typeOfTheWeather, dailyWeatherList, hourlyWeatherList]);
 
     return (

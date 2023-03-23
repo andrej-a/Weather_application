@@ -6,6 +6,7 @@ import { useAppDispatch } from '@/hooks/useStore';
 import Main from '@/pages/Main';
 import { checkCache } from '@/store/slices/citiesCache';
 import { setTargetCity } from '@/store/slices/citiesList';
+import { setImageReading, setWeatherCodeForImage } from '@/store/slices/main';
 import { checkWeatherCache } from '@/store/slices/weatherCache';
 import ICity from '@/types/ICitiesList';
 
@@ -27,7 +28,12 @@ const App = () => {
     };
 
     useEffect(() => {
-        navigator.geolocation.getCurrentPosition(getPositionCallback);
+        navigator.geolocation.getCurrentPosition(getPositionCallback, error => {
+            if (error.PERMISSION_DENIED) {
+                dispatch(setImageReading(true));
+                dispatch(setWeatherCodeForImage(2));
+            }
+        });
     }, []);
     return (
         <ApplicationWrapper>

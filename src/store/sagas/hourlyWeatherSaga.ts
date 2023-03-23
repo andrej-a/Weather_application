@@ -1,4 +1,4 @@
-import { call, debounce, put, select } from 'redux-saga/effects';
+import { call, debounce, put, select, takeLatest } from 'redux-saga/effects';
 
 import getHourlyWeatherInfo from '@/api/getHourlyWeatherInfo';
 import { numberConstants } from '@/types/constants';
@@ -61,9 +61,5 @@ export function* hourlyWeatherWorker({ payload }: IPayload<ICity>) {
 }
 
 export function* hourlyWeatherWatcher() {
-    yield debounce(
-        REQUEST_DEBOUNCE,
-        startHourlyWeatherFetch,
-        hourlyWeatherWorker,
-    );
+    yield takeLatest(startHourlyWeatherFetch, hourlyWeatherWorker);
 }

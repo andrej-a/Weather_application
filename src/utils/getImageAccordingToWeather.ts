@@ -9,28 +9,25 @@ const getImageAccordingToWeather = (
     dailyWeatherArray: IDailyWeather[],
     hourlyWeatherArray: IDailyWeather[],
     typeOfTheWeather: string,
+    id: string,
+    isImageReady: boolean,
 ) => {
+    if (!id && isImageReady) {
+        return 2;
+    }
     let weatherCode = 0;
-    console.log(dailyWeatherArray, 'INGETIMAGEDAILY');
-    console.log(hourlyWeatherArray, 'INGETIMAGEHOURLY');
+    const time = generateDate(typeOfTheWeather);
 
-    if (
-        dailyWeatherArray.length &&
-        typeOfTheWeather === DAILY_TYPE_OF_THE_WEATHER
-    ) {
-        const date = generateDate(typeOfTheWeather);
+    if (typeOfTheWeather === DAILY_TYPE_OF_THE_WEATHER) {
         weatherCode = dailyWeatherArray.filter(
-            weatherItem => weatherItem.date === date,
+            weatherItem => weatherItem.date === time,
         )[0]?.code;
-    } else if (
-        hourlyWeatherArray &&
-        typeOfTheWeather === HOURLY_TYPE_OF_THE_WEATHER
-    ) {
-        const hour = generateDate(typeOfTheWeather);
+    } else if (typeOfTheWeather === HOURLY_TYPE_OF_THE_WEATHER) {
         weatherCode = hourlyWeatherArray.filter(
-            weatherItem => weatherItem.date === hour,
+            weatherItem => weatherItem.date === time,
         )[0]?.code;
     }
+
     return imageCodeAdapter(weatherCode);
 };
 export default getImageAccordingToWeather;

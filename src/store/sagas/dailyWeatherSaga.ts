@@ -1,4 +1,4 @@
-import { call, debounce, put, select } from 'redux-saga/effects';
+import { call, debounce, put, select, takeLatest } from 'redux-saga/effects';
 
 import getDailyWeatherInfo from '@/api/getDailyWeatherInfo';
 import { setWeatherToCache } from '@/store/slices/weatherCache';
@@ -61,9 +61,5 @@ function* dailyWeatherWorker({ payload }: IPayload<ICity>) {
 }
 
 export function* dailyWeatherWatcher() {
-    yield debounce(
-        REQUEST_DEBOUNCE,
-        startDailyWeatherFetch,
-        dailyWeatherWorker,
-    );
+    yield takeLatest(startDailyWeatherFetch, dailyWeatherWorker);
 }
