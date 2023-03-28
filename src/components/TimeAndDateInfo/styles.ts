@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import size from '@/constants/size';
+import size from '@/types/size';
 
 const { tablet, mobileL } = size;
 export const TimeAndDateInfoWrapper = styled.div`

@@ -2,8 +2,9 @@ import React, { useEffect } from 'react';
 
 import getCurrentPositionByCoords from '@/api/getCurrentPositionByCoords';
 import GlobalStyle from '@/globalStyles';
-import { useAppDispatch } from '@/hooks/useStore';
+import { useAppDispatch, useAppSelector } from '@/hooks/useStore';
 import Main from '@/pages/Main';
+import mainSelector from '@/store/selectors/mainSelector';
 import { checkCache } from '@/store/slices/citiesCache';
 import { setTargetCity } from '@/store/slices/citiesList';
 import { setImageReading, setWeatherCodeForImage } from '@/store/slices/main';
@@ -14,6 +15,7 @@ import { ApplicationWrapper } from './styles';
 
 const App = () => {
     const dispatch = useAppDispatch();
+    const { weatherCode } = useAppSelector(mainSelector);
 
     const getPositionCallback = async (pos: GeolocationPosition) => {
         const currentUserPosition: ICity = (await getCurrentPositionByCoords(
@@ -31,7 +33,9 @@ const App = () => {
         navigator.geolocation.getCurrentPosition(getPositionCallback, error => {
             if (error.PERMISSION_DENIED) {
                 dispatch(setImageReading(true));
-                dispatch(setWeatherCodeForImage(2));
+                weatherCode
+                    ? dispatch(setWeatherCodeForImage(weatherCode))
+                    : dispatch(setWeatherCodeForImage(2));
             }
         });
     }, []);

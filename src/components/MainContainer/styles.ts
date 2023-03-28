@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import size from '@/constants/size';
+import size from '@/types/size';
 
 const { laptop } = size;
 export const MainContainerWrapper = styled.div`

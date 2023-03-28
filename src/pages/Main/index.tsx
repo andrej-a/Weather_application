@@ -25,8 +25,6 @@ const Main = () => {
     const dispatch = useAppDispatch();
 
     useLayoutEffect(() => {
-        console.log(id, 'ID');
-
         dispatch(
             setWeatherCodeForImage(
                 getImageAccordingToWeather(

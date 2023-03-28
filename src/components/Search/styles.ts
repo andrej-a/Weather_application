@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import size from '@/constants/size';
+import size from '@/types/size';
 
 const { tablet, laptop, mobileL } = size;
 export const SearchWrapper = styled.div`

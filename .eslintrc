@@ -53,6 +53,7 @@
         "react/jsx-one-expression-per-line": "off",
         "no-underscore-dangle": "off",
         "no-useless-computed-key": "off",
+        "react/require-default-props": "off",
         "import/no-cycle": "off",
         "react/jsx-indent": ["error", 4],
         "react/jsx-indent-props": ["error", 4],

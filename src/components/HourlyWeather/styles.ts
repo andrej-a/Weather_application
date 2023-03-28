@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 import { DailyWeatherCard, Date } from '@/components/DailyWeather/styles';
-import size from '@/constants/size';
+import size from '@/types/size';
 
 const { laptop, tablet } = size;
 
