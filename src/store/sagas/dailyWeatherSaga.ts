@@ -1,12 +1,12 @@
-import { call, debounce, put, select, takeLatest } from 'redux-saga/effects';
+import { call, put, select, takeLatest } from 'redux-saga/effects';
 
 import getDailyWeatherInfo from '@/api/getDailyWeatherInfo';
 import { setWeatherToCache } from '@/store/slices/weatherCache';
-import { numberConstants } from '@/types/constants';
 import ICity from '@/types/ICitiesList';
 import IDailyWeather from '@/types/IDailyWeather';
 import IPayload from '@/types/IPayload';
 import IWeatherCache from '@/types/IWeatherCache';
+import showAlert from '@/utils/showAlert';
 
 import { weatherCacheSelector } from '../selectors/weatherCacheSelector';
 import {
@@ -15,8 +15,6 @@ import {
     setDailyWeatherList,
     startDailyWeatherFetch,
 } from '../slices/dailyWeatherList';
-
-const { REQUEST_DEBOUNCE } = numberConstants;
 
 function* dailyWeatherWorker({ payload }: IPayload<ICity>) {
     try {
@@ -31,7 +29,7 @@ function* dailyWeatherWorker({ payload }: IPayload<ICity>) {
             weatherCacheSelector,
         );
         const index: number = yield weatherCache.findIndex(
-            el => el.city === `${payload.name}-${payload.country}`,
+            ({ city }) => city === `${payload.name}-${payload.country}`,
         );
 
         if (index !== -1) {
@@ -55,8 +53,8 @@ function* dailyWeatherWorker({ payload }: IPayload<ICity>) {
             );
         }
     } catch (error) {
-        console.log(error, 'ERROR');
         yield put(failureDailyWeatherFetch());
+        showAlert(error.message);
     }
 }
 

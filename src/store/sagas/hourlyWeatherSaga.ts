@@ -1,11 +1,11 @@
-import { call, debounce, put, select, takeLatest } from 'redux-saga/effects';
+import { call, put, select, takeLatest } from 'redux-saga/effects';
 
 import getHourlyWeatherInfo from '@/api/getHourlyWeatherInfo';
-import { numberConstants } from '@/types/constants';
 import ICity from '@/types/ICitiesList';
 import IDailyWeather from '@/types/IDailyWeather';
 import IPayload from '@/types/IPayload';
 import IWeatherCache from '@/types/IWeatherCache';
+import showAlert from '@/utils/showAlert';
 
 import { weatherCacheSelector } from '../selectors/weatherCacheSelector';
 import {
@@ -15,8 +15,6 @@ import {
     startHourlyWeatherFetch,
 } from '../slices/hourlyWeatherList';
 import { setWeatherToCache } from '../slices/weatherCache';
-
-const { REQUEST_DEBOUNCE } = numberConstants;
 
 export function* hourlyWeatherWorker({ payload }: IPayload<ICity>) {
     try {
@@ -31,7 +29,7 @@ export function* hourlyWeatherWorker({ payload }: IPayload<ICity>) {
             weatherCacheSelector,
         );
         const index: number = yield weatherCache.findIndex(
-            el => el.city === `${payload.name}-${payload.country}`,
+            ({ city }) => city === `${payload.name}-${payload.country}`,
         );
 
         if (index !== -1) {
@@ -55,7 +53,7 @@ export function* hourlyWeatherWorker({ payload }: IPayload<ICity>) {
             );
         }
     } catch (error) {
-        console.log('ERROR', error);
+        showAlert(error.message);
         yield put(hourlyWeatherFetchFailure());
     }
 }

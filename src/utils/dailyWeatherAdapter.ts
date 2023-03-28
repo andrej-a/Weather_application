@@ -4,30 +4,22 @@ import IDailyWeather from '@/types/IDailyWeather';
 
 import setCorrectDateFormat from './setCorrectDateFormat';
 
-const dailyWeatherAdapter = (responce: {
+interface IResponce {
     daily: {
         data: { day: string; all_day: { temperature: number }; icon: number }[];
     };
-}): IDailyWeather[] => {
+}
+
+const dailyWeatherAdapter = (responce: IResponce): IDailyWeather[] => {
     const result: IDailyWeather[] = [];
-    responce.daily.data.map(
-        ({
-            day,
-            all_day,
-            icon,
-        }: {
-            day: string;
-            all_day: { temperature: number };
-            icon: number;
-        }) => {
-            const weatherItem: IDailyWeather = {} as IDailyWeather;
-            (weatherItem.date = setCorrectDateFormat(day)),
-                (weatherItem.temperature = Math.round(all_day.temperature)),
-                (weatherItem.code = icon),
-                (weatherItem.id = uuidv4());
-            result.push(weatherItem);
-        },
-    );
+    responce.daily.data.map(({ day, all_day: { temperature }, icon }) => {
+        const weatherItem: IDailyWeather = {} as IDailyWeather;
+        (weatherItem.date = setCorrectDateFormat(day)),
+            (weatherItem.temperature = Math.round(temperature)),
+            (weatherItem.code = icon),
+            (weatherItem.id = uuidv4());
+        result.push(weatherItem);
+    });
     return result;
 };
 export default dailyWeatherAdapter;

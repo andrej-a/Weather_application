@@ -29,8 +29,8 @@ function* dailyWeatherCache({ payload }: IPayload<string>) {
     if (cache.length) {
         yield put(setDailyWeatherList(cache));
     } else {
-        const citiesState: IInitialCitiesState = yield select(citySelector);
-        yield put(startDailyWeatherFetch(citiesState.targetCity));
+        const { targetCity }: IInitialCitiesState = yield select(citySelector);
+        yield put(startDailyWeatherFetch(targetCity));
     }
 }
 
@@ -41,8 +41,8 @@ function* hourlyWeatherCache({ payload }: IPayload<string>) {
     if (cache.length) {
         yield put(setHourlyWeatherList(cache));
     } else {
-        const citiesState: IInitialCitiesState = yield select(citySelector);
-        yield put(startHourlyWeatherFetch(citiesState.targetCity));
+        const { targetCity }: IInitialCitiesState = yield select(citySelector);
+        yield put(startHourlyWeatherFetch(targetCity));
     }
 }
 

@@ -1,4 +1,13 @@
-import { persistReducer, persistStore } from 'redux-persist';
+import {
+    FLUSH,
+    PAUSE,
+    PERSIST,
+    persistReducer,
+    persistStore,
+    PURGE,
+    REGISTER,
+    REHYDRATE,
+} from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import createSagaMiddleware from 'redux-saga';
 
@@ -31,7 +40,18 @@ export const store = configureStore({
     reducer: persistedReducer,
     devTools: true,
     middleware: getDefaultMiddleware =>
-        getDefaultMiddleware().concat(sagaMiddleware),
+        getDefaultMiddleware({
+            serializableCheck: {
+                ignoredActions: [
+                    FLUSH,
+                    REHYDRATE,
+                    PAUSE,
+                    PERSIST,
+                    PURGE,
+                    REGISTER,
+                ],
+            },
+        }).concat(sagaMiddleware),
 });
 sagaMiddleware.run(rootSaga);
 

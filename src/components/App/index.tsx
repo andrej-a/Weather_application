@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { AlertContainer } from 'alertor-library';
 
 import getCurrentPositionByCoords from '@/api/getCurrentPositionByCoords';
 import GlobalStyle from '@/globalStyles';
@@ -43,6 +44,7 @@ const App = () => {
         <ApplicationWrapper>
             <Main />
             <GlobalStyle />
+            <AlertContainer />
         </ApplicationWrapper>
     );
 };

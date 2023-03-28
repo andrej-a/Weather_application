@@ -27,6 +27,7 @@
     "dependencies": {
         "@reduxjs/toolkit": "^1.9.3",
         "ai-switcher-translit": "^1.0.2",
+        "alertor-library": "^1.0.14",
         "copy-webpack-plugin": "^11.0.0",
         "handy-svg": "^1.0.8",
         "install": "^0.13.0",

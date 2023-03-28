@@ -2,6 +2,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 import constants from '@/types/constants';
 import ICity from '@/types/ICitiesList';
+import showAlert from '@/utils/showAlert';
 
 const swithcher = require('ai-switcher-translit');
 
@@ -40,20 +41,23 @@ const getCurrentPositionByCoords = async ({
             body: JSON.stringify(query),
         });
         const responce: responceAnswer = await request.json();
+        const {
+            data: { city, country_iso_code, region_with_type },
+        } = responce.suggestions[0];
 
         const result: ICity = {
             id: uuidv4(),
-            name: swithcher.getSwitch(responce.suggestions[0].data.city, {
+            name: swithcher.getSwitch(city, {
                 type: 'translit',
             }),
             latitude,
             longitude,
-            country: responce.suggestions[0].data.country_iso_code,
-            state: responce.suggestions[0].data.region_with_type,
+            country: country_iso_code,
+            state: region_with_type,
         };
         return result;
     } catch (error) {
-        console.log(error);
+        showAlert(error.message);
     }
 };
 
