@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import size from '@/constants/size';
+import size from '@/types/size';
 
 const { laptop, tablet, mobileL } = size;
 export const DailyWeatherWrapper = styled.div`
@@ -9,9 +9,14 @@ export const DailyWeatherWrapper = styled.div`
 
     display: flex;
     justify-content: space-around;
+    align-items: center;
     flex-wrap: wrap;
 
     overflow: hidden;
+
+    @media (max-width: ${tablet}px) {
+        overflow: auto;
+    }
 `;
 
 export const DailyWeatherCard = styled.div`
@@ -25,21 +30,19 @@ export const DailyWeatherCard = styled.div`
 
     overflow: hidden;
 
-    svg {
-        fill: #fff;
+    img {
         width: 90px;
-        height: 90px;
+        height: 80px;
 
         @media (max-width: ${laptop}px) {
             width: 80px;
-            height: 80px;
             flex-direction: row;
             justify-content: space-between;
         }
 
         @media (max-width: ${tablet}px) {
-            width: 40px;
-            height: 40px;
+            width: 60px;
+            height: 60px;
             padding-top: 10px;
         }
     }
@@ -52,6 +55,7 @@ export const DailyWeatherCard = styled.div`
 
     @media (max-width: ${tablet}px) {
         flex-direction: column;
+        height: 40%;
     }
 `;
 

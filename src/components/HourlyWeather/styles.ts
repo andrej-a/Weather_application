@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 import { DailyWeatherCard, Date } from '@/components/DailyWeather/styles';
-import size from '@/constants/size';
+import size from '@/types/size';
 
 const { laptop, tablet } = size;
 
@@ -12,9 +12,10 @@ export const HourlyWeatherWrapper = styled.div`
     height: 100%;
     display: flex;
     justify-content: space-around;
+    align-items: center;
     flex-wrap: wrap;
 
-    overflow: hidden;
+    overflow: auto;
 `;
 
 export const LeftArrowContainer = styled.div`
@@ -51,14 +52,20 @@ export const RightArrowContainer = styled(LeftArrowContainer)`
 export const HourlyWeatherCard = styled(DailyWeatherCard)`
     width: 12.5%;
 
+    img {
+        width: 60px;
+        height: 80px;
+    }
+
     @media (max-width: ${laptop}px) {
         width: 30%;
-        height: 30%;
+        height: 35%;
         flex-direction: row;
     }
 
     @media (max-width: ${tablet}px) {
         flex-direction: column;
+        height: 50%;
     }
 `;
 

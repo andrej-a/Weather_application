@@ -1,86 +1,56 @@
-import React from 'react';
-import { ReactSVG } from 'react-svg';
+import React, { useEffect } from 'react';
+import { ClockLoader } from 'react-spinners';
 
-import LeftArrow from '@/assets/svg/arrow_left.svg';
-import RightArrow from '@/assets/svg/arrow_right.svg';
-import CloudSvg from '@/assets/svg/cloud_sun.svg';
+import { useAppDispatch, useAppSelector } from '@/hooks/useStore';
+import citySelector from '@/store/selectors/citySelector';
+import hourlyWeatherSelector from '@/store/selectors/hourlyWeatherSelector';
+import { checkWeatherCache } from '@/store/slices/weatherCache';
+import constants from '@/types/constants';
 
 import { WeatherData, WeatherDataWrapper } from '../DailyWeather/styles';
-import {
-    HourlyWeatherCard,
-    HourlyWeatherWrapper,
-    LeftArrowContainer,
-    RightArrowContainer,
-    Time,
-} from './styles';
+import { HourlyWeatherCard, HourlyWeatherWrapper, Time } from './styles';
 
 const HourlyWeather = () => {
+    const { NO_WEATHER_DATA, SPINNER_COLOR } = constants;
+    const { hourlyWeatherList, isHourlyWeatherLoading } = useAppSelector(
+        hourlyWeatherSelector,
+    );
+    const { targetCity } = useAppSelector(citySelector);
+    const { id, name, country } = targetCity;
+    const dispatch = useAppDispatch();
+
+    useEffect(() => {
+        if (id) {
+            dispatch(checkWeatherCache(`${name}-${country}`));
+        }
+    }, []);
+
     return (
         <HourlyWeatherWrapper>
-            <LeftArrowContainer>
-                <ReactSVG src={LeftArrow} />
-            </LeftArrowContainer>
-
-            <RightArrowContainer>
-                <ReactSVG src={RightArrow} />
-            </RightArrowContainer>
-
-            <HourlyWeatherCard>
-                <ReactSVG src={CloudSvg} />
-                <WeatherDataWrapper>
-                    <Time>14:00</Time>
-                    <WeatherData>4</WeatherData>
-                </WeatherDataWrapper>
-            </HourlyWeatherCard>
-            <HourlyWeatherCard>
-                <ReactSVG src={CloudSvg} />
-                <WeatherDataWrapper>
-                    <Time>14:00</Time>
-                    <WeatherData>4</WeatherData>
-                </WeatherDataWrapper>
-            </HourlyWeatherCard>
-            <HourlyWeatherCard>
-                <ReactSVG src={CloudSvg} />
-                <WeatherDataWrapper>
-                    <Time>14:00</Time>
-                    <WeatherData>4</WeatherData>
-                </WeatherDataWrapper>
-            </HourlyWeatherCard>
-            <HourlyWeatherCard>
-                <ReactSVG src={CloudSvg} />
-                <WeatherDataWrapper>
-                    <Time>14:00</Time>
-                    <WeatherData>4</WeatherData>
-                </WeatherDataWrapper>
-            </HourlyWeatherCard>
-            <HourlyWeatherCard>
-                <ReactSVG src={CloudSvg} />
-                <WeatherDataWrapper>
-                    <Time>14:00</Time>
-                    <WeatherData>4</WeatherData>
-                </WeatherDataWrapper>
-            </HourlyWeatherCard>
-            <HourlyWeatherCard>
-                <ReactSVG src={CloudSvg} />
-                <WeatherDataWrapper>
-                    <Time>14:00</Time>
-                    <WeatherData>4</WeatherData>
-                </WeatherDataWrapper>
-            </HourlyWeatherCard>
-            <HourlyWeatherCard>
-                <ReactSVG src={CloudSvg} />
-                <WeatherDataWrapper>
-                    <Time>14:00</Time>
-                    <WeatherData>4</WeatherData>
-                </WeatherDataWrapper>
-            </HourlyWeatherCard>
-            <HourlyWeatherCard>
-                <ReactSVG src={CloudSvg} />
-                <WeatherDataWrapper>
-                    <Time>14:00</Time>
-                    <WeatherData>4</WeatherData>
-                </WeatherDataWrapper>
-            </HourlyWeatherCard>
+            {isHourlyWeatherLoading ? (
+                <ClockLoader color={SPINNER_COLOR} />
+            ) : hourlyWeatherList.length > 0 ? (
+                <React.Fragment>
+                    {hourlyWeatherList.map(
+                        ({ id, date, code, temperature }) => {
+                            return (
+                                <HourlyWeatherCard key={id}>
+                                    <img
+                                        src={`./icons/${code}.png`}
+                                        alt={`weatherCode-${code}`}
+                                    />
+                                    <WeatherDataWrapper>
+                                        <Time>{date}</Time>
+                                        <WeatherData>{temperature}</WeatherData>
+                                    </WeatherDataWrapper>
+                                </HourlyWeatherCard>
+                            );
+                        },
+                    )}
+                </React.Fragment>
+            ) : (
+                NO_WEATHER_DATA
+            )}
         </HourlyWeatherWrapper>
     );
 };

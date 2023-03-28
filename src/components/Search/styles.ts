@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import size from '@/constants/size';
+import size from '@/types/size';
 
 const { tablet, laptop, mobileL } = size;
 export const SearchWrapper = styled.div`
@@ -25,12 +25,12 @@ export const Form = styled.form`
     align-items: center;
     gap: 15px;
 
-    @media (max-width: ${tablet}px) {
-        flex-direction: row;
+    @media (max-width: ${laptop}px) {
+        gap: 10px;
     }
 
-    @media (max-width: ${mobileL}px) {
-        gap: 10px;
+    @media (max-width: ${tablet}px) {
+        flex-direction: row;
     }
 `;
 
@@ -66,9 +66,24 @@ export const SubmitButton = styled.button`
     &:hover {
         background: #fff;
         color: #000;
+
+        &:disabled {
+            cursor: not-allowed;
+            background: grey;
+            color: #fff;
+        }
     }
+
     &:disabled {
         cursor: not-allowed;
+        background: grey;
+        color: #fff;
+    }
+
+    @media (max-width: ${laptop}px) {
+        width: 130px;
+        height: 30px;
+        font-size: 20px;
     }
 
     @media (max-width: ${mobileL}px) {
@@ -109,7 +124,7 @@ export const ElasticItem = styled.div`
     z-index: 3;
 
     width: 100%;
-    height: 25px;
+    height: auto;
     display: flex;
     align-items: center;
     padding-left: 5px;
