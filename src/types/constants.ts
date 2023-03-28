@@ -16,6 +16,8 @@ enum constants {
     GET_CURRENT_POSITION_URL = 'https://suggestions.dadata.ru/suggestions/api/4_1/rs/geolocate/address',
     CURRENT_POSITION_KEY = 'f32baa2e694a3bb04330d514b9b2d3aeda9da60d',
     ERROR_MESSAGE = 'Error was happened',
+    CALENDAR_DEFAULT_MESSAGE = 'Sing in to your account to see google calendar events',
+    CALENDAR_LIST_SLICE_NAME = 'calendarState',
 }
 
 export enum numberConstants {

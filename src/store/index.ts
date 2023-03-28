@@ -11,6 +11,7 @@ import {
 import storage from 'redux-persist/lib/storage';
 import createSagaMiddleware from 'redux-saga';
 
+import calendarState from '@/store/slices/calendar';
 import citiesCache from '@/store/slices/citiesCache';
 import citiesState from '@/store/slices/citiesList';
 import dailyWeatherState from '@/store/slices/dailyWeatherList';
@@ -32,6 +33,7 @@ const rootReducer = combineReducers({
     weatherCach,
     mainSlice,
     hourlyWeatherState,
+    calendarState,
 });
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 const sagaMiddleware = createSagaMiddleware();

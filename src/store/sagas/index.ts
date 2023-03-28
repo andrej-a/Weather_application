@@ -1,5 +1,6 @@
 import { spawn } from 'redux-saga/effects';
 
+import { calendarWatcher } from './calendarSaga';
 import { citiesCachWatcher } from './citiesCacheSaga';
 import { citiesWatcher } from './citiesSaga';
 import { dailyWeatherWatcher } from './dailyWeatherSaga';
@@ -12,4 +13,5 @@ export default function* rootSaga() {
     yield spawn(dailyWeatherWatcher);
     yield spawn(weatherCachWatcher);
     yield spawn(hourlyWeatherWatcher);
+    yield spawn(calendarWatcher);
 }

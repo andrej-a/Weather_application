@@ -86,9 +86,19 @@ export const CalendarInfoWrapper = styled.div`
 export const CalendarInfo = styled.div`
     width: 90%;
     height: auto;
+    min-height: 25%;
     max-height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 15px;
+
     overflow-x: auto;
     overflow-y: auto;
+
+    font-size: 20px;
+    text-align: center;
 
     @media (max-width: ${laptop}px) {
         max-height: none;
