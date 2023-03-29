@@ -49,6 +49,10 @@ module.exports = {
                     loader: 'url-loader',
                 },
             },
+            {
+                test: /\.css$/i,
+                use: ['css-loader'],
+            },
         ],
     },
     resolve: {

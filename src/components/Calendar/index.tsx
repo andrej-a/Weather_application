@@ -1,5 +1,10 @@
 import React from 'react';
 
+import { useAppDispatch, useAppSelector } from '@/hooks/useStore';
+import calendarSelector from '@/store/selectors/calendarSelector';
+import { calendarSagaHandle } from '@/store/slices/calendar';
+import constants from '@/types/constants';
+
 import {
     CalendarInfo,
     CalendarInfoWrapper,
@@ -12,57 +17,42 @@ import {
 } from './styles';
 
 const Calendar = () => {
+    const { CALENDAR_DEFAULT_MESSAGE, NO_CALENDAR_EVENTS } = constants;
+    const { calendarEventsList, accessToken } =
+        useAppSelector(calendarSelector);
+    const dispatch = useAppDispatch();
+
+    const calendarManager = () => {
+        dispatch(calendarSagaHandle());
+    };
+
     return (
         <CalendarWrapper>
             <LogInButtonWrapper>
-                <LogInButton>Sign In</LogInButton>
+                <LogInButton onClick={calendarManager}>
+                    Sign {accessToken ? 'Out' : 'In'}
+                </LogInButton>
             </LogInButtonWrapper>
             <CalendarInfoWrapper>
                 <CalendarInfo>
-                    <CalendarItem>
-                        <ItemTime>09:00</ItemTime>
-                        <ItemContent>Some impotant actions</ItemContent>
-                    </CalendarItem>
-                    <CalendarItem>
-                        <ItemTime>09:00</ItemTime>
-                        <ItemContent>Some impotant actions</ItemContent>
-                    </CalendarItem>
-                    <CalendarItem>
-                        <ItemTime>09:00</ItemTime>
-                        <ItemContent>Some impotant actions</ItemContent>
-                    </CalendarItem>
-                    <CalendarItem>
-                        <ItemTime>09:00</ItemTime>
-                        <ItemContent>Some impotant actions</ItemContent>
-                    </CalendarItem>
-                    <CalendarItem>
-                        <ItemTime>09:00</ItemTime>
-                        <ItemContent>Some impotant actions</ItemContent>
-                    </CalendarItem>
-                    <CalendarItem>
-                        <ItemTime>09:00</ItemTime>
-                        <ItemContent>Some impotant actions</ItemContent>
-                    </CalendarItem>
-                    <CalendarItem>
-                        <ItemTime>09:00</ItemTime>
-                        <ItemContent>Some impotant actions</ItemContent>
-                    </CalendarItem>
-                    <CalendarItem>
-                        <ItemTime>09:00</ItemTime>
-                        <ItemContent>Some impotant actions</ItemContent>
-                    </CalendarItem>
-                    <CalendarItem>
-                        <ItemTime>09:00</ItemTime>
-                        <ItemContent>Some impotant actions</ItemContent>
-                    </CalendarItem>
-                    <CalendarItem>
-                        <ItemTime>09:00</ItemTime>
-                        <ItemContent>Some impotant actions</ItemContent>
-                    </CalendarItem>
-                    <CalendarItem>
-                        <ItemTime>09:00</ItemTime>
-                        <ItemContent>Some impotant actions</ItemContent>
-                    </CalendarItem>
+                    {accessToken
+                        ? calendarEventsList.length > 0
+                            ? calendarEventsList.map(
+                                  ({ id, start, summary }) => {
+                                      return (
+                                          <CalendarItem key={id}>
+                                              <ItemTime>
+                                                  {start.dateTime}
+                                              </ItemTime>
+                                              <ItemContent>
+                                                  {summary}
+                                              </ItemContent>
+                                          </CalendarItem>
+                                      );
+                                  },
+                              )
+                            : NO_CALENDAR_EVENTS
+                        : CALENDAR_DEFAULT_MESSAGE}
                 </CalendarInfo>
             </CalendarInfoWrapper>
         </CalendarWrapper>

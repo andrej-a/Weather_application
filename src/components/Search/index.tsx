@@ -11,7 +11,6 @@ import ICity from '@/types/ICitiesList';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import {
-    CloseElasticContainer,
     ElasticContainer,
     ElasticItem,
     Form,

@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useState } from 'react';
+import React, { useLayoutEffect } from 'react';
 import { ClockLoader } from 'react-spinners';
 
 import UserInterface from '@/components/UserInterface';
