@@ -37,18 +37,20 @@ const Calendar = () => {
                 <CalendarInfo>
                     {accessToken
                         ? calendarEventsList.length > 0
-                            ? calendarEventsList.map(event => {
-                                  return (
-                                      <CalendarItem key={event.start.dateTime}>
-                                          <ItemTime>
-                                              {event.start.dateTime}
-                                          </ItemTime>
-                                          <ItemContent>
-                                              {event.summary}
-                                          </ItemContent>
-                                      </CalendarItem>
-                                  );
-                              })
+                            ? calendarEventsList.map(
+                                  ({ id, start, summary }) => {
+                                      return (
+                                          <CalendarItem key={id}>
+                                              <ItemTime>
+                                                  {start.dateTime}
+                                              </ItemTime>
+                                              <ItemContent>
+                                                  {summary}
+                                              </ItemContent>
+                                          </CalendarItem>
+                                      );
+                                  },
+                              )
                             : NO_CALENDAR_EVENTS
                         : CALENDAR_DEFAULT_MESSAGE}
                 </CalendarInfo>

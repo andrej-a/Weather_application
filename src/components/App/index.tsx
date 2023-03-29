@@ -12,6 +12,7 @@ import { setImageReading, setWeatherCodeForImage } from '@/store/slices/main';
 import { checkWeatherCache } from '@/store/slices/weatherCache';
 import ICity from '@/types/ICitiesList';
 
+import 'react-toastify/dist/ReactToastify.css';
 import { ApplicationWrapper } from './styles';
 
 const App = () => {

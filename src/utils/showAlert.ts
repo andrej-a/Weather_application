@@ -1,7 +1,7 @@
 import { toast } from 'react-toastify';
 
 const showAlert = (error: string): void => {
-    toast.error(error, {
+    toast.error(`${error}, try to reload page`, {
         position: 'bottom-right',
         autoClose: 5000,
         hideProgressBar: false,

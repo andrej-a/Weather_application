@@ -9,10 +9,20 @@ const getCalendarInformation = async () => {
         await apiCalendar.handleAuthClick();
 
     if (access_token) {
+        const today = new Date();
+        const maxDateToRequest = new Date(
+            today.getTime() + 24 * 60 * 60 * 1000,
+        ).toISOString();
         const {
             result: { items },
         }: { result: { items: ICalendarEvent[] } } =
-            await apiCalendar.listUpcomingEvents(MAX_UPCOMING_EVENTS);
+            await apiCalendar.listEvents({
+                timeMin: today.toISOString(),
+                timeMax: maxDateToRequest,
+                showDeleted: false,
+                maxResults: MAX_UPCOMING_EVENTS,
+                orderBy: 'updated',
+            });
 
         return {
             access_token,

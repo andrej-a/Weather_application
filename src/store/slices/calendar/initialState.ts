@@ -1,6 +1,7 @@
 export interface ICalendarEvent {
     start: { dateTime: string; timeZone: string };
     summary: string;
+    id: string;
 }
 export interface ICalendarInitialState {
     accessToken: string;
