@@ -20,7 +20,7 @@ interface ICalendareResponce {
     calendarList: ICalendarEvent[];
 }
 
-function* calendarWorker() {
+export function* calendarWorker() {
     const { accessToken }: { accessToken: string } = yield select(
         calendarSelector,
     );

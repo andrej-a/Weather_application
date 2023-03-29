@@ -61,6 +61,7 @@ const Search = () => {
         <SearchWrapper>
             <Form action="" onSubmit={handleSubmit(formSubmit)}>
                 <Input
+                    data-test="searchInput"
                     disabled={isLoadingCityList}
                     type="text"
                     autoComplete="off"
@@ -77,6 +78,7 @@ const Search = () => {
                     id="search"
                 />
                 <SubmitButton
+                    data-test="submitButton"
                     disabled={
                         Object.keys(errors).length > 0 ||
                         !id ||
@@ -96,6 +98,7 @@ const Search = () => {
                             ? cities.map(city => {
                                   return (
                                       <ElasticItem
+                                          data-test="elastickItem"
                                           key={city.id}
                                           onClick={onHandleTargetCity(city)}
                                       >

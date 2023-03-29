@@ -37,7 +37,7 @@ const DailyWeather = () => {
             ) : dailyWeatherList.length > 0 ? (
                 dailyWeatherList.map(({ id, date, temperature, code }) => {
                     return (
-                        <DailyWeatherCard key={id}>
+                        <DailyWeatherCard data-test="dailyWeatherCard" key={id}>
                             <img
                                 src={`./icons/${code}.png`}
                                 alt={`weatherCode-${code}`}

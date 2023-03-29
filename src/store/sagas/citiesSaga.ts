@@ -13,7 +13,7 @@ import {
     startFetch,
 } from '../slices/citiesList';
 
-function* citiesWorker({ payload }: IPayload<string>) {
+export function* citiesWorker({ payload }: IPayload<string>) {
     yield put(fetchCityList());
     try {
         const citiesList: ICity[] = yield call(() => getCitiesList(payload));
