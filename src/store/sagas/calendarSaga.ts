@@ -26,7 +26,7 @@ function* calendarWorker() {
     );
 
     if (accessToken) {
-        apiCalendar.handleSignoutClick();
+        yield call(() => apiCalendar.handleSignoutClick());
         yield put(setCalendarEvents([]));
         yield put(setAccessToken(''));
     } else {

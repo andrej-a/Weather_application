@@ -1540,6 +1540,18 @@
     "@types/qs" "*"
     "@types/serve-static" "*"
 
+"@types/gapi.calendar@^3.0.6":
+  version "3.0.6"
+  resolved "https://registry.yarnpkg.com/@types/gapi.calendar/-/gapi.calendar-3.0.6.tgz#8ff854204056f2b0396283155fef8c10654a7e26"
+  integrity sha512-5POp+QFcJh7yHHOaOc3pkvEZq99u8EzaHuAL+0XcrNKQpN6EM9T6guQ2Q2O39KWkxGvAKdshDv2ZwB7I+v+t3A==
+  dependencies:
+    "@types/gapi" "*"
+
+"@types/gapi@*", "@types/gapi@^0.0.44":
+  version "0.0.44"
+  resolved "https://registry.yarnpkg.com/@types/gapi/-/gapi-0.0.44.tgz#f097f7a0f59d63a59098a08a62a560ca168426fb"
+  integrity sha512-hsgJMfZ/pMwI15UlAYHMNwj8DRoigo1odhbPwEXdp19ZQwQAXbcRrpzaDsfc+9XM6RtGpvl4Ja7uW8A+KPCa7w==
+
 "@types/glob@^7.1.1":
   version "7.2.0"
   resolved "https://registry.npmjs.org/@types/glob/-/glob-7.2.0.tgz"
@@ -1547,6 +1559,11 @@
   dependencies:
     "@types/minimatch" "*"
     "@types/node" "*"
+
+"@types/google.accounts@^0.0.6":
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/@types/google.accounts/-/google.accounts-0.0.6.tgz#f4b8571f93d9086f420b976de0fcb1b28307956e"
+  integrity sha512-6+SAci9zmUjZFdKVghK0oeBOnf+uVT2Actd+SMC7AjUsejp+VuAw6OkTwasZrEo6I1By/Hlt+mKhuXvfLrcYMQ==
 
 "@types/hoist-non-react-statics@*", "@types/hoist-non-react-statics@^3.3.1":
   version "3.3.1"
@@ -2020,10 +2037,10 @@ ajv@^8.0.0, ajv@^8.11.0, ajv@^8.8.0:
     require-from-string "^2.0.2"
     uri-js "^4.2.2"
 
-alertor-library@^1.0.14:
-  version "1.0.14"
-  resolved "https://registry.yarnpkg.com/alertor-library/-/alertor-library-1.0.14.tgz#191382023eb6eb004df19f81baa2a43049819a9c"
-  integrity sha512-ofV8e7qaA10WZ9aplxkXBWrtq6rJfxlcBPGK6lkqVHAlXN13v/MMWr116zjmjZYzBJ5t7QanrRDEIGPKrWFkHQ==
+alertor-library@^1.0.15:
+  version "1.0.15"
+  resolved "https://registry.yarnpkg.com/alertor-library/-/alertor-library-1.0.15.tgz#264537bda1c45a31188034d8c46b341c8f476b68"
+  integrity sha512-vmPpkJTCgXB07FO+reSwvt6J6wwAkGz556Joe9s02kGsrxcTUcRp765YLHvG84qDIcDxiiFHHLoo5H65Zjd6Cw==
   dependencies:
     "@fortawesome/fontawesome-svg-core" "^6.3.0"
     "@fortawesome/free-solid-svg-icons" "^6.3.0"
@@ -2560,6 +2577,11 @@ clone-deep@^4.0.1:
     is-plain-object "^2.0.4"
     kind-of "^6.0.2"
     shallow-clone "^3.0.0"
+
+clsx@^1.1.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/clsx/-/clsx-1.2.1.tgz#0ddc4a20a549b59c93a4116bb26f5294ca17dc12"
+  integrity sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg==
 
 color-convert@^1.9.0:
   version "1.9.3"
@@ -5584,11 +5606,6 @@ react-dom@*, react-dom@^18.2.0:
     loose-envify "^1.1.0"
     scheduler "^0.23.0"
 
-react-google-calendar-api@^2.2.2:
-  version "2.2.2"
-  resolved "https://registry.yarnpkg.com/react-google-calendar-api/-/react-google-calendar-api-2.2.2.tgz#c639ba356d653dbfd8352f3c68bfecd6fa5729f3"
-  integrity sha512-JpDbAUaPUklAkotxvs4FbEUomweu5tMG206wfJh80HmzegVxCylZjzpIEng2eh3phqJjPzznwneNA0ep1vbefQ==
-
 react-hook-form@^7.43.5:
   version "7.43.5"
   resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.43.5.tgz#b320405594f1506d8d57b954383166d4ff563778"
@@ -5635,6 +5652,13 @@ react-svg@^16.1.6:
     "@tanem/svg-injector" "^10.1.50"
     "@types/prop-types" "^15.7.5"
     prop-types "^15.8.1"
+
+react-toastify@^9.1.2:
+  version "9.1.2"
+  resolved "https://registry.yarnpkg.com/react-toastify/-/react-toastify-9.1.2.tgz#293aa1f952240129fe485ae5cb2f8d09c652cf3f"
+  integrity sha512-PBfzXO5jMGEtdYR5jxrORlNZZe/EuOkwvwKijMatsZZm8IZwLj01YvobeJYNjFcA6uy6CVrx2fzL9GWbhWPTDA==
+  dependencies:
+    clsx "^1.1.1"
 
 react@*, react@^18.2.0:
   version "18.2.0"

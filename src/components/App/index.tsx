@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { AlertContainer } from 'alertor-library';
+import { ToastContainer } from 'react-toastify';
 
 import getCurrentPositionByCoords from '@/api/getCurrentPositionByCoords';
 import GlobalStyle from '@/globalStyles';
@@ -40,11 +40,12 @@ const App = () => {
             }
         });
     }, []);
+
     return (
         <ApplicationWrapper>
             <Main />
             <GlobalStyle />
-            <AlertContainer />
+            <ToastContainer />
         </ApplicationWrapper>
     );
 };

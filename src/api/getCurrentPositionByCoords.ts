@@ -23,7 +23,7 @@ interface responceAnswer {
 const getCurrentPositionByCoords = async ({
     coords: { latitude, longitude },
 }: GeolocationPosition): Promise<ICity | undefined> => {
-    const { GET_CURRENT_POSITION_URL, CURRENT_POSITION_KEY } = constants;
+    const { GET_CURRENT_POSITION_URL } = constants;
     const query = {
         lat: latitude,
         lon: longitude,
@@ -36,7 +36,7 @@ const getCurrentPositionByCoords = async ({
             headers: {
                 'Content-Type': 'application/json',
                 Accept: 'application/json',
-                Authorization: `Token ${CURRENT_POSITION_KEY}`,
+                Authorization: `Token ${process.env.CURRENT_POSITION_KEY!}`,
             },
             body: JSON.stringify(query),
         });

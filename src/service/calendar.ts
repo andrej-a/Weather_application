@@ -1,9 +1,8 @@
-import ApiCalendar from 'react-google-calendar-api';
+import ApiCalendar from './googleCalendarApi/ApiCalendar';
 
 const config = {
-    clientId:
-        '160951993346-412roeq2pf49i3fmtro4an3ada16pd64.apps.googleusercontent.com',
-    apiKey: 'AIzaSyAnkQ9JeJ00BiprZe2LuU25JybnZ-8oedw',
+    clientId: process.env.CLIEND_ID!,
+    apiKey: process.env.GOOGLE_API_KEY!,
     scope: 'https://www.googleapis.com/auth/calendar',
     discoveryDocs: [
         'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest',

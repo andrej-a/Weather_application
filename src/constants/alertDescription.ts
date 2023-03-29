@@ -1,12 +1,11 @@
 const alertDescription = {
     position: 'bottom-right',
-    spawnAnimation: 'smooth-sliding-in',
-    fadeAnimation: 'smooth-sliding-out',
-    type: 'info',
-    visibleTime: 5000,
-    title: 'Request error!',
-    description: ' ',
-    indent: 'small',
-    color: '#BC1301',
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: 'light',
 };
 export default alertDescription;

@@ -17,8 +17,8 @@ import {
 } from './styles';
 
 const Calendar = () => {
-    const { CALENDAR_DEFAULT_MESSAGE } = constants;
-    const { isLoading, calendarEventsList, accessToken } =
+    const { CALENDAR_DEFAULT_MESSAGE, NO_CALENDAR_EVENTS } = constants;
+    const { calendarEventsList, accessToken } =
         useAppSelector(calendarSelector);
     const dispatch = useAppDispatch();
 
@@ -49,7 +49,7 @@ const Calendar = () => {
                                       </CalendarItem>
                                   );
                               })
-                            : 'No calendar events'
+                            : NO_CALENDAR_EVENTS
                         : CALENDAR_DEFAULT_MESSAGE}
                 </CalendarInfo>
             </CalendarInfoWrapper>
