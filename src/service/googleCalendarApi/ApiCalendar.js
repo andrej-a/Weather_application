@@ -1,12 +1,12 @@
-var __defProp = Object.defineProperty;
-var __defProps = Object.defineProperties;
-var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-var __getOwnPropDescs = Object.getOwnPropertyDescriptors;
-var __getOwnPropNames = Object.getOwnPropertyNames;
-var __getOwnPropSymbols = Object.getOwnPropertySymbols;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __propIsEnum = Object.prototype.propertyIsEnumerable;
-var __defNormalProp = (obj, key, value) =>
+const __defProp = Object.defineProperty;
+const __defProps = Object.defineProperties;
+const __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+const __getOwnPropDescs = Object.getOwnPropertyDescriptors;
+const __getOwnPropNames = Object.getOwnPropertyNames;
+const __getOwnPropSymbols = Object.getOwnPropertySymbols;
+const __hasOwnProp = Object.prototype.hasOwnProperty;
+const __propIsEnum = Object.prototype.propertyIsEnumerable;
+const __defNormalProp = (obj, key, value) =>
     key in obj
         ? __defProp(obj, key, {
               enumerable: true,
@@ -15,7 +15,7 @@ var __defNormalProp = (obj, key, value) =>
               value,
           })
         : (obj[key] = value);
-var __spreadValues = (a, b) => {
+const __spreadValues = (a, b) => {
     for (var prop in b || (b = {}))
         if (__hasOwnProp.call(b, prop)) __defNormalProp(a, prop, b[prop]);
     if (__getOwnPropSymbols)
@@ -24,30 +24,30 @@ var __spreadValues = (a, b) => {
         }
     return a;
 };
-var __spreadProps = (a, b) => __defProps(a, __getOwnPropDescs(b));
-var __export = (target, all) => {
-    for (var name in all)
+const __spreadProps = (a, b) => __defProps(a, __getOwnPropDescs(b));
+const __export = (target, all) => {
+    for (const name in all)
         __defProp(target, name, { get: all[name], enumerable: true });
 };
-var __copyProps = (to, from, except, desc) => {
+const __copyProps = (to, from, except, desc) => {
     if ((from && typeof from === 'object') || typeof from === 'function') {
-        for (let key of __getOwnPropNames(from))
+        for (const key of __getOwnPropNames(from))
             if (!__hasOwnProp.call(to, key) && key !== except)
                 __defProp(to, key, {
                     get: () => from[key],
                     enumerable:
-                        !(desc = __getOwnPropDesc(from, key)) ||
-                        desc.enumerable,
+                        !(desc = __getOwnPropDesc(from, key))
+                        || desc.enumerable,
                 });
     }
     return to;
 };
-var __toCommonJS = mod =>
+const __toCommonJS = mod =>
     __copyProps(__defProp({}, '__esModule', { value: true }), mod);
 
-var scriptSrcGoogle = 'https://accounts.google.com/gsi/client';
-var scriptSrcGapi = 'https://apis.google.com/js/api.js';
-var ApiCalendar = class {
+const scriptSrcGoogle = 'https://accounts.google.com/gsi/client';
+const scriptSrcGapi = 'https://apis.google.com/js/api.js';
+const ApiCalendar = class {
     constructor(config) {
         this.config = config;
         this.tokenClient = null;
@@ -71,9 +71,11 @@ var ApiCalendar = class {
             console.log(e);
         }
     }
+
     get sign() {
         return !!this.tokenClient;
     }
+
     initGapiClient() {
         gapi.client
             .init({
@@ -90,6 +92,7 @@ var ApiCalendar = class {
                 console.log(e);
             });
     }
+
     handleClientLoad() {
         const scriptGoogle = document.createElement('script');
         const scriptGapi = document.createElement('script');
@@ -113,6 +116,7 @@ var ApiCalendar = class {
             });
         };
     }
+
     handleAuthClick() {
         return new Promise((resolve, _) => {
             this.tokenClient.callback = resp => {
@@ -132,9 +136,11 @@ var ApiCalendar = class {
             }
         });
     }
+
     setCalendar(newCalendar) {
         this.calendar = newCalendar;
     }
+
     onLoad(callback) {
         if (gapi) {
             callback();
@@ -142,6 +148,7 @@ var ApiCalendar = class {
             this.onLoadCallback = callback;
         }
     }
+
     handleSignoutClick() {
         if (gapi) {
             const token = gapi.client.getToken();
@@ -154,6 +161,7 @@ var ApiCalendar = class {
             console.error('Error: this.gapi not loaded');
         }
     }
+
     listUpcomingEvents(maxResults, calendarId = this.calendar) {
         if (gapi) {
             return gapi.client.calendar.events.list({
@@ -164,11 +172,12 @@ var ApiCalendar = class {
                 maxResults,
                 orderBy: 'startTime',
             });
-        } else {
+        } 
             console.error('Error: this.gapi not loaded');
             return false;
-        }
+        
     }
+
     listEvents(queryOptions, calendarId = this.calendar) {
         if (gapi) {
             return gapi.client.calendar.events.list(
@@ -179,11 +188,12 @@ var ApiCalendar = class {
                     queryOptions,
                 ),
             );
-        } else {
+        } 
             console.error('Error: gapi not loaded');
             return false;
-        }
+        
     }
+
     createEventFromNow(
         { time, summary, description = '' },
         calendarId = this.calendar,
@@ -205,6 +215,7 @@ var ApiCalendar = class {
         };
         return this.createEvent(event, calendarId);
     }
+
     createEvent(event, calendarId = this.calendar, sendUpdates = 'none') {
         if (gapi.client.getToken()) {
             return gapi.client.calendar.events.insert({
@@ -213,11 +224,12 @@ var ApiCalendar = class {
                 sendUpdates,
                 conferenceDataVersion: 1,
             });
-        } else {
+        } 
             console.error('Error: this.gapi not loaded');
             return false;
-        }
+        
     }
+
     createEventWithVideoConference(
         event,
         calendarId = this.calendar,
@@ -238,19 +250,21 @@ var ApiCalendar = class {
             sendUpdates,
         );
     }
+
     deleteEvent(eventId, calendarId = this.calendar) {
         if (gapi) {
             return gapi.client.calendar.events.delete({
                 calendarId,
                 eventId,
             });
-        } else {
+        } 
             console.error(
                 'Error: gapi is not loaded use onLoad before please.',
             );
             return null;
-        }
+        
     }
+
     updateEvent(
         event,
         eventId,
@@ -264,46 +278,49 @@ var ApiCalendar = class {
                 resource: event,
                 sendUpdates,
             });
-        } else {
+        } 
             console.error(
                 'Error: gapi is not loaded use onLoad before please.',
             );
             return null;
-        }
+        
     }
+
     getEvent(eventId, calendarId = this.calendar) {
         if (gapi) {
             return gapi.client.calendar.events.get({
                 calendarId,
                 eventId,
             });
-        } else {
+        } 
             console.error(
                 'Error: gapi is not loaded use onLoad before please.',
             );
             return null;
-        }
+        
     }
+
     listCalendars() {
         if (gapi) {
             return gapi.client.calendar.calendarList.list();
-        } else {
+        } 
             console.error(
                 'Error: gapi is not loaded use onLoad before please.',
             );
             return null;
-        }
+        
     }
+
     createCalendar(summary) {
         if (gapi) {
             return gapi.client.calendar.calendars.insert({ summary });
-        } else {
+        } 
             console.error(
                 'Error: gapi is not loaded use onLoad before please.',
             );
             return null;
-        }
+        
     }
 };
-var ApiCalendar_default = ApiCalendar;
+const ApiCalendar_default = ApiCalendar;
 export default ApiCalendar;

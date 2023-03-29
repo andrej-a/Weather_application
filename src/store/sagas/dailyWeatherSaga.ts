@@ -16,7 +16,7 @@ import {
     startDailyWeatherFetch,
 } from '../slices/dailyWeatherList';
 
-function* dailyWeatherWorker({ payload }: IPayload<ICity>) {
+export function* dailyWeatherWorker({ payload }: IPayload<ICity>) {
     try {
         yield put(fetchDailyWeather());
         const weatherList: IDailyWeather[] = yield call(
