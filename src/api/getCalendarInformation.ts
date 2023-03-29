@@ -3,9 +3,9 @@ import { ICalendarEvent } from '@/store/slices/calendar/initialState';
 import setCorrectCalendarDate from '@/utils/setCorrectCalendarDate';
 
 const getCalendarInformation = async () => {
-    const { access_token } = await apiCalendar.handleAuthClick();
+    const auth = await apiCalendar.handleAuthClick();
 
-    if (access_token) {
+    if (auth.access_token) {
         const {
             result: { items },
         }: { result: { items: ICalendarEvent[] } } =
@@ -16,7 +16,10 @@ const getCalendarInformation = async () => {
                 orderBy: 'updated',
             });
 
-        return { access_token, calendarList: setCorrectCalendarDate(items) };
+        return {
+            access_token: auth.access_token,
+            calendarList: setCorrectCalendarDate(items),
+        };
     }
 };
 
