@@ -1,7 +1,9 @@
 import apiCalendar from '@/service/calendar';
 import { ICalendarEvent } from '@/store/slices/calendar/initialState';
+import { numberConstants } from '@/types/constants';
 import setCorrectCalendarDate from '@/utils/setCorrectCalendarDate';
 
+const { MAX_UPCOMING_EVENTS } = numberConstants;
 const getCalendarInformation = async () => {
     const { access_token }: { access_token: string } =
         await apiCalendar.handleAuthClick();
@@ -10,12 +12,7 @@ const getCalendarInformation = async () => {
         const {
             result: { items },
         }: { result: { items: ICalendarEvent[] } } =
-            await apiCalendar.listEvents({
-                timeMin: new Date().toISOString(),
-                showDeleted: true,
-                maxResults: 10,
-                orderBy: 'updated',
-            });
+            await apiCalendar.listUpcomingEvents(MAX_UPCOMING_EVENTS);
 
         return {
             access_token,

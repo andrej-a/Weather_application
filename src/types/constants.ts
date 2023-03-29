@@ -20,6 +20,7 @@ enum constants {
 
 export enum numberConstants {
     REQUEST_DEBOUNCE = 1500,
+    MAX_UPCOMING_EVENTS = 25,
 }
 
 export default constants;

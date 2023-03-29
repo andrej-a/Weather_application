@@ -42,6 +42,9 @@ var __copyProps = (to, from, except, desc) => {
     }
     return to;
 };
+var __toCommonJS = mod =>
+    __copyProps(__defProp({}, '__esModule', { value: true }), mod);
+
 var scriptSrcGoogle = 'https://accounts.google.com/gsi/client';
 var scriptSrcGapi = 'https://apis.google.com/js/api.js';
 var ApiCalendar = class {
