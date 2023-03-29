@@ -3,8 +3,7 @@ import { ICalendarEvent } from '@/store/slices/calendar/initialState';
 import setCorrectCalendarDate from '@/utils/setCorrectCalendarDate';
 
 const getCalendarInformation = async () => {
-    const { access_token }: { access_token: string } =
-        await apiCalendar.handleAuthClick();
+    const { access_token } = await apiCalendar.handleAuthClick();
 
     if (access_token) {
         const {
