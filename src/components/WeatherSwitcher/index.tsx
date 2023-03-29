@@ -22,11 +22,13 @@ const WeatherSwitcher = () => {
     return (
         <SwitchWrapper>
             <DailyWeatherButton
+                data-test="dailyButton"
                 onClick={onHandleTypeOfWeather(DAILY_TYPE_OF_THE_WEATHER)}
             >
                 {DAILY_TYPE_OF_THE_WEATHER}
             </DailyWeatherButton>
             <HourlyWeatherButton
+                data-test="hourlyButton"
                 onClick={onHandleTypeOfWeather(HOURLY_TYPE_OF_THE_WEATHER)}
             >
                 {HOURLY_TYPE_OF_THE_WEATHER}

@@ -21,10 +21,10 @@ const TimeAndDateInfo = () => {
 
     return (
         <TimeAndDateInfoWrapper>
-            <TimeWrapper>
+            <TimeWrapper data-test="timeItem">
                 {hours}:{minutes}
             </TimeWrapper>
-            <DateWrapper>
+            <DateWrapper data-test="dateItem">
                 {day}, {date} {month} {year}
             </DateWrapper>
         </TimeAndDateInfoWrapper>

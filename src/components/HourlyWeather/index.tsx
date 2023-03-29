@@ -34,7 +34,10 @@ const HourlyWeather = () => {
                     {hourlyWeatherList.map(
                         ({ id, date, code, temperature }) => {
                             return (
-                                <HourlyWeatherCard key={id}>
+                                <HourlyWeatherCard
+                                    data-test="hourlyWeatherCard"
+                                    key={id}
+                                >
                                     <img
                                         src={`./icons/${code}.png`}
                                         alt={`weatherCode-${code}`}

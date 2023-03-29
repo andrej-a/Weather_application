@@ -13,7 +13,8 @@
         "prettier:check": "npx prettier --list-different \"src/**/*.{ts,tsx}\"",
         "prettier:write": "yarn run prettier:base -- --write \"src/**/*.{ts,tsx}\"",
         "precommit": "lint-staged",
-        "test": "jest"
+        "test": "jest",
+        "cypress:open": "cypress open"
     },
     "repository": {
         "type": "git",
@@ -74,6 +75,7 @@
         "body-parser": "^1.20.2",
         "clean-webpack-plugin": "^4.0.0",
         "css-loader": "^6.7.3",
+        "cypress": "^12.9.0",
         "dotenv-webpack": "^8.0.1",
         "eslint": "^8.36.0",
         "eslint-config-airbnb": "^18.2.1",
