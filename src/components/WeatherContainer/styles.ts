@@ -4,16 +4,16 @@ import size from '@/types/size';
 
 const { laptop, tablet } = size;
 export const Wrapper = styled.div`
-    width: 100%;
-    height: 30%;
+    width: ${({ theme: { width } }) => width.l}%;
+    height: ${({ theme: { height } }) => height.sx}%;
     backdrop-filter: blur(7.5px);
     background: rgba(217, 217, 217, 0.2);
-    padding: 5px;
+    padding: ${({ theme: { padding } }) => padding.xxxs}px;
 
     @media (max-width: ${laptop}px) {
-        height: 50%;
+        height: ${({ theme: { height } }) => height.sl}%;
     }
     @media (max-width: ${tablet}px) {
-        height: 45%;
+        height: ${({ theme: { height } }) => height.s3x}%;
     }
 `;

@@ -4,148 +4,140 @@ import size from '@/types/size';
 
 const { laptop, tablet, mobileM } = size;
 export const CalendarWrapper = styled.div`
-    width: 100%;
-    height: 100%;
+    width: ${({ theme: { width } }) => width.l}%;
+    height: ${({ theme: { height } }) => height.l}%;
     display: flex;
     flex-direction: column;
 
     @media (max-width: ${laptop}px) {
-        height: 80%;
+        height: ${({ theme: { height } }) => height.s}%;
         flex-direction: row-reverse;
     }
 `;
 
 export const LogInButtonWrapper = styled.div`
-    width: 100%;
-    height: 20%;
+    width: ${({ theme: { width } }) => width.l}%;
+    height: ${({ theme: { height } }) => height.xxs}%;
     display: flex;
     align-items: center;
-    padding: 5px;
-    padding-left: 80px;
+    padding: ${({ theme: { padding } }) => padding.xxxs}px;
+    padding-left: ${({ theme: { padding } }) => padding.s}px;
 
     @media (max-width: ${laptop}px) {
-        width: 30%;
-        height: 100%;
-        padding: 0;
+        width: ${({ theme: { width } }) => width.xxxs}%;
+        height: ${({ theme: { height } }) => height.l}%;
+        padding: ${({ theme: { padding } }) => padding.none};
         justify-content: center;
     }
 
     @media (max-width: ${tablet}px) {
-        width: 60px;
+        width: ${({ theme: { width } }) => width.s}px;
     }
 `;
 
 export const LogInButton = styled.button`
     width: auto;
     height: auto;
-    padding: 5px 40px;
+    padding: ${({ theme: { padding } }) => padding.buttonDefault};
 
-    border: 0;
-    border-radius: 10px;
-    font-size: 25px;
+    border: ${({ theme: { border } }) => border.none};
+    border-radius: ${({ theme: { borderRadius } }) => borderRadius.l}px;
+    font-size: ${({ theme: { fontSize } }) => fontSize.l}px;
     cursor: pointer;
-    background: #000;
-    color: #fff;
+    background: ${({ theme: { colors } }) => colors.black};
+    color: ${({ theme: { colors } }) => colors.white};
 
     &:hover {
-        background: #fff;
-        color: #000;
+        background: ${({ theme: { colors } }) => colors.white};
+        color: ${({ theme: { colors } }) => colors.black};
     }
 
     @media (max-width: ${laptop}px) {
-        padding-left: 3px 15px;
-        font-size: 20px;
+        padding-left: ${({ theme: { padding } }) => padding.buttonLaptop};
+        font-size: ${({ theme: { fontSize } }) => fontSize.s}px;
     }
 
     @media (max-width: ${tablet}px) {
-        width: 50px;
+        width: ${({ theme: { width } }) => width.xs}px;
         height: auto;
-        padding: 2px 0;
-        font-size: 15px;
-        border-radius: 0;
+        padding: ${({ theme: { padding } }) => padding.buttonTablet};
+        font-size: ${({ theme: { fontSize } }) => fontSize.xs}px;
+        border-radius: ${({ theme: { borderRadius } }) => borderRadius.none};
     }
 `;
 
 export const CalendarInfoWrapper = styled.div`
-    width: 100%;
-    height: 80%;
-    padding-left: 80px;
+    width: ${({ theme: { width } }) => width.l}%;
+    height: ${({ theme: { height } }) => height.s}%;
+    padding-left: ${({ theme: { padding } }) => padding.s}px;
     display: flex;
     align-items: center;
 
-    font-size: 3vw;
-    line-height: 31px;
-    color: #fff;
+    font-size: ${({ theme: { fontSize } }) => fontSize.xxxs}vw;
+    line-height: ${({ theme: { lineHeight } }) => lineHeight.l}px;
+    color: ${({ theme: { colors } }) => colors.white};
 
     @media (max-width: ${laptop}px) {
-        height: 100%;
-        padding-left: 0;
+        height: ${({ theme: { height } }) => height.l}%;
+        padding-left: ${({ theme: { padding } }) => padding.none};
     }
 `;
 
 export const CalendarInfo = styled.div`
-    width: 90%;
+    width: ${({ theme: { width } }) => width.xl}%;
     height: auto;
-    min-height: 25%;
-    max-height: 90%;
+    min-height: ${({ theme: { height } }) => height.xs}%;
+    max-height: ${({ theme: { height } }) => height.m}%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 15px;
+    padding-top: ${({ theme: { padding } }) => padding.xxs}px;
 
     overflow-x: auto;
     overflow-y: auto;
 
-    font-size: 20px;
+    font-size: ${({ theme: { fontSize } }) => fontSize.s}px;
     text-align: center;
 
     @media (max-width: ${laptop}px) {
         max-height: none;
-        width: 100%;
-        height: 100%;
+        width: ${({ theme: { width } }) => width.l}%;
+        height: ${({ theme: { height } }) => height.l}%;
     }
 `;
 
 export const CalendarItem = styled.div`
-    width: 100%;
-    height: 30px;
+    width: ${({ theme: { width } }) => width.l}%;
+    height: ${({ theme: { height } }) => height.sx}px;
     display: flex;
     align-items: center;
-    padding-left: 20px;
+    padding-left: ${({ theme: { padding } }) => padding.xs}px;
 
     cursor: pointer;
 
     &:hover {
-        background: #fff;
+        background: ${({ theme: { colors } }) => colors.white};
     }
 `;
 
 export const ItemTime = styled.div`
-    width: 50px;
-    height: 80%;
+    width: ${({ theme: { width } }) => width.xs}px;
+    height: ${({ theme: { height } }) => height.s}%;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #122e65;
-    border-radius: 20px;
-    font-size: 16px;
-
-    @media (max-width: ${mobileM}px) {
-        font-size: 13px;
-    }
+    background: ${({ theme: { colors } }) => colors.darkBlue};
+    border-radius: ${({ theme: { borderRadius } }) => borderRadius.xl}px;
+    font-size: ${({ theme: { fontSize } }) => fontSize.xs}px;
 `;
 
 export const ItemContent = styled.div`
-    width: 90%;
-    height: 100%;
+    width: ${({ theme: { width } }) => width.xl}%;
+    height: ${({ theme: { height } }) => height.l}%;
     display: flex;
     align-items: center;
-    padding-left: 26px;
+    padding-left: ${({ theme: { padding } }) => padding.xs}px;
 
-    font-size: 16px;
-    color: #000;
-
-    @media (max-width: ${mobileM}px) {
-        font-size: 13px;
-    }
+    font-size: ${({ theme: { fontSize } }) => fontSize.xs}px;
+    color: ${({ theme: { colors } }) => colors.black};
 `;
