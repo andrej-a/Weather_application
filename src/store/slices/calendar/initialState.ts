@@ -1,5 +1,5 @@
 export interface ICalendarEvent {
-    start: { dateTime: string; timeZone: string };
+    start: { dateTime?: string; date?: string; timeZone: string };
     summary: string;
     id: string;
 }

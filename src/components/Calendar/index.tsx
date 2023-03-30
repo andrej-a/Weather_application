@@ -42,7 +42,9 @@ const Calendar = () => {
                                       return (
                                           <CalendarItem key={id}>
                                               <ItemTime>
-                                                  {start.dateTime}
+                                                  {start.dateTime
+                                                      ? start.dateTime
+                                                      : 'all day'}
                                               </ItemTime>
                                               <ItemContent>
                                                   {summary}

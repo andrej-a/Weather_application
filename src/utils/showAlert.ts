@@ -1,16 +1,7 @@
-import { toast } from 'react-toastify';
+import toast from 'react-hot-toast';
 
 const showAlert = (error: string): void => {
-    toast.error(`${error}, try to reload page`, {
-        position: 'bottom-right',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'dark',
-    });
+    toast.error(`${error}`);
 };
 
 export default showAlert;

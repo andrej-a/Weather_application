@@ -121,11 +121,13 @@ export const CalendarItem = styled.div`
 `;
 
 export const ItemTime = styled.div`
-    width: ${({ theme: { width } }) => width.xs}px;
+    width: auto;
+    min-width: ${({ theme: { width } }) => width.m}px;
     height: ${({ theme: { height } }) => height.s}%;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: ${({ theme: { padding } }) => padding.xxxs}px;
     background: ${({ theme: { colors } }) => colors.darkBlue};
     border-radius: ${({ theme: { borderRadius } }) => borderRadius.xl}px;
     font-size: ${({ theme: { fontSize } }) => fontSize.xs}px;
