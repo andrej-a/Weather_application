@@ -4,12 +4,12 @@ import size from '@/types/size';
 
 const { laptop } = size;
 export const MainContainerWrapper = styled.div`
-    width: 100%;
-    height: 50%;
+    width: ${({ theme: { width } }) => width.l}%;
+    height: ${({ theme: { height } }) => height.sl}%;
     display: flex;
 
     @media (max-width: ${laptop}px) {
         flex-direction: column;
-        height: 30%;
+        height: ${({ theme: { height } }) => height.sx}%;
     }
 `;

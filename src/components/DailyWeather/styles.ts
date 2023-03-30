@@ -3,9 +3,10 @@ import styled from 'styled-components';
 import size from '@/types/size';
 
 const { laptop, tablet, mobileL } = size;
+
 export const DailyWeatherWrapper = styled.div`
-    width: 100%;
-    height: 100%;
+    width: ${({ theme: { width } }) => width.l}%;
+    height: ${({ theme: { height } }) => height.l}%;
 
     display: flex;
     justify-content: space-around;
@@ -20,8 +21,8 @@ export const DailyWeatherWrapper = styled.div`
 `;
 
 export const DailyWeatherCard = styled.div`
-    width: 14%;
-    height: 100%;
+    width: ${({ theme: { width } }) => width.x4s}%;
+    height: ${({ theme: { height } }) => height.l}%;
 
     display: flex;
     flex-direction: column;
@@ -31,69 +32,70 @@ export const DailyWeatherCard = styled.div`
     overflow: hidden;
 
     img {
-        width: 90px;
-        height: 80px;
+        width: ${({ theme: { width } }) => width.xl}px;
+        height: ${({ theme: { height } }) => height.s}px;
 
         @media (max-width: ${laptop}px) {
-            width: 80px;
+            width: ${({ theme: { width } }) => width.xxl}px;
             flex-direction: row;
             justify-content: space-between;
         }
 
         @media (max-width: ${tablet}px) {
-            width: 60px;
-            height: 60px;
-            padding-top: 10px;
+            width: ${({ theme: { width } }) => width.s}px;
+            height: ${({ theme: { height } }) => height.ssx}px;
+            padding-top: ${({ theme: { padding } }) => padding.sx}px;
         }
     }
 
     @media (max-width: ${laptop}px) {
-        width: 30%;
-        height: 30%;
+        width: ${({ theme: { width } }) => width.xxxs}%;
+        height: ${({ theme: { height } }) => height.sx}%;
         flex-direction: row;
     }
 
     @media (max-width: ${tablet}px) {
         flex-direction: column;
-        height: 40%;
+        height: ${({ theme: { height } }) => height.sssx}%;
     }
 `;
 
 export const WeatherDataWrapper = styled.div`
-    width: 100%;
+    width: ${({ theme: { width } }) => width.l}%;
     height: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 10px;
-    padding: 5px;
+    gap: ${({ theme: { gap } }) => gap.l}px;
+    padding: ${({ theme: { padding } }) => padding.xxxs}px;
+
     @media (max-width: ${laptop}px) {
-        width: 70%;
-        height: 100%;
+        width: ${({ theme: { width } }) => width.m}%;
+        height: ${({ theme: { height } }) => height.l}%;
     }
 
     @media (max-width: ${tablet}px) {
-        width: 100%;
+        width: ${({ theme: { width } }) => width.l}%;
         height: auto;
-        gap: 0;
+        gap: ${({ theme: { gap } }) => gap.none};
     }
 `;
 
 export const Date = styled.div`
-    color: #000;
-    font-size: 20px;
-    font-weight: 400;
+    color: ${({ theme: { colors } }) => colors.black};
+    font-size: ${({ theme: { fontSize } }) => fontSize.s}px;
+    font-weight: ${({ theme: { fontWeight } }) => fontWeight.l};
     @media (max-width: ${mobileL}px) {
-        font-size: 15px;
+        font-size: ${({ theme: { fontSize } }) => fontSize.xs}px;
     }
 `;
 
 export const WeatherData = styled(Date)`
-    font-weight: 900;
-    font-size: 30px;
+    font-weight: ${({ theme: { fontWeight } }) => fontWeight.xl};
+    font-size: ${({ theme: { fontSize } }) => fontSize.xl}px;
 
     @media (max-width: ${mobileL}px) {
-        font-size: 25px;
+        font-size: ${({ theme: { fontSize } }) => fontSize.l}px;
     }
 `;

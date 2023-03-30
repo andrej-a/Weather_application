@@ -4,16 +4,16 @@ import size from '@/types/size';
 
 const { tablet, laptop, mobileL } = size;
 export const SearchWrapper = styled.div`
-    width: 30%;
-    height: 100%;
+    width: ${({ theme: { width } }) => width.xxxs}%;
+    height: ${({ theme: { height } }) => height.l}%;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 10px;
+    margin: ${({ theme: { margin } }) => margin.l}px;
 
     @media (max-width: ${tablet}px) {
-        width: 100%;
-        height: 50%;
+        width: ${({ theme: { width } }) => width.l}%;
+        height: ${({ theme: { height } }) => height.sl}%;
     }
 `;
 
@@ -23,10 +23,10 @@ export const Form = styled.form`
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px;
+    gap: ${({ theme: { gap } }) => gap.xl}px;
 
     @media (max-width: ${laptop}px) {
-        gap: 10px;
+        gap: ${({ theme: { gap } }) => gap.l}px;
     }
 
     @media (max-width: ${tablet}px) {
@@ -35,128 +35,110 @@ export const Form = styled.form`
 `;
 
 export const Input = styled.input`
-    width: 250px;
-    height: 40px;
+    width: ${({ theme: { width } }) => width.xxxl}px;
+    height: ${({ theme: { height } }) => height.sssx}px;
 
-    padding: 3px 14px;
+    padding: ${({ theme: { padding } }) => padding.buttonLaptop};
 
-    border: 0;
-    border-radius: 5px;
-    font-size: 25px;
-    line-height: 31px;
+    border: ${({ theme: { border } }) => border.none};
+    border-radius: ${({ theme: { borderRadius } }) => borderRadius.s}px;
+    font-size: ${({ theme: { fontSize } }) => fontSize.l}px;
+    line-height: ${({ theme: { lineHeight } }) => lineHeight.l}px;
 
     @media (max-width: ${laptop}px) {
-        width: 200px;
+        width: ${({ theme: { width } }) => width.x2l}px;
     }
     @media (max-width: ${mobileL}px) {
-        width: 170px;
+        width: ${({ theme: { width } }) => width.x1l}px;
     }
 `;
 export const SubmitButton = styled.button`
-    width: 140px;
-    height: 45px;
+    width: ${({ theme: { width } }) => width.lx}px;
+    height: ${({ theme: { height } }) => height.s3x}px;
 
-    border-radius: 10px;
-    border: 0;
-    font-size: 25px;
-    background: #000;
-    color: #fff;
+    border-radius: ${({ theme: { borderRadius } }) => borderRadius.l}px;
+    border: ${({ theme: { border } }) => border.none};
+    font-size: ${({ theme: { fontSize } }) => fontSize.l}px;
+    background: ${({ theme: { colors } }) => colors.black};
+    color: ${({ theme: { colors } }) => colors.white};
     cursor: pointer;
 
     &:hover {
-        background: #fff;
-        color: #000;
+        background: ${({ theme: { colors } }) => colors.white};
+        color: ${({ theme: { colors } }) => colors.black};
 
         &:disabled {
             cursor: not-allowed;
-            background: grey;
-            color: #fff;
+            background: ${({ theme: { colors } }) => colors.grey};
+            color: ${({ theme: { colors } }) => colors.white};
         }
     }
 
     &:disabled {
         cursor: not-allowed;
-        background: grey;
-        color: #fff;
+        background: ${({ theme: { colors } }) => colors.grey};
+        color: ${({ theme: { colors } }) => colors.white};
     }
 
     @media (max-width: ${laptop}px) {
-        width: 130px;
-        height: 30px;
-        font-size: 20px;
+        width: ${({ theme: { width } }) => width.lx}px;
+        height: ${({ theme: { height } }) => height.sx}px;
+        font-size: ${({ theme: { fontSize } }) => fontSize.s}px;
     }
 
     @media (max-width: ${mobileL}px) {
-        width: 95px;
+        width: ${({ theme: { width } }) => width.xl}px;
         height: auto;
-        font-size: 20px;
-        padding: 7px 14px;
+        font-size: ${({ theme: { fontSize } }) => fontSize.s}px;
+        padding: ${({ theme: { padding } }) => padding.buttonLaptop};
     }
 `;
 
 export const ElasticContainer = styled.div`
     position: absolute;
-    z-index: 3;
-    top: 45px;
+    z-index: ${({ theme: { zIndex } }) => zIndex.l};
+    top: ${({ theme: { top } }) => top.l}px;
 
-    width: 250px;
+    width: ${({ theme: { width } }) => width.xxxl}px;
     height: auto;
-    max-height: 150px;
+    max-height: ${({ theme: { height } }) => height.xl}px;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    padding: 5px 0;
+    padding: ${({ theme: { padding } }) => padding.xxxs}px
+        ${({ theme: { padding } }) => padding.none};
 
-    background: #fff;
-    border-radius: 5px;
+    background: ${({ theme: { colors } }) => colors.white};
+    border-radius: ${({ theme: { borderRadius } }) => borderRadius.s}px;
 
     @media (max-width: ${laptop}px) {
-        width: 200px;
+        width: ${({ theme: { width } }) => width.x2l}px;
     }
     @media (max-width: ${mobileL}px) {
-        width: 170px;
+        width: ${({ theme: { width } }) => width.x1l}px;
     }
 `;
 export const ElasticItem = styled.div`
     position: relative;
-    z-index: 3;
+    z-index: ${({ theme: { zIndex } }) => zIndex.l};
 
-    width: 100%;
+    width: ${({ theme: { width } }) => width.l}%;
     height: auto;
     display: flex;
     align-items: center;
-    padding-left: 5px;
+    padding-left: ${({ theme: { padding } }) => padding.xxxs}px;
 
-    font-size: 20px;
-    border-bottom: 1px solid black;
+    font-size: ${({ theme: { fontSize } }) => fontSize.s}px;
+    border-bottom: ${({ theme: { border } }) => border.s}px solid
+        ${({ theme: { colors } }) => colors.black};
     cursor: pointer;
-    background: #fff;
-    color: #000;
+    background: ${({ theme: { colors } }) => colors.white};
+    color: ${({ theme: { colors } }) => colors.black};
 
     &:hover {
-        background: #000;
-        color: #fff;
-    }
-`;
-
-export const CloseElasticContainer = styled.button`
-    position: absolute;
-    right: 10px;
-
-    z-index: 4;
-    width: auto;
-    height: auto;
-    padding: 2px;
-
-    border: 0;
-    background: red;
-    color: #fff;
-    cursor: pointer;
-
-    &:hover {
-        background: #fff;
-        color: red;
+        background: ${({ theme: { colors } }) => colors.black};
+        color: ${({ theme: { colors } }) => colors.white};
     }
 `;

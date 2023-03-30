@@ -4,43 +4,45 @@ import size from '@/types/size';
 
 const { tablet, mobileL } = size;
 export const TimeAndDateInfoWrapper = styled.div`
-    width: 70%;
-    height: 100%;
+    width: ${({ theme: { width } }) => width.m}%;
+    height: ${({ theme: { height } }) => height.l}%;
     display: flex;
     flex-direction: column;
 
     @media (max-width: ${tablet}px) {
-        width: 100%;
-        height: 50%;
+        width: ${({ theme: { width } }) => width.l}%;
+        height: ${({ theme: { height } }) => height.sl}%;
     }
 `;
 
 export const TimeWrapper = styled.div`
-    width: 100%;
-    height: 50%;
-    padding-left: 80px;
+    width: ${({ theme: { width } }) => width.l}%;
+    height: ${({ theme: { height } }) => height.sl}%;
+    padding-left: ${({ theme: { padding } }) => padding.s}px;
     display: flex;
     align-items: flex-end;
 
-    font-family: 'Inter';
+    font-family: ${({ theme: { fontFamily } }) => fontFamily.default};
     font-style: normal;
-    font-weight: 400;
-    font-size: 3vw;
-    line-height: 50px;
+    font-weight: ${({ theme: { fontWeight } }) => fontWeight.l};
+    font-size: ${({ theme: { fontSize } }) => fontSize.xxxs}vw;
+    line-height: ${({ theme: { lineHeight } }) => lineHeight.xl}px;
 
     color: transparent;
-    -webkit-text-stroke: 1.5px black;
+    -webkit-text-stroke: ${({ theme: { stroke } }) => stroke.l}px
+        ${({ theme: { colors } }) => colors.black};
 
     @media (max-width: ${tablet}px) {
-        padding-left: 0;
+        padding-left: ${({ theme: { padding } }) => padding.none};
         justify-content: center;
-        font-size: 30px;
-        -webkit-text-stroke: 1px black;
+        font-size: ${({ theme: { fontSize } }) => fontSize.xl}px;
+        -webkit-text-stroke: ${({ theme: { stroke } }) => stroke.s}px
+            ${({ theme: { colors } }) => colors.black};
     }
     @media (max-width: ${mobileL}px) {
-        padding-left: 0;
+        padding-left: ${({ theme: { padding } }) => padding.none};
         justify-content: center;
-        font-size: 23px;
+        font-size: ${({ theme: { fontSize } }) => fontSize.s}px;
     }
 `;
 

@@ -3,8 +3,8 @@ import styled from 'styled-components';
 const Wrapper = styled.div`
     position: fixed;
 
-    width: 100vw;
-    height: 100vh;
+    width: ${({ theme: { width } }) => width.l}vw;
+    height: ${({ theme: { height } }) => height.l}vh;
 
     display: flex;
     flex-direction: column;
@@ -15,8 +15,8 @@ const Wrapper = styled.div`
     pointer-events: none;
 `;
 export const ErrorDescription = styled.p`
-    max-width: 70%;
+    max-width: ${({ theme: { width } }) => width.m}%;
 
-    font-size: 24px;
+    font-size: ${({ theme: { fontSize } }) => fontSize.l}px;
 `;
 export default Wrapper;

@@ -4,14 +4,14 @@ import size from '@/types/size';
 
 const { tablet } = size;
 export const InterfaceWrapper = styled.div`
-    width: 80%;
-    height: 80%;
+    width: ${({ theme: { width } }) => width.xxl}%;
+    height: ${({ theme: { height } }) => height.s}%;
     backdrop-filter: blur(7.5px);
     background: rgba(217, 217, 217, 0.2);
 
     @media (max-width: ${tablet}px) {
-        width: 95%;
-        height: 95%;
+        width: ${({ theme: { width } }) => width.x3l}%;
+        height: ${({ theme: { height } }) => height.ml}%;
     }
 
     transition: all 0.3s ease;

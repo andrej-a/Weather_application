@@ -4,18 +4,18 @@ import size from '@/types/size';
 
 const { laptop, mobileL } = size;
 export const SwitchWrapper = styled.div`
-    width: 50%;
-    height: 100%;
+    width: ${({ theme: { width } }) => width.xs}%;
+    height: ${({ theme: { height } }) => height.l}%;
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    gap: 35px;
-    padding: 5px;
-    padding-bottom: 5px;
+    gap: ${({ theme: { gap } }) => gap.xxl}px;
+    padding: ${({ theme: { padding } }) => padding.xxxs}px;
+    padding-bottom: ${({ theme: { padding } }) => padding.xxxs}px;
 
     @media (max-width: ${laptop}px) {
-        width: 100%;
-        height: 15%;
+        width: ${({ theme: { width } }) => width.l}%;
+        height: ${({ theme: { height } }) => height.x1s}%;
         align-items: center;
     }
 `;
@@ -23,27 +23,27 @@ export const SwitchWrapper = styled.div`
 export const DailyWeatherButton = styled.button`
     width: auto;
     height: auto;
-    padding: 5px 40px;
+    padding: ${({ theme: { padding } }) => padding.buttonDefault};
 
-    border: 0;
-    border-radius: 10px;
-    font-size: 25px;
+    border: ${({ theme: { border } }) => border.none};
+    border-radius: ${({ theme: { borderRadius } }) => borderRadius.l}px;
+    font-size: ${({ theme: { fontSize } }) => fontSize.l}px;
     cursor: pointer;
-    background: #000;
-    color: #fff;
+    background: ${({ theme: { colors } }) => colors.black};
+    color: ${({ theme: { colors } }) => colors.white};
 
     &:hover {
-        background: #fff;
-        color: #000;
+        background: ${({ theme: { colors } }) => colors.white};
+        color: ${({ theme: { colors } }) => colors.black};
     }
 
     @media (max-width: ${laptop}px) {
-        padding: 3px 40px;
-        font-size: 20px;
+        padding: ${({ theme: { padding } }) => padding.buttonDefault};
+        font-size: ${({ theme: { fontSize } }) => fontSize.s}px;
     }
 
     @media (max-width: ${mobileL}px) {
-        padding: 3px 14px;
+        padding: ${({ theme: { padding } }) => padding.buttonLaptop};
     }
 `;
 export const HourlyWeatherButton = styled(DailyWeatherButton)``;
