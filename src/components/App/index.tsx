@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { ToastContainer } from 'react-toastify';
+import { Toaster } from 'react-hot-toast';
 
 import getCurrentPositionByCoords from '@/api/getCurrentPositionByCoords';
 import GlobalStyle from '@/globalStyles';
@@ -12,7 +12,6 @@ import { setImageReading, setWeatherCodeForImage } from '@/store/slices/main';
 import { checkWeatherCache } from '@/store/slices/weatherCache';
 import ICity from '@/types/ICitiesList';
 
-import 'react-toastify/dist/ReactToastify.css';
 import { ApplicationWrapper } from './styles';
 
 const App = () => {
@@ -46,7 +45,7 @@ const App = () => {
         <ApplicationWrapper>
             <Main />
             <GlobalStyle />
-            <ToastContainer />
+            <Toaster />
         </ApplicationWrapper>
     );
 };

@@ -23,7 +23,6 @@ const getCalendarInformation = async () => {
                 maxResults: MAX_UPCOMING_EVENTS,
                 orderBy: 'updated',
             });
-
         return {
             access_token,
             calendarList: setCorrectCalendarDate(items),
