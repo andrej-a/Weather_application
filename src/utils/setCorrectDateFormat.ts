@@ -1,5 +1,8 @@
 const setCorrectDateFormat = (date: string) => {
-    return date.split('-').reverse().join('.');
+    if (date) {
+        return date.split('-').reverse().join('.');
+    }
+    return date;
 };
 
 export default setCorrectDateFormat;

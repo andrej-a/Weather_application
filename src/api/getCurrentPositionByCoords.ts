@@ -22,7 +22,7 @@ interface responceAnswer {
 
 const getCurrentPositionByCoords = async ({
     coords: { latitude, longitude },
-}: GeolocationPosition): Promise<ICity | undefined> => {
+}: GeolocationPosition) => {
     const { GET_CURRENT_POSITION_URL } = constants;
     const query = {
         lat: latitude,
@@ -40,22 +40,27 @@ const getCurrentPositionByCoords = async ({
             },
             body: JSON.stringify(query),
         });
-        const responce: responceAnswer = await request.json();
-        const {
-            data: { city, country_iso_code, region_with_type },
-        } = responce.suggestions[0];
 
-        const result: ICity = {
-            id: uuidv4(),
-            name: swithcher.getSwitch(city, {
-                type: 'translit',
-            }),
-            latitude,
-            longitude,
-            country: country_iso_code,
-            state: region_with_type,
-        };
-        return result;
+        const responce: responceAnswer = await request.json();
+
+        if (responce.suggestions[0]) {
+            const {
+                data: { city, country_iso_code, region_with_type },
+            } = responce.suggestions[0];
+
+            const result: ICity = {
+                id: uuidv4(),
+                name: swithcher.getSwitch(city, {
+                    type: 'translit',
+                }),
+                latitude,
+                longitude,
+                country: country_iso_code,
+                state: region_with_type,
+            };
+            return result;
+        }
+        return undefined;
     } catch (error) {
         showAlert(error.message);
     }

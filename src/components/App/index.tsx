@@ -10,33 +10,41 @@ import { checkCache } from '@/store/slices/citiesCache';
 import { setTargetCity } from '@/store/slices/citiesList';
 import { setImageReading, setWeatherCodeForImage } from '@/store/slices/main';
 import { checkWeatherCache } from '@/store/slices/weatherCache';
+import constants from '@/types/constants';
 import ICity from '@/types/ICitiesList';
+import showAlert from '@/utils/showAlert';
 
 import { ApplicationWrapper } from './styles';
 
 const App = () => {
     const dispatch = useAppDispatch();
     const { weatherCode } = useAppSelector(mainSelector);
-
+    const { NO_LOCATION } = constants;
     const getPositionCallback = async (pos: GeolocationPosition) => {
-        const currentUserPosition: ICity = (await getCurrentPositionByCoords(
-            pos,
-        )) as ICity;
-        const { id, name, country } = currentUserPosition;
-        if (id) {
+        const currentUserPosition: ICity | undefined =
+            await getCurrentPositionByCoords(pos);
+        const defaultUserSettings = () => {
+            dispatch(setImageReading(true));
+            weatherCode
+                ? dispatch(setWeatherCodeForImage(weatherCode))
+                : dispatch(setWeatherCodeForImage(2));
+            showAlert(NO_LOCATION);
+        };
+
+        if (currentUserPosition) {
+            const { name, country } = currentUserPosition;
             dispatch(setTargetCity(currentUserPosition));
             dispatch(checkCache(name));
             dispatch(checkWeatherCache(`${name}-${country}`));
+        } else {
+            defaultUserSettings();
         }
     };
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(getPositionCallback, error => {
             if (error.PERMISSION_DENIED) {
-                dispatch(setImageReading(true));
-                weatherCode
-                    ? dispatch(setWeatherCodeForImage(weatherCode))
-                    : dispatch(setWeatherCodeForImage(2));
+                defaultUserSettings();
             }
         });
     }, []);

@@ -10,6 +10,7 @@ const getCalendarInformation = async () => {
 
     if (access_token) {
         const today = new Date();
+        today.setHours(Math.abs(today.getTimezoneOffset() / 60), 0, 0, 0);
         const maxDateToRequest = new Date(
             today.getTime() + 24 * 60 * 60 * 1000,
         ).toISOString();
@@ -23,6 +24,7 @@ const getCalendarInformation = async () => {
                 maxResults: MAX_UPCOMING_EVENTS,
                 orderBy: 'updated',
             });
+
         return {
             access_token,
             calendarList: setCorrectCalendarDate(items),

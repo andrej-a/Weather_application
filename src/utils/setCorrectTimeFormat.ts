@@ -1,4 +1,7 @@
 const setCorrectTimeFormat = (time: string): string => {
-    return time.split('T')[1];
+    if (time) {
+        return time.split('T')[1];
+    }
+    return time;
 };
 export default setCorrectTimeFormat;
