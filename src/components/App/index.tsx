@@ -20,16 +20,18 @@ const App = () => {
     const dispatch = useAppDispatch();
     const { weatherCode } = useAppSelector(mainSelector);
     const { NO_LOCATION } = constants;
+
+    const defaultUserSettings = () => {
+        dispatch(setImageReading(true));
+        weatherCode
+            ? dispatch(setWeatherCodeForImage(weatherCode))
+            : dispatch(setWeatherCodeForImage(2));
+        showAlert(NO_LOCATION);
+    };
+
     const getPositionCallback = async (pos: GeolocationPosition) => {
         const currentUserPosition: ICity | undefined =
             await getCurrentPositionByCoords(pos);
-        const defaultUserSettings = () => {
-            dispatch(setImageReading(true));
-            weatherCode
-                ? dispatch(setWeatherCodeForImage(weatherCode))
-                : dispatch(setWeatherCodeForImage(2));
-            showAlert(NO_LOCATION);
-        };
 
         if (currentUserPosition) {
             const { name, country } = currentUserPosition;
