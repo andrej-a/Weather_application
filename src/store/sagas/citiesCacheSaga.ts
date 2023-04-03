@@ -19,6 +19,6 @@ export function* citiesCachWorker({ payload }: IPayload<string>) {
     }
 }
 
-export function* citiesCachWatcher() {
+export function* citiesCacheWatcher() {
     yield debounce(REQUEST_DEBOUNCE, checkCache, citiesCachWorker);
 }

@@ -1,0 +1,12 @@
+const envData = {
+    CLIEND_ID: process.env.CLIEND_ID,
+    GOOGLE_API_KEY: process.env.GOOGLE_API_KEY,
+    CITIES_API_KEY: process.env.CITIES_API_KEY,
+    CURRENT_POSITION_KEY: process.env.CURRENT_POSITION_KEY,
+    CURRENT_POSITION_URL: process.env.CURRENT_POSITION_URL,
+    WEATHER_API_KEY: process.env.WEATHER_API_KEY,
+    CITIES_API_ADRESS: process.env.CITIES_API_ADRESS,
+    GOOGLE_CONFIG_SCOPE: process.env.GOOGLE_CONFIG_SCOPE,
+    GOOGLE_CONFIG_DISCOVERY_DOCS: process.env.GOOGLE_CONFIG_DISCOVERY_DOCS,
+};
+export default envData;

@@ -59,6 +59,6 @@ function* weatherCachWorker({ payload }: IPayload<string>) {
     }
 }
 
-export function* weatherCachWatcher() {
+export function* weatherCacheWatcher() {
     yield debounce(REQUEST_DEBOUNCE, checkWeatherCache, weatherCachWorker);
 }
