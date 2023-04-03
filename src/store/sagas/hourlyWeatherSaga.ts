@@ -43,7 +43,7 @@ export function* hourlyWeatherWorker({ payload }: IPayload<ICity>) {
                     ...weatherCache[index],
                     city: `${payload.name}-${payload.country}`,
                     timeOfTheLastUpdateOfHourlyWeather: new Date().getTime(),
-                    hourlyWeatherList: filteredHourlyWeather,
+                    hourlyWeatherList,
                 }),
             );
         } else {
@@ -53,7 +53,7 @@ export function* hourlyWeatherWorker({ payload }: IPayload<ICity>) {
                     timeOfTheLastUpdateOfDailyWeather: 0,
                     timeOfTheLastUpdateOfHourlyWeather: new Date().getTime(),
                     dailyWeatherList: [],
-                    hourlyWeatherList: filteredHourlyWeather,
+                    hourlyWeatherList,
                 }),
             );
         }
