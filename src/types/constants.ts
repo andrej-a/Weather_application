@@ -16,6 +16,7 @@ enum constants {
     CALENDAR_DEFAULT_MESSAGE = 'Sing in to your account to see google calendar events',
     CALENDAR_LIST_SLICE_NAME = 'calendarState',
     NO_CALENDAR_EVENTS = 'No calendar events',
+    NO_LOCATION = 'The location has not been determined. Default settings applied',
 }
 
 export enum numberConstants {
