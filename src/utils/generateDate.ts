@@ -13,9 +13,8 @@ const generateDate = (typeOfTheWeather: string): string => {
             dateToCompare.getMonth() <= 9
                 ? `0${dateToCompare.getMonth() + 1}`
                 : dateToCompare.getMonth() + 1;
-        const year = dateToCompare.getFullYear();
 
-        return `${day}.${month}.${year}`;
+        return `${day}.${month}`;
     }
     const hour =
         dateToCompare.getHours() <= 9

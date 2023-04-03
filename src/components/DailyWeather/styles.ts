@@ -20,7 +20,7 @@ export const DailyWeatherWrapper = styled.div`
     }
 `;
 
-export const DailyWeatherCard = styled.div`
+export const DailyWeatherCard = styled.div<{ params: boolean }>`
     width: ${({ theme: { width } }) => width.x4s}%;
     height: ${({ theme: { height } }) => height.l}%;
 
@@ -30,6 +30,7 @@ export const DailyWeatherCard = styled.div`
     align-items: center;
 
     overflow: hidden;
+    background: ${({ params }) => (params ? 'rgba(217, 217, 217, 0.4)' : '')};
 
     img {
         width: ${({ theme: { width } }) => width.xl}px;

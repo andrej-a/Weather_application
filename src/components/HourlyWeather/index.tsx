@@ -6,6 +6,7 @@ import citySelector from '@/store/selectors/citySelector';
 import hourlyWeatherSelector from '@/store/selectors/hourlyWeatherSelector';
 import { checkWeatherCache } from '@/store/slices/weatherCache';
 import constants from '@/types/constants';
+import getCurrentDate from '@/utils/getCurrentDate';
 
 import { WeatherData, WeatherDataWrapper } from '../DailyWeather/styles';
 import { HourlyWeatherCard, HourlyWeatherWrapper, Time } from './styles';
@@ -18,7 +19,7 @@ const HourlyWeather = () => {
     const { targetCity } = useAppSelector(citySelector);
     const { id, name, country } = targetCity;
     const dispatch = useAppDispatch();
-
+    const currentTime = getCurrentDate().hours;
     useEffect(() => {
         if (id) {
             dispatch(checkWeatherCache(`${name}-${country}`));
@@ -35,6 +36,7 @@ const HourlyWeather = () => {
                         ({ id, date, code, temperature }) => {
                             return (
                                 <HourlyWeatherCard
+                                    params={`${currentTime}:00` === date}
                                     data-test="hourlyWeatherCard"
                                     key={id}
                                 >
@@ -44,7 +46,9 @@ const HourlyWeather = () => {
                                     />
                                     <WeatherDataWrapper>
                                         <Time>{date}</Time>
-                                        <WeatherData>{temperature}</WeatherData>
+                                        <WeatherData>
+                                            {temperature}°
+                                        </WeatherData>
                                     </WeatherDataWrapper>
                                 </HourlyWeatherCard>
                             );

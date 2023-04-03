@@ -37,6 +37,8 @@ const theme = {
     width: {
         x5s: 12,
         x4s: 14,
+        x2s: 15,
+        xxs: 20,
         xxxs: 30,
         xs: 50,
         s: 60,
@@ -86,7 +88,11 @@ const theme = {
         l: 3,
     },
     top: {
+        s: 0,
         l: 45,
+    },
+    right: {
+        s: 0,
     },
     fontFamily: {
         default: 'Inter',

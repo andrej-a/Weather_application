@@ -16,7 +16,10 @@ const getCurrentDate = (): IDate => {
                 : currentDate.getMinutes()
         }`,
         day: days[currentDate.getDay()],
-        date: currentDate.getDate(),
+        date:
+            currentDate.getDate() <= 9
+                ? `0${currentDate.getDate()}`
+                : currentDate.getDate(),
         month: months[currentDate.getMonth()],
         year: currentDate.getFullYear(),
     };

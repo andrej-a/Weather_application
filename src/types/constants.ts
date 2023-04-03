@@ -22,6 +22,8 @@ enum constants {
 export enum numberConstants {
     REQUEST_DEBOUNCE = 1500,
     MAX_UPCOMING_EVENTS = 25,
+    startOfTheEvening = 18,
+    startOfTheNight = 23,
 }
 
 export default constants;

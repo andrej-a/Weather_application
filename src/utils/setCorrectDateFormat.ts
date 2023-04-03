@@ -1,6 +1,8 @@
 const setCorrectDateFormat = (date: string) => {
+    const correctDateFormat = /(\d+)-(?<month>\d+)-(?<day>\d+)/;
+
     if (date) {
-        return date.split('-').reverse().join('.');
+        return date.replace(correctDateFormat, '$<day>.$<month>');
     }
     return date;
 };

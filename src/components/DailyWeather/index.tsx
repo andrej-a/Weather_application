@@ -6,6 +6,7 @@ import citySelector from '@/store/selectors/citySelector';
 import dailyWeatherSelector from '@/store/selectors/dailyWeather';
 import { checkWeatherCache } from '@/store/slices/weatherCache';
 import constants from '@/types/constants';
+import getCurrentDate from '@/utils/getCurrentDate';
 
 import '@/utils/dailyWeatherAdapter';
 import {
@@ -23,7 +24,6 @@ const DailyWeather = () => {
     const { targetCity } = useAppSelector(citySelector);
     const { id, name, country } = targetCity;
     const dispatch = useAppDispatch();
-
     useEffect(() => {
         if (id) {
             dispatch(checkWeatherCache(`${name}-${country}`));
@@ -37,14 +37,21 @@ const DailyWeather = () => {
             ) : dailyWeatherList.length > 0 ? (
                 dailyWeatherList.map(({ id, date, temperature, code }) => {
                     return (
-                        <DailyWeatherCard data-test="dailyWeatherCard" key={id}>
+                        <DailyWeatherCard
+                            params={
+                                `${getCurrentDate().date}` ===
+                                date.split('.')[0]
+                            }
+                            data-test="dailyWeatherCard"
+                            key={id}
+                        >
                             <img
                                 src={`./icons/${code}.png`}
                                 alt={`weatherCode-${code}`}
                             />
                             <WeatherDataWrapper>
                                 <Date>{date}</Date>
-                                <WeatherData>{temperature}</WeatherData>
+                                <WeatherData>{temperature}°</WeatherData>
                             </WeatherDataWrapper>
                         </DailyWeatherCard>
                     );

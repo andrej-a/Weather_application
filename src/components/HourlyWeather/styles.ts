@@ -18,11 +18,12 @@ export const HourlyWeatherWrapper = styled.div`
     overflow: auto;
 `;
 
-export const HourlyWeatherCard = styled(DailyWeatherCard)`
-    width: ${({ theme: { width } }) => width.x5s}%;
+export const HourlyWeatherCard = styled(DailyWeatherCard)<{ params: boolean }>`
+    width: ${({ theme: { width } }) => width.x2s}%;
+    background: ${({ params }) => (params ? 'rgba(217, 217, 217, 0.4)' : '')};
 
     img {
-        width: ${({ theme: { width } }) => width.s}px;
+        width: ${({ theme: { width } }) => width.xxl}px;
         height: ${({ theme: { height } }) => height.s}px;
     }
 

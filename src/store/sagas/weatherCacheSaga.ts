@@ -3,6 +3,7 @@ import { call, debounce, put, select } from 'redux-saga/effects';
 import constants, { numberConstants } from '@/types/constants';
 import IDailyWeather from '@/types/IDailyWeather';
 import IPayload from '@/types/IPayload';
+import filteredHourlyWeatherAccordingToCurrentTime from '@/utils/filterHourlyWeatherAccordingToCurrentTime';
 
 import citySelector from '../selectors/citySelector';
 import mainSelector from '../selectors/mainSelector';
@@ -39,7 +40,9 @@ function* hourlyWeatherCache({ payload }: IPayload<string>) {
         return filteredWeatherCache(state, payload);
     });
     if (cache.length) {
-        yield put(setHourlyWeatherList(cache));
+        const filteredHourlyWeather: IDailyWeather[] =
+            yield filteredHourlyWeatherAccordingToCurrentTime(cache);
+        yield put(setHourlyWeatherList(filteredHourlyWeather));
     } else {
         const { targetCity }: IInitialCitiesState = yield select(citySelector);
         yield put(startHourlyWeatherFetch(targetCity));

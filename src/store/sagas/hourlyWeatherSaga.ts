@@ -5,6 +5,7 @@ import ICity from '@/types/ICitiesList';
 import IDailyWeather from '@/types/IDailyWeather';
 import IPayload from '@/types/IPayload';
 import IWeatherCache from '@/types/IWeatherCache';
+import filteredHourlyWeatherAccordingToCurrentTime from '@/utils/filterHourlyWeatherAccordingToCurrentTime';
 import showAlert from '@/utils/showAlert';
 
 import { weatherCacheSelector } from '../selectors/weatherCacheSelector';
@@ -23,7 +24,11 @@ export function* hourlyWeatherWorker({ payload }: IPayload<ICity>) {
             getHourlyWeatherInfo,
             payload,
         );
-        yield put(setHourlyWeatherList(hourlyWeatherList));
+        const filteredHourlyWeather: IDailyWeather[] =
+            yield filteredHourlyWeatherAccordingToCurrentTime(
+                hourlyWeatherList,
+            );
+        yield put(setHourlyWeatherList(filteredHourlyWeather));
 
         const weatherCache: IWeatherCache[] = yield select(
             weatherCacheSelector,
@@ -38,7 +43,7 @@ export function* hourlyWeatherWorker({ payload }: IPayload<ICity>) {
                     ...weatherCache[index],
                     city: `${payload.name}-${payload.country}`,
                     timeOfTheLastUpdateOfHourlyWeather: new Date().getTime(),
-                    hourlyWeatherList,
+                    hourlyWeatherList: filteredHourlyWeather,
                 }),
             );
         } else {
@@ -48,7 +53,7 @@ export function* hourlyWeatherWorker({ payload }: IPayload<ICity>) {
                     timeOfTheLastUpdateOfDailyWeather: 0,
                     timeOfTheLastUpdateOfHourlyWeather: new Date().getTime(),
                     dailyWeatherList: [],
-                    hourlyWeatherList,
+                    hourlyWeatherList: filteredHourlyWeather,
                 }),
             );
         }

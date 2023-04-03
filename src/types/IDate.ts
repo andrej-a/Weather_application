@@ -2,7 +2,7 @@ interface IDate {
     hours: string;
     minutes: string;
     day: string;
-    date: number;
+    date: number | string;
     month: string;
     year: number;
 }
