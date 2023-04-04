@@ -1,4 +1,4 @@
-import { days, months } from '@/components/TimeAndDateInfo/config/dateConfig';
+import { days, months } from '@/constants/dateConfig';
 import IDate from '@/types/IDate';
 
 const getCurrentDate = (): IDate => {

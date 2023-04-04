@@ -34,7 +34,11 @@ class ErrorBoundary extends Component<Props, State> {
                 <Wrapper>
                     <ErrorDescription>{ERROR_MESSAGE}</ErrorDescription>
                     {errorsList.map(error => {
-                        return <ErrorDescription>{error}</ErrorDescription>;
+                        return (
+                            <ErrorDescription key={error}>
+                                {error}
+                            </ErrorDescription>
+                        );
                     })}
                 </Wrapper>
             );

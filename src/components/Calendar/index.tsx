@@ -1,10 +1,9 @@
 import React from 'react';
 
 import { useAppDispatch, useAppSelector } from '@/hooks/useStore';
-import calendarSelector from '@/store/selectors/calendarSelector';
-import { calendarSagaHandle } from '@/store/slices/calendar';
 import constants from '@/types/constants';
 
+import * as imports from './imports';
 import {
     CalendarInfo,
     CalendarInfoWrapper,
@@ -15,6 +14,8 @@ import {
     LogInButton,
     LogInButtonWrapper,
 } from './styles';
+
+const { calendarSagaHandle, calendarSelector } = imports;
 
 const Calendar = () => {
     const { CALENDAR_DEFAULT_MESSAGE, NO_CALENDAR_EVENTS } = constants;

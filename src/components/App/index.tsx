@@ -5,16 +5,21 @@ import getCurrentPositionByCoords from '@/api/getCurrentPositionByCoords';
 import GlobalStyle from '@/globalStyles';
 import { useAppDispatch, useAppSelector } from '@/hooks/useStore';
 import Main from '@/pages/Main';
-import mainSelector from '@/store/selectors/mainSelector';
-import { checkCache } from '@/store/slices/citiesCache';
-import { setTargetCity } from '@/store/slices/citiesList';
-import { setImageReading, setWeatherCodeForImage } from '@/store/slices/main';
-import { checkWeatherCache } from '@/store/slices/weatherCache';
 import constants from '@/types/constants';
 import ICity from '@/types/ICitiesList';
 import showAlert from '@/utils/showAlert';
 
+import * as imports from './imports';
 import { ApplicationWrapper } from './styles';
+
+const {
+    mainSelector,
+    checkCache,
+    setImageReading,
+    setTargetCity,
+    setWeatherCodeForImage,
+    checkWeatherCache,
+} = imports;
 
 const App = () => {
     const dispatch = useAppDispatch();

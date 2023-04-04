@@ -3,15 +3,20 @@ import { ClockLoader } from 'react-spinners';
 
 import UserInterface from '@/components/UserInterface';
 import { useAppDispatch, useAppSelector } from '@/hooks/useStore';
-import citySelector from '@/store/selectors/citySelector';
-import dailyWeatherSelector from '@/store/selectors/dailyWeather';
-import hourlyWeatherSelector from '@/store/selectors/hourlyWeatherSelector';
-import mainSelector from '@/store/selectors/mainSelector';
-import { setImageReading, setWeatherCodeForImage } from '@/store/slices/main';
 import constants from '@/types/constants';
 import getImageAccordingToWeather from '@/utils/getImageAccordingToWeather';
 
+import * as imports from './imports';
 import { Wrapper } from './styles';
+
+const {
+    citySelector,
+    dailyWeatherSelector,
+    hourlyWeatherSelector,
+    mainSelector,
+    setImageReading,
+    setWeatherCodeForImage,
+} = imports;
 
 const Main = () => {
     const { SPINNER_COLOR } = constants;
@@ -40,7 +45,7 @@ const Main = () => {
     }, [typeOfTheWeather, dailyWeatherList, hourlyWeatherList]);
 
     return (
-        <React.Fragment>
+        <>
             {isImageReady && weatherCode ? (
                 <Wrapper params={`/images/${weatherCode}.jpg`}>
                     <UserInterface />
@@ -48,7 +53,7 @@ const Main = () => {
             ) : (
                 <ClockLoader color={SPINNER_COLOR} />
             )}
-        </React.Fragment>
+        </>
     );
 };
 

@@ -1,15 +1,17 @@
 import React from 'react';
 
 import { useAppDispatch } from '@/hooks/useStore';
-import { setTypeOfTheWeather } from '@/store/slices/main';
 import { weatherTypes } from '@/store/slices/main/initialState';
 import constants from '@/types/constants';
 
+import * as imports from './imports';
 import {
     DailyWeatherButton,
     HourlyWeatherButton,
     SwitchWrapper,
 } from './styles';
+
+const { setTypeOfTheWeather } = imports;
 
 const WeatherSwitcher = () => {
     const { DAILY_TYPE_OF_THE_WEATHER, HOURLY_TYPE_OF_THE_WEATHER } = constants;

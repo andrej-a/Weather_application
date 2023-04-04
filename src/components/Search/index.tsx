@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import * as yup from 'yup';
 
 import { useAppDispatch, useAppSelector } from '@/hooks/useStore';
-import { checkCache } from '@/store/slices/citiesCache';
-import { setTargetCity } from '@/store/slices/citiesList';
-import { checkWeatherCache } from '@/store/slices/weatherCache';
 import ICity from '@/types/ICitiesList';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import SearchIcon from '../../../public/icons/search_icon.png';
+import schema from './config/schema';
+import * as imports from './imports';
 import {
     ElasticContainer,
     ElasticItem,
@@ -20,18 +18,14 @@ import {
     SearchWrapper,
 } from './styles';
 
+const { checkCache, checkWeatherCache, setTargetCity, citySelector } = imports;
+
 const Search = () => {
     const [showElasticContainer, setShowElasticContainer] = useState(false);
-    const { cities, isLoadingCityList, targetCity } = useAppSelector(
-        state => state.citiesState,
-    );
+    const { cities, isLoadingCityList, targetCity } =
+        useAppSelector(citySelector);
     const { name, country, id } = targetCity;
     const dispatch = useAppDispatch();
-    const schema = yup
-        .object({
-            search: yup.string().required().min(1),
-        })
-        .required();
     const { register, handleSubmit, setValue } = useForm<{ search: string }>({
         resolver: yupResolver(schema),
         defaultValues: { search: '' },
@@ -43,6 +37,11 @@ const Search = () => {
     const onHandleTargetCity = (city: ICity) => () => {
         dispatch(setTargetCity(city));
         setShowElasticContainer(false);
+    };
+    const openElasticContainer = () => {
+        if (!showElasticContainer) {
+            setShowElasticContainer(true);
+        }
     };
 
     useEffect(() => {
@@ -66,11 +65,7 @@ const Search = () => {
                     {...register('search', {
                         onChange: handleSubmit(handleChange),
                     })}
-                    onFocus={() => {
-                        if (!showElasticContainer) {
-                            setShowElasticContainer(true);
-                        }
-                    }}
+                    onFocus={openElasticContainer}
                     placeholder="Serach..."
                     name="search"
                     id="search"

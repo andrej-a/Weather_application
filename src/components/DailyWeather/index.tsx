@@ -2,13 +2,11 @@ import React, { useEffect } from 'react';
 import { ClockLoader } from 'react-spinners';
 
 import { useAppDispatch, useAppSelector } from '@/hooks/useStore';
-import citySelector from '@/store/selectors/citySelector';
-import dailyWeatherSelector from '@/store/selectors/dailyWeather';
-import { checkWeatherCache } from '@/store/slices/weatherCache';
 import constants from '@/types/constants';
 import getCurrentDate from '@/utils/getCurrentDate';
 
 import '@/utils/dailyWeatherAdapter';
+import * as imports from './imports';
 import {
     DailyWeatherCard,
     DailyWeatherWrapper,
@@ -18,6 +16,8 @@ import {
 } from './styles';
 
 const { NO_WEATHER_DATA, SPINNER_COLOR } = constants;
+const { citySelector, checkWeatherCache, dailyWeatherSelector } = imports;
+
 const DailyWeather = () => {
     const { dailyWeatherList, isDailyWeatherLoading } =
         useAppSelector(dailyWeatherSelector);
