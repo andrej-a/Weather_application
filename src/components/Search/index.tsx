@@ -7,10 +7,10 @@ import { yupResolver } from '@hookform/resolvers/yup';
 
 import SearchIcon from '../../../public/icons/search_icon.png';
 import schema from './config/schema';
+import ElasticContainerItems from './ElasticContainerItems';
 import * as imports from './imports';
 import {
     ElasticContainer,
-    ElasticItem,
     Form,
     Input,
     SearchIconImage,
@@ -75,22 +75,14 @@ const Search = () => {
                 </SearchIconWrapper>
                 {showElasticContainer && (
                     <ElasticContainer>
-                        {isLoadingCityList
-                            ? 'Loading...'
-                            : cities.length > 0
-                            ? cities.map(city => {
-                                  return (
-                                      <ElasticItem
-                                          data-test="elastickItem"
-                                          key={city.id}
-                                          onClick={onHandleTargetCity(city)}
-                                      >
-                                          {city.name}, {city.country}{' '}
-                                          {city.state}
-                                      </ElasticItem>
-                                  );
-                              })
-                            : 'No data here'}
+                        {isLoadingCityList ? (
+                            'Loading...'
+                        ) : (
+                            <ElasticContainerItems
+                                cities={cities}
+                                onHandleTargetCity={onHandleTargetCity}
+                            />
+                        )}
                     </ElasticContainer>
                 )}
             </Form>
