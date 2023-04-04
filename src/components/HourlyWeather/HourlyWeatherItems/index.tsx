@@ -4,16 +4,16 @@ import {
     WeatherData,
     WeatherDataWrapper,
 } from '@/components/DailyWeather/DailyWeatherItems/styles';
-import constants from '@/types/constants';
-import getCurrentDate from '@/utils/getCurrentDate';
+import { messagesToUI } from '@/types/constants';
+import { getCurrentDate } from '@/utils/dateWorkers';
 
 import { HourlyWeatherCard, Time } from './styles';
 import HourlyWeatherItemsProps from './types';
 
+const { NO_WEATHER_DATA } = messagesToUI;
 const HourlyWeatherItems = memo(
     ({ hourlyWeatherList }: HourlyWeatherItemsProps) => {
         const currentTime = getCurrentDate().hours;
-        const { NO_WEATHER_DATA } = constants;
         return (
             <>
                 {hourlyWeatherList.length > 0 ? (

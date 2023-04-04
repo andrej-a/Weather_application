@@ -1,6 +1,11 @@
 import { createGlobalStyle } from 'styled-components';
 
-const GlobalStyle = createGlobalStyle`
+export interface DefaultTheme {
+    colors: {
+        black: string;
+    };
+}
+const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
   * {
     margin: 0;

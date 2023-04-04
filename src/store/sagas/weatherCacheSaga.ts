@@ -1,8 +1,7 @@
 import { call, debounce, put, select } from 'redux-saga/effects';
 
-import constants, { numberConstants } from '@/types/constants';
+import constants, { IPayload, numberConstants } from '@/types/constants';
 import IDailyWeather from '@/types/IDailyWeather';
-import IPayload from '@/types/IPayload';
 import filteredHourlyWeatherAccordingToCurrentTime from '@/utils/filterHourlyWeatherAccordingToCurrentTime';
 
 import citySelector from '../selectors/citySelector';

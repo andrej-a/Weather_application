@@ -1,4 +1,4 @@
-import IWeatherCache from '@/types/IWeatherCache';
+import { IWeatherCache } from '@/types/IDailyWeather';
 
 export interface IWeatherCacheInitialState {
     weatherCache: IWeatherCache[];

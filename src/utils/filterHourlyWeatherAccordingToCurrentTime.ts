@@ -1,7 +1,7 @@
 import { numberConstants } from '@/types/constants';
 import IDailyWeather from '@/types/IDailyWeather';
 
-import getCurrentDate from './getCurrentDate';
+import { getCurrentDate } from './dateWorkers';
 
 const { START_OF_THE_EVENING, START_OF_THE_NIGHT } = numberConstants;
 

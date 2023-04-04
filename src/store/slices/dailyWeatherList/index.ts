@@ -1,12 +1,11 @@
-import constants from '@/types/constants';
+import { IPayload, sliceNames } from '@/types/constants';
 import ICity from '@/types/ICitiesList';
 import IDailyWeather from '@/types/IDailyWeather';
-import IPayload from '@/types/IPayload';
 import { createSlice } from '@reduxjs/toolkit';
 
 import initialState from './initialState';
 
-const { DAILY_WEATHER_SLICE_NAME } = constants;
+const { DAILY_WEATHER_SLICE_NAME } = sliceNames;
 
 const dailyWeatherSlice = createSlice({
     name: DAILY_WEATHER_SLICE_NAME,

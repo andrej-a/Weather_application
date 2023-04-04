@@ -1,11 +1,10 @@
-import constants from '@/types/constants';
-import IPayload from '@/types/IPayload';
-import IWeatherCache from '@/types/IWeatherCache';
+import { IPayload, sliceNames } from '@/types/constants';
+import { IWeatherCache } from '@/types/IDailyWeather';
 import { createSlice } from '@reduxjs/toolkit';
 
 import initialState from './initialState';
 
-const { WEATHER_CACHE_SLICE_NAME } = constants;
+const { WEATHER_CACHE_SLICE_NAME } = sliceNames;
 
 const weatherCache = createSlice({
     name: WEATHER_CACHE_SLICE_NAME,
@@ -14,21 +13,8 @@ const weatherCache = createSlice({
         checkWeatherCache: (_, { payload }: IPayload<string>) => {
             payload;
         },
-        setWeatherToCache: (
-            { weatherCache },
-            { payload }: IPayload<IWeatherCache>,
-        ) => {
-            const index = weatherCache.findIndex(
-                el => el.city === payload.city,
-            );
-            if (index !== -1) {
-                weatherCache[index] = {
-                    ...weatherCache[index],
-                    ...payload,
-                };
-            } else {
-                weatherCache.push(payload);
-            }
+        setWeatherToCache: (state, { payload }: IPayload<IWeatherCache[]>) => {
+            state.weatherCache = payload;
         },
     },
 });

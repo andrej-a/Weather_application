@@ -5,6 +5,7 @@ import { RootState } from '..';
 
 const { DAILY_TYPE_OF_THE_WEATHER } = constants;
 const { NUMBER_MS_IN_THE_SECOND, NUMBER_SECONDS_IN_THE_HOUR } = numberConstants;
+
 const filteredWeatherCache = (state: RootState, city: string) => {
     const filteredCache = state.weatherCach.weatherCache.filter(
         item => item.city === city,
@@ -33,9 +34,7 @@ const filteredWeatherCache = (state: RootState, city: string) => {
     return [];
 };
 
-export const weatherCacheSelector = createSelector(
-    (state: RootState) => state.weatherCach.weatherCache,
-    weatherCach => weatherCach,
-);
+export const weatherCacheSelector = (state: RootState) =>
+    state.weatherCach.weatherCache;
 
 export default filteredWeatherCache;

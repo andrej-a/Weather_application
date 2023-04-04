@@ -1,12 +1,12 @@
 import React from 'react';
 
-import constants from '@/types/constants';
+import { messagesToUI } from '@/types/constants';
 
 import { CalendarItem, ItemContent, ItemTime } from './styles';
 import CalendarItemsProps from './types';
 
+const { NO_CALENDAR_EVENTS } = messagesToUI;
 const CalendarItems = ({ calendarEventsList }: CalendarItemsProps) => {
-    const { NO_CALENDAR_EVENTS } = constants;
     return (
         <>
             {calendarEventsList.length > 0

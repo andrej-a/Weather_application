@@ -2,7 +2,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 import IDailyWeather from '@/types/IDailyWeather';
 
-import setCorrectDateFormat from './setCorrectDateFormat';
+import { setCorrectDateFormat } from './dateWorkers';
 
 interface IResponce {
     daily: {

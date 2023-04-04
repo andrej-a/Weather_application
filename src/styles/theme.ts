@@ -35,7 +35,6 @@ const theme = {
         xl: 50,
     },
     width: {
-        x5s: 12,
         x4s: 14,
         x2s: 15,
         xxs: 20,

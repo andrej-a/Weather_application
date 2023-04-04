@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 
 import { numberConstants } from '@/types/constants';
 import IDate from '@/types/IDate';
-import getCurrentDate from '@/utils/getCurrentDate';
+import { getCurrentDate } from '@/utils/dateWorkers';
 
 import { DateWrapper, TimeAndDateInfoWrapper, TimeWrapper } from './styles';
 

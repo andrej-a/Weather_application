@@ -5,6 +5,8 @@ import ElasticContainerItemsProps from './types';
 
 const ElasticContainerItems = memo(
     ({ cities, onHandleTargetCity }: ElasticContainerItemsProps) => {
+        console.log(cities, 'CITIES');
+
         return (
             <>
                 {cities.length > 0

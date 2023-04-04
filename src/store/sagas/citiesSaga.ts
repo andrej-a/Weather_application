@@ -1,14 +1,15 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 
 import getCitiesList from '@/api/getCitiesList';
+import { IPayload } from '@/types/constants';
 import ICity from '@/types/ICitiesList';
-import IPayload from '@/types/IPayload';
 import showAlert from '@/utils/showAlert';
 
 import { setCitiesToCache } from '../slices/citiesCache';
 import {
     failureFetchCityList,
     fetchCityList,
+    getCityByName,
     setCitiesList,
     startFetch,
 } from '../slices/citiesList';

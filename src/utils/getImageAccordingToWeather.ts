@@ -1,7 +1,7 @@
 import constants from '@/types/constants';
 import IDailyWeather from '@/types/IDailyWeather';
 
-import generateDate from './generateDate';
+import { generateDate } from './dateWorkers';
 import imageCodeAdapter from './imageCodeAdapter';
 
 const { DAILY_TYPE_OF_THE_WEATHER, HOURLY_TYPE_OF_THE_WEATHER } = constants;
@@ -19,9 +19,7 @@ const getImageAccordingToWeather = (
     const time = generateDate(typeOfTheWeather);
 
     if (typeOfTheWeather === DAILY_TYPE_OF_THE_WEATHER) {
-        weatherCode = dailyWeatherArray.filter(
-            weatherItem => weatherItem.date === time,
-        )[0]?.code;
+        weatherCode = dailyWeatherArray[0]?.code;
     } else if (typeOfTheWeather === HOURLY_TYPE_OF_THE_WEATHER) {
         weatherCode = hourlyWeatherArray.filter(
             weatherItem => weatherItem.date === time,

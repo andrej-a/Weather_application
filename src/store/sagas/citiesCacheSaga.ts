@@ -1,8 +1,7 @@
 import { debounce, put, select } from 'redux-saga/effects';
 
-import { numberConstants } from '@/types/constants';
+import { IPayload, numberConstants } from '@/types/constants';
 import ICity from '@/types/ICitiesList';
-import IPayload from '@/types/IPayload';
 
 import filteredCitiesCache from '../selectors/cacheSelector';
 import { checkCache } from '../slices/citiesCache';

@@ -1,4 +1,4 @@
-import getCurrentDate from '@/utils/getCurrentDate';
+import { getCurrentDate } from '@/utils/dateWorkers';
 
 describe('Houme page', () => {
     it('visit application', () => {

@@ -1,6 +1,6 @@
 import React, { Component, ErrorInfo, ReactNode } from 'react';
 
-import constants from '@/types/constants';
+import { messagesToUI } from '@/types/constants';
 
 import Wrapper, { ErrorDescription } from './styles';
 
@@ -11,6 +11,8 @@ interface Props {
 interface State {
     errorsList: string[];
 }
+
+const { ERROR_MESSAGE } = messagesToUI;
 
 class ErrorBoundary extends Component<Props, State> {
     constructor(props: Props) {
@@ -28,7 +30,6 @@ class ErrorBoundary extends Component<Props, State> {
 
     public render() {
         const { errorsList } = this.state;
-        const { ERROR_MESSAGE } = constants;
         if (errorsList.length) {
             return (
                 <Wrapper>

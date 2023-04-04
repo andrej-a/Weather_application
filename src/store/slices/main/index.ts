@@ -1,11 +1,10 @@
-import constants from '@/types/constants';
-import IPayload from '@/types/IPayload';
+import constants, { IPayload, sliceNames } from '@/types/constants';
 import { createSlice } from '@reduxjs/toolkit';
 
 import { IMainInitialState, weatherTypes } from './types';
 
-const { MAIN_SLICE_NAME, DAILY_TYPE_OF_THE_WEATHER } = constants;
-
+const { DAILY_TYPE_OF_THE_WEATHER } = constants;
+const { MAIN_SLICE_NAME } = sliceNames;
 export const initialState: IMainInitialState = {
     typeOfTheWeather: DAILY_TYPE_OF_THE_WEATHER,
     isImageReady: false,

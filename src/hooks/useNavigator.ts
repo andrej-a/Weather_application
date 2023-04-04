@@ -1,6 +1,6 @@
 import getCurrentPositionByCoords from '@/api/getCurrentPositionByCoords';
 import * as imports from '@/components/App/imports';
-import constants from '@/types/constants';
+import { messagesToUI } from '@/types/constants';
 import ICity from '@/types/ICitiesList';
 import showAlert from '@/utils/showAlert';
 
@@ -14,11 +14,10 @@ const {
     setWeatherCodeForImage,
     checkWeatherCache,
 } = imports;
-
+const { NO_LOCATION } = messagesToUI;
 const useNavigator = () => {
     const dispatch = useAppDispatch();
     const { weatherCode } = useAppSelector(mainSelector);
-    const { NO_LOCATION } = constants;
 
     const defaultUserSettings = () => {
         dispatch(setImageReading(true));

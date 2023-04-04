@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useAppDispatch, useAppSelector } from '@/hooks/useStore';
-import constants from '@/types/constants';
+import { messagesToUI } from '@/types/constants';
 
 import CalendarItems from './CalendarItems';
 import * as imports from './imports';
@@ -14,9 +14,8 @@ import {
 } from './styles';
 
 const { calendarSagaHandle, calendarSelector } = imports;
-
+const { CALENDAR_DEFAULT_MESSAGE } = messagesToUI;
 const Calendar = () => {
-    const { CALENDAR_DEFAULT_MESSAGE, NO_CALENDAR_EVENTS } = constants;
     const { calendarEventsList, accessToken } =
         useAppSelector(calendarSelector);
     const dispatch = useAppDispatch();

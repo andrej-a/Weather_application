@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 
-import constants from '@/types/constants';
-import getCurrentDate from '@/utils/getCurrentDate';
+import { messagesToUI } from '@/types/constants';
+import { getCurrentDate } from '@/utils/dateWorkers';
 
 import {
     DailyWeatherCard,
@@ -11,9 +11,9 @@ import {
 } from './styles';
 import DailyWeatherItemsProps from './types';
 
+const { NO_WEATHER_DATA } = messagesToUI;
 const DailyWeatherItems = memo(
     ({ dailyWeatherList }: DailyWeatherItemsProps) => {
-        const { NO_WEATHER_DATA } = constants;
         return (
             <>
                 {dailyWeatherList.length > 0

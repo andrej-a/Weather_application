@@ -1,10 +1,11 @@
 import React from 'react';
 import { ClockLoader } from 'react-spinners';
+import { useTheme } from 'styled-components';
 
 import UserInterface from '@/components/UserInterface';
+import { DefaultTheme } from '@/globalStyles';
 import useImage from '@/hooks/useImage';
 import { useAppSelector } from '@/hooks/useStore';
-import constants from '@/types/constants';
 
 import * as imports from './imports';
 import { Wrapper } from './styles';
@@ -12,7 +13,10 @@ import { Wrapper } from './styles';
 const { mainSelector } = imports;
 
 const Main = () => {
-    const { SPINNER_COLOR } = constants;
+    const {
+        colors: { black },
+    } = useTheme() as DefaultTheme;
+
     const { isImageReady, weatherCode } = useAppSelector(mainSelector);
     useImage();
     return (
@@ -22,7 +26,7 @@ const Main = () => {
                     <UserInterface />
                 </Wrapper>
             ) : (
-                <ClockLoader color={SPINNER_COLOR} />
+                <ClockLoader color={black} />
             )}
         </>
     );
