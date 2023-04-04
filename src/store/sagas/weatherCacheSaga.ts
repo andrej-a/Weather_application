@@ -17,7 +17,7 @@ import {
     setHourlyWeatherList,
     startHourlyWeatherFetch,
 } from '../slices/hourlyWeatherList';
-import { IMainInitialState } from '../slices/main/initialState';
+import { IMainInitialState } from '../slices/main/types';
 import { checkWeatherCache } from '../slices/weatherCache';
 
 const { REQUEST_DEBOUNCE } = numberConstants;

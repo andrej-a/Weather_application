@@ -69,10 +69,11 @@ const theme = {
         xl: 150,
     },
     colors: {
-        black: '#000',
-        white: '#fff',
-        darkBlue: '#122e65',
-        grey: 'grey,',
+        black: 'rgba(0, 0, 0, 1)',
+        white: 'rgba(255, 255, 255, 1)',
+        darkBlue: 'rgba(18, 46, 101, 1)',
+        whiteTransparentMiddle: 'rgba(217, 217, 217, 0.4)',
+        whiteTransparent: 'rgba(217, 217, 217, 0.2)',
     },
     gap: {
         none: 0,

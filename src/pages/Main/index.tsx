@@ -1,49 +1,20 @@
-import React, { useLayoutEffect } from 'react';
+import React from 'react';
 import { ClockLoader } from 'react-spinners';
 
 import UserInterface from '@/components/UserInterface';
-import { useAppDispatch, useAppSelector } from '@/hooks/useStore';
+import useImage from '@/hooks/useImage';
+import { useAppSelector } from '@/hooks/useStore';
 import constants from '@/types/constants';
-import getImageAccordingToWeather from '@/utils/getImageAccordingToWeather';
 
 import * as imports from './imports';
 import { Wrapper } from './styles';
 
-const {
-    citySelector,
-    dailyWeatherSelector,
-    hourlyWeatherSelector,
-    mainSelector,
-    setImageReading,
-    setWeatherCodeForImage,
-} = imports;
+const { mainSelector } = imports;
 
 const Main = () => {
     const { SPINNER_COLOR } = constants;
-    const { typeOfTheWeather } = useAppSelector(mainSelector);
-    const { dailyWeatherList } = useAppSelector(dailyWeatherSelector);
-    const { hourlyWeatherList } = useAppSelector(hourlyWeatherSelector);
     const { isImageReady, weatherCode } = useAppSelector(mainSelector);
-    const {
-        targetCity: { id },
-    } = useAppSelector(citySelector);
-    const dispatch = useAppDispatch();
-
-    useLayoutEffect(() => {
-        dispatch(
-            setWeatherCodeForImage(
-                getImageAccordingToWeather(
-                    dailyWeatherList,
-                    hourlyWeatherList,
-                    typeOfTheWeather,
-                    id,
-                    isImageReady,
-                ),
-            ),
-        );
-        dispatch(setImageReading(true));
-    }, [typeOfTheWeather, dailyWeatherList, hourlyWeatherList]);
-
+    useImage();
     return (
         <>
             {isImageReady && weatherCode ? (

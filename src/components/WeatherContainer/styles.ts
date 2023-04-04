@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
     width: ${({ theme: { width } }) => width.l}%;
     height: ${({ theme: { height } }) => height.sx}%;
     backdrop-filter: blur(7.5px);
-    background: rgba(217, 217, 217, 0.2);
+    background: ${({ theme: { colors } }) => colors.whiteTransparent};
     padding: ${({ theme: { padding } }) => padding.xxxs}px;
 
     @media (max-width: ${laptop}px) {

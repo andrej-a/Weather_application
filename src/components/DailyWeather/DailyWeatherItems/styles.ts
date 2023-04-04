@@ -14,7 +14,8 @@ export const DailyWeatherCard = styled.div<{ params: boolean }>`
     align-items: center;
 
     overflow: hidden;
-    background: ${({ params }) => (params ? 'rgba(217, 217, 217, 0.4)' : '')};
+    background: ${({ params, theme: { colors } }) =>
+        params ? colors.whiteTransparentMiddle : ''};
 
     img {
         width: ${({ theme: { width } }) => width.xl}px;

@@ -1,52 +1,14 @@
 import React, { useEffect } from 'react';
 import { Toaster } from 'react-hot-toast';
 
-import getCurrentPositionByCoords from '@/api/getCurrentPositionByCoords';
 import GlobalStyle from '@/globalStyles';
-import { useAppDispatch, useAppSelector } from '@/hooks/useStore';
+import useNavigator from '@/hooks/useNavigator';
 import Main from '@/pages/Main';
-import constants from '@/types/constants';
-import ICity from '@/types/ICitiesList';
-import showAlert from '@/utils/showAlert';
 
-import * as imports from './imports';
 import { ApplicationWrapper } from './styles';
 
-const {
-    mainSelector,
-    checkCache,
-    setImageReading,
-    setTargetCity,
-    setWeatherCodeForImage,
-    checkWeatherCache,
-} = imports;
-
 const App = () => {
-    const dispatch = useAppDispatch();
-    const { weatherCode } = useAppSelector(mainSelector);
-    const { NO_LOCATION } = constants;
-
-    const defaultUserSettings = () => {
-        dispatch(setImageReading(true));
-        weatherCode
-            ? dispatch(setWeatherCodeForImage(weatherCode))
-            : dispatch(setWeatherCodeForImage(2));
-        showAlert(NO_LOCATION);
-    };
-
-    const getPositionCallback = async (pos: GeolocationPosition) => {
-        const currentUserPosition: ICity | undefined =
-            await getCurrentPositionByCoords(pos);
-
-        if (currentUserPosition) {
-            const { name, country } = currentUserPosition;
-            dispatch(setTargetCity(currentUserPosition));
-            dispatch(checkCache(name));
-            dispatch(checkWeatherCache(`${name}-${country}`));
-        } else {
-            defaultUserSettings();
-        }
-    };
+    const { getPositionCallback, defaultUserSettings } = useNavigator();
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(getPositionCallback, error => {

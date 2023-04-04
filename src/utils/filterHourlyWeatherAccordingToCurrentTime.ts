@@ -3,18 +3,18 @@ import IDailyWeather from '@/types/IDailyWeather';
 
 import getCurrentDate from './getCurrentDate';
 
-const { startOfTheEvening, startOfTheNight } = numberConstants;
+const { START_OF_THE_EVENING, START_OF_THE_NIGHT } = numberConstants;
 
 const filteredHourlyWeatherAccordingToCurrentTime = (
     hourlyWeatherList: IDailyWeather[],
 ) => {
     const { hours } = getCurrentDate();
     const isEveningNow =
-        +hours >= startOfTheEvening && +hours <= startOfTheNight;
+        +hours >= START_OF_THE_EVENING && +hours <= START_OF_THE_NIGHT;
 
     const index = isEveningNow
         ? hourlyWeatherList.findIndex(
-              weatherItem => weatherItem.date === `${startOfTheEvening}:00`,
+              weatherItem => weatherItem.date === `${START_OF_THE_EVENING}:00`,
           )
         : hourlyWeatherList.findIndex(
               weatherItem => weatherItem.date === `${hours}:00`,

@@ -1,10 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 
+import { numberConstants } from '@/types/constants';
 import IDate from '@/types/IDate';
 import getCurrentDate from '@/utils/getCurrentDate';
 
 import { DateWrapper, TimeAndDateInfoWrapper, TimeWrapper } from './styles';
 
+const { NUMBER_MS_IN_THE_SECOND, UPLOAD_CLOCK_VALUE_INTERVAL } =
+    numberConstants;
 const TimeAndDateInfo = () => {
     const [currentDate, setCurrentDate] = useState<IDate>(getCurrentDate());
     const timerRef = useRef(0);
@@ -13,7 +16,7 @@ const TimeAndDateInfo = () => {
     useEffect(() => {
         timerRef.current = window.setInterval(() => {
             setCurrentDate(getCurrentDate());
-        }, 1000 * 20);
+        }, NUMBER_MS_IN_THE_SECOND * UPLOAD_CLOCK_VALUE_INTERVAL);
         return () => {
             clearInterval(timerRef.current);
         };

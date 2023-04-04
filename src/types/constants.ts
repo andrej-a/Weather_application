@@ -20,8 +20,12 @@ enum constants {
 export enum numberConstants {
     REQUEST_DEBOUNCE = 1500,
     MAX_UPCOMING_EVENTS = 25,
-    startOfTheEvening = 18,
-    startOfTheNight = 23,
+    START_OF_THE_EVENING = 18,
+    START_OF_THE_NIGHT = 23,
+    NUMBER_MS_IN_THE_DAY = 24 * 60 * 60 * 1000,
+    NUMBER_MS_IN_THE_SECOND = 1000,
+    NUMBER_SECONDS_IN_THE_HOUR = 3600,
+    UPLOAD_CLOCK_VALUE_INTERVAL = 20,
 }
 
 export default constants;

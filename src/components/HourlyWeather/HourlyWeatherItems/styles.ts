@@ -10,7 +10,8 @@ const { laptop, tablet } = size;
 
 export const HourlyWeatherCard = styled(DailyWeatherCard)<{ params: boolean }>`
     width: ${({ theme: { width } }) => width.x2s}%;
-    background: ${({ params }) => (params ? 'rgba(217, 217, 217, 0.4)' : '')};
+    background: ${({ params, theme: { colors } }) =>
+        params ? colors.whiteTransparentMiddle : ''};
 
     img {
         width: ${({ theme: { width } }) => width.xxl}px;
