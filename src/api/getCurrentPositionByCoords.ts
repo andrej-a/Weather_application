@@ -1,10 +1,9 @@
 import axios from 'axios';
-import CyrillicToTranslit from 'cyrillic-to-translit-js';
+import CyrillicToTranslit from 'cyrillic-to-translit-js/CyrillicToTranslit';
 import { v4 as uuidv4 } from 'uuid';
 
 import envData from '@/constants/envData';
 import ICity from '@/types/ICitiesList';
-import ICurrentPositionResponce from '@/types/responce';
 import showAlert from '@/utils/showAlert';
 
 const { CURRENT_POSITION_URL, CURRENT_POSITION_KEY } = envData;
