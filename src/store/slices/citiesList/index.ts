@@ -1,19 +1,10 @@
-import getCitiesList from '@/api/getCitiesList';
 import { IPayload, sliceNames } from '@/types/constants';
 import ICity from '@/types/ICitiesList';
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 import initialState from './initialState';
 
 const { CITIES_SLICE_NAME } = sliceNames;
-
-export const getCityByName = createAsyncThunk(
-    `${CITIES_SLICE_NAME}/getCitiesList`,
-    async (city: string) => {
-        const citiesList = await getCitiesList(city);
-        return citiesList;
-    },
-);
 
 const citiesSlice = createSlice({
     name: CITIES_SLICE_NAME,
@@ -35,18 +26,6 @@ const citiesSlice = createSlice({
         setTargetCity: (state, { payload }: IPayload<ICity>) => {
             state.targetCity = payload;
         },
-    },
-    extraReducers(builder) {
-        builder.addCase(getCityByName.pending, state => {
-            state.isLoadingCityList = true;
-        });
-        builder.addCase(getCityByName.fulfilled, (state, { payload }) => {
-            state.cities = payload;
-        });
-        builder.addCase(getCityByName.rejected, (state, action) => {
-            state.isLoadingCityList = false;
-            throw new Error(action.error.message);
-        });
     },
 });
 
