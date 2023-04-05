@@ -6,6 +6,7 @@ import { CalendarItem, ItemContent, ItemTime } from './styles';
 import CalendarItemsProps from './types';
 
 const { NO_CALENDAR_EVENTS } = messagesToUI;
+
 const CalendarItems = ({ calendarEventsList }: CalendarItemsProps) => {
     return (
         <>

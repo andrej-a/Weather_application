@@ -13,11 +13,6 @@ export const HourlyWeatherCard = styled(DailyWeatherCard)<{ params: boolean }>`
     background: ${({ params, theme: { colors } }) =>
         params ? colors.whiteTransparentMiddle : ''};
 
-    img {
-        width: ${({ theme: { width } }) => width.xxl}px;
-        height: ${({ theme: { height } }) => height.s}px;
-    }
-
     @media (max-width: ${laptop}px) {
         width: ${({ theme: { width } }) => width.xxxs}%;
         height: ${({ theme: { height } }) => height.x}%;
@@ -31,3 +26,8 @@ export const HourlyWeatherCard = styled(DailyWeatherCard)<{ params: boolean }>`
 `;
 
 export const Time = styled(Date)``;
+
+export const HourlyWeatherIcon = styled.img`
+    width: ${({ theme: { width } }) => width.xxl}px;
+    height: ${({ theme: { height } }) => height.s}px;
+`;

@@ -12,9 +12,9 @@ import {
 } from './styles';
 
 const { setTypeOfTheWeather } = imports;
+const { DAILY_TYPE_OF_THE_WEATHER, HOURLY_TYPE_OF_THE_WEATHER } = constants;
 
 const WeatherSwitcher = () => {
-    const { DAILY_TYPE_OF_THE_WEATHER, HOURLY_TYPE_OF_THE_WEATHER } = constants;
     const dispatch = useAppDispatch();
 
     const onHandleTypeOfWeather = (type: weatherTypes) => () => {

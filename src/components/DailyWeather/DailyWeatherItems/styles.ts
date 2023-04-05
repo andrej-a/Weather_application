@@ -17,23 +17,6 @@ export const DailyWeatherCard = styled.div<{ params: boolean }>`
     background: ${({ params, theme: { colors } }) =>
         params ? colors.whiteTransparentMiddle : ''};
 
-    img {
-        width: ${({ theme: { width } }) => width.xl}px;
-        height: ${({ theme: { height } }) => height.s}px;
-
-        @media (max-width: ${laptop}px) {
-            width: ${({ theme: { width } }) => width.xxl}px;
-            flex-direction: row;
-            justify-content: space-between;
-        }
-
-        @media (max-width: ${tablet}px) {
-            width: ${({ theme: { width } }) => width.s}px;
-            height: ${({ theme: { height } }) => height.ssx}px;
-            padding-top: ${({ theme: { padding } }) => padding.sx}px;
-        }
-    }
-
     @media (max-width: ${laptop}px) {
         width: ${({ theme: { width } }) => width.xxxs}%;
         height: ${({ theme: { height } }) => height.sx}%;
@@ -82,5 +65,20 @@ export const WeatherData = styled(Date)`
 
     @media (max-width: ${mobileL}px) {
         font-size: ${({ theme: { fontSize } }) => fontSize.l}px;
+    }
+`;
+
+export const DailyWeatherIcon = styled.img`
+    width: ${({ theme: { width } }) => width.xl}px;
+    height: ${({ theme: { height } }) => height.s}px;
+
+    @media (max-width: ${laptop}px) {
+        width: ${({ theme: { width } }) => width.xxl}px;
+    }
+
+    @media (max-width: ${tablet}px) {
+        width: ${({ theme: { width } }) => width.s}px;
+        height: ${({ theme: { height } }) => height.ssx}px;
+        padding-top: ${({ theme: { padding } }) => padding.sx}px;
     }
 `;

@@ -47,8 +47,9 @@ export const getCurrentDate = (): IDate => {
     };
 };
 
+const { DAILY_TYPE_OF_THE_WEATHER } = constants;
+
 export const generateDate = (typeOfTheWeather: string): string => {
-    const { DAILY_TYPE_OF_THE_WEATHER } = constants;
     const dateToCompare = new Date();
 
     if (typeOfTheWeather === DAILY_TYPE_OF_THE_WEATHER) {

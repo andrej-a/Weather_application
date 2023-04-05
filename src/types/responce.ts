@@ -1,3 +1,5 @@
+import { ICalendarEvent } from '@/store/slices/calendar/initialState';
+
 interface ICurrentPositionResponce {
     suggestions: [
         {
@@ -12,4 +14,8 @@ interface ICurrentPositionResponce {
     ];
 }
 
+export interface ICalendareResponce {
+    access_token: string;
+    calendarList: ICalendarEvent[];
+}
 export default ICurrentPositionResponce;

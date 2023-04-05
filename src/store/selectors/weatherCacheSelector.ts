@@ -1,5 +1,4 @@
 import constants, { numberConstants } from '@/types/constants';
-import { createSelector } from '@reduxjs/toolkit';
 
 import { RootState } from '..';
 

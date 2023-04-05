@@ -9,7 +9,6 @@ import { setCitiesToCache } from '../slices/citiesCache';
 import {
     failureFetchCityList,
     fetchCityList,
-    getCityByName,
     setCitiesList,
     startFetch,
 } from '../slices/citiesList';

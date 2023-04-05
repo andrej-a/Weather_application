@@ -8,6 +8,7 @@ import { DateWrapper, TimeAndDateInfoWrapper, TimeWrapper } from './styles';
 
 const { NUMBER_MS_IN_THE_SECOND, UPLOAD_CLOCK_VALUE_INTERVAL } =
     numberConstants;
+
 const TimeAndDateInfo = () => {
     const [currentDate, setCurrentDate] = useState<IDate>(getCurrentDate());
     const timerRef = useRef(0);

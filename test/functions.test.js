@@ -1,6 +1,5 @@
-import generateDate from '@/utils/generateDate';
+import { generateDate, setCorrectCalendarDate } from '@/utils/dateWorkers';
 import getCorrectWeatherCode from '@/utils/getCorrectWeatherCode';
-import setCorrectCalendarDate from '@/utils/setCorrectCalendarDate';
 
 describe('utils functional', () => {
     it('get correct weather code', () => {
@@ -14,20 +13,22 @@ describe('utils functional', () => {
     it('generate correct date', () => {
         const typeOfTheWeather = 'Daily';
         const dateToCompare = new Date();
-        const day =            dateToCompare.getDate() <= 9
+        const day =
+            dateToCompare.getDate() <= 9
                 ? `0${dateToCompare.getDate()}`
                 : dateToCompare.getDate();
-        const month =            dateToCompare.getMonth() <= 9
+        const month =
+            dateToCompare.getMonth() <= 9
                 ? `0${dateToCompare.getMonth() + 1}`
                 : dateToCompare.getMonth() + 1;
-        const year = dateToCompare.getFullYear();
-        const currentDate = `${day}.${month}.${year}`;
+        const currentDate = `${day}.${month}`;
         expect(generateDate(typeOfTheWeather)).toEqual(currentDate);
     });
     it('generate correct time', () => {
         const typeOfTheWeather = 'Hourly';
         const dateToCompare = new Date();
-        const hour =            dateToCompare.getHours() <= 9
+        const hour =
+            dateToCompare.getHours() <= 9
                 ? `0${dateToCompare.getHours()}`
                 : dateToCompare.getHours();
         const currentTime = `${hour}:00`;

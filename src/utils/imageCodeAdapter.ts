@@ -16,13 +16,11 @@ const imageCodeAdapter = (code: number) => {
         ['/20/-/21/-/22/']: 13,
         ['/23/-/24/-/25/-/36/']: 14,
     };
-    let result = 0;
     const keys = Object.keys(knowledges);
-    keys.forEach(key => {
-        if (key.match(`/${code}/`)) {
-            result = knowledges[key];
-        }
-    });
-    return result;
+    return keys.reduce(
+        (acc, cur) =>
+            cur.match(`/${code}/`) ? acc + knowledges[cur] : acc + 0,
+        0,
+    );
 };
 export default imageCodeAdapter;

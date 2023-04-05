@@ -1,9 +1,10 @@
+import axios from 'axios';
 import CyrillicToTranslit from 'cyrillic-to-translit-js';
 import { v4 as uuidv4 } from 'uuid';
 
 import envData from '@/constants/envData';
 import ICity from '@/types/ICitiesList';
-import ICurrentPositionResponce from '@/types/ICurrentPositionResponce';
+import ICurrentPositionResponce from '@/types/responce';
 import showAlert from '@/utils/showAlert';
 
 const { CURRENT_POSITION_URL, CURRENT_POSITION_KEY } = envData;
@@ -17,25 +18,17 @@ const getCurrentPositionByCoords = async ({
         lat: latitude,
         lon: longitude,
     };
-
     try {
-        const request = await fetch(CURRENT_POSITION_URL!, {
-            method: 'POST',
-            mode: 'cors',
+        const { data } = await axios.post(CURRENT_POSITION_URL!, query, {
             headers: {
-                'Content-Type': 'application/json',
-                Accept: 'application/json',
                 Authorization: `Token ${CURRENT_POSITION_KEY!}`,
             },
-            body: JSON.stringify(query),
         });
 
-        const responce: ICurrentPositionResponce = await request.json();
-
-        if (responce.suggestions[0]) {
+        if (data.suggestions[0]) {
             const {
                 data: { city, country_iso_code, region_with_type },
-            } = responce.suggestions[0];
+            } = data.suggestions[0];
 
             const result: ICity = {
                 id: uuidv4(),

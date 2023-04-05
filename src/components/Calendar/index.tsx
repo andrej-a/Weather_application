@@ -15,6 +15,7 @@ import {
 
 const { calendarSagaHandle, calendarSelector } = imports;
 const { CALENDAR_DEFAULT_MESSAGE } = messagesToUI;
+
 const Calendar = () => {
     const { calendarEventsList, accessToken } =
         useAppSelector(calendarSelector);

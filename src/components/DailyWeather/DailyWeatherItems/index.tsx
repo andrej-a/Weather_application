@@ -5,6 +5,7 @@ import { getCurrentDate } from '@/utils/dateWorkers';
 
 import {
     DailyWeatherCard,
+    DailyWeatherIcon,
     Date,
     WeatherData,
     WeatherDataWrapper,
@@ -12,6 +13,7 @@ import {
 import DailyWeatherItemsProps from './types';
 
 const { NO_WEATHER_DATA } = messagesToUI;
+
 const DailyWeatherItems = memo(
     ({ dailyWeatherList }: DailyWeatherItemsProps) => {
         return (
@@ -28,7 +30,7 @@ const DailyWeatherItems = memo(
                                       data-test="dailyWeatherCard"
                                       key={id}
                                   >
-                                      <img
+                                      <DailyWeatherIcon
                                           src={`./icons/${code}.png`}
                                           alt={`weatherCode-${code}`}
                                       />

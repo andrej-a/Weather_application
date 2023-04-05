@@ -15,6 +15,7 @@ const {
     checkWeatherCache,
 } = imports;
 const { NO_LOCATION } = messagesToUI;
+
 const useNavigator = () => {
     const dispatch = useAppDispatch();
     const { weatherCode } = useAppSelector(mainSelector);

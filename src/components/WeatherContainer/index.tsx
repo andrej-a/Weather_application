@@ -9,9 +9,9 @@ import * as imports from './imports';
 import { Wrapper } from './styles';
 
 const { mainSelector } = imports;
+const { DAILY_TYPE_OF_THE_WEATHER } = constants;
 
 const WeatherContainer = () => {
-    const { DAILY_TYPE_OF_THE_WEATHER } = constants;
     const { typeOfTheWeather } = useAppSelector(mainSelector);
 
     return (

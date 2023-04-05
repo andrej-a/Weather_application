@@ -4,6 +4,7 @@ import { numberConstants } from '@/types/constants';
 import { setCorrectCalendarDate } from '@/utils/dateWorkers';
 
 const { MAX_UPCOMING_EVENTS, NUMBER_MS_IN_THE_DAY } = numberConstants;
+
 const getCalendarInformation = async () => {
     const { access_token }: { access_token: string } =
         await apiCalendar.handleAuthClick();

@@ -5,6 +5,7 @@ import { generateDate } from './dateWorkers';
 import imageCodeAdapter from './imageCodeAdapter';
 
 const { DAILY_TYPE_OF_THE_WEATHER, HOURLY_TYPE_OF_THE_WEATHER } = constants;
+
 const getImageAccordingToWeather = (
     dailyWeatherArray: IDailyWeather[],
     hourlyWeatherArray: IDailyWeather[],

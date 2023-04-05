@@ -3,6 +3,7 @@ import { call, debounce, put, select } from 'redux-saga/effects';
 import getCalendarInformation from '@/api/getCalendarInformation';
 import apiCalendar from '@/service/calendar';
 import { numberConstants } from '@/types/constants';
+import { ICalendareResponce } from '@/types/responce';
 import showAlert from '@/utils/showAlert';
 
 import calendarSelector from '../selectors/calendarSelector';
@@ -11,14 +12,8 @@ import {
     setAccessToken,
     setCalendarEvents,
 } from '../slices/calendar';
-import { ICalendarEvent } from '../slices/calendar/initialState';
 
 const { REQUEST_DEBOUNCE } = numberConstants;
-
-interface ICalendareResponce {
-    access_token: string;
-    calendarList: ICalendarEvent[];
-}
 
 export function* calendarWorker() {
     const { accessToken }: { accessToken: string } = yield select(

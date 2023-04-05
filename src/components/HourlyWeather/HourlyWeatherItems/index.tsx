@@ -7,10 +7,11 @@ import {
 import { messagesToUI } from '@/types/constants';
 import { getCurrentDate } from '@/utils/dateWorkers';
 
-import { HourlyWeatherCard, Time } from './styles';
+import { HourlyWeatherCard, HourlyWeatherIcon, Time } from './styles';
 import HourlyWeatherItemsProps from './types';
 
 const { NO_WEATHER_DATA } = messagesToUI;
+
 const HourlyWeatherItems = memo(
     ({ hourlyWeatherList }: HourlyWeatherItemsProps) => {
         const currentTime = getCurrentDate().hours;
@@ -26,7 +27,7 @@ const HourlyWeatherItems = memo(
                                         data-test="hourlyWeatherCard"
                                         key={id}
                                     >
-                                        <img
+                                        <HourlyWeatherIcon
                                             src={`./icons/${code}.png`}
                                             alt={`weatherCode-${code}`}
                                         />

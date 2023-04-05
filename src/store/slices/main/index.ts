@@ -5,6 +5,7 @@ import { IMainInitialState, weatherTypes } from './types';
 
 const { DAILY_TYPE_OF_THE_WEATHER } = constants;
 const { MAIN_SLICE_NAME } = sliceNames;
+
 export const initialState: IMainInitialState = {
     typeOfTheWeather: DAILY_TYPE_OF_THE_WEATHER,
     isImageReady: false,
