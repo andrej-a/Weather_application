@@ -1,10 +1,9 @@
-import constants from '@/types/constants';
-import IPayload from '@/types/IPayload';
+import { IPayload, sliceNames } from '@/types/constants';
 import { createSlice } from '@reduxjs/toolkit';
 
 import initialState, { ICalendarEvent } from './initialState';
 
-const { CALENDAR_LIST_SLICE_NAME } = constants;
+const { CALENDAR_LIST_SLICE_NAME } = sliceNames;
 
 const calendarListSlice = createSlice({
     name: CALENDAR_LIST_SLICE_NAME,

@@ -1,65 +1,62 @@
 import React, { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import * as yup from 'yup';
 
 import { useAppDispatch, useAppSelector } from '@/hooks/useStore';
-import dailyWeatherSelector from '@/store/selectors/dailyWeather';
-import { checkCache } from '@/store/slices/citiesCache';
-import { setTargetCity } from '@/store/slices/citiesList';
-import { checkWeatherCache } from '@/store/slices/weatherCache';
 import ICity from '@/types/ICitiesList';
 import { yupResolver } from '@hookform/resolvers/yup';
 
+import SearchIcon from '../../../public/icons/search_icon.png';
+import schema from './config/schema';
+import ElasticContainerItems from './ElasticContainerItems';
+import * as imports from './imports';
 import {
     ElasticContainer,
-    ElasticItem,
     Form,
     Input,
+    SearchIconImage,
+    SearchIconWrapper,
     SearchWrapper,
-    SubmitButton,
 } from './styles';
+
+const { checkCache, checkWeatherCache, setTargetCity, citySelector } = imports;
 
 const Search = () => {
     const [showElasticContainer, setShowElasticContainer] = useState(false);
-    const { cities, isLoadingCityList, targetCity } = useAppSelector(
-        state => state.citiesState,
-    );
-    const { isDailyWeatherLoading } = useAppSelector(dailyWeatherSelector);
+    const { cities, isLoadingCityList, targetCity } =
+        useAppSelector(citySelector);
     const { name, country, id } = targetCity;
     const dispatch = useAppDispatch();
-    const schema = yup
-        .object({
-            search: yup.string().required().min(1),
-        })
-        .required();
-    const {
-        register,
-        handleSubmit,
-        setValue,
-        formState: { errors },
-    } = useForm<{ search: string }>({
+    const { register, handleSubmit, setValue } = useForm<{ search: string }>({
         resolver: yupResolver(schema),
         defaultValues: { search: '' },
     });
-    const formSubmit: SubmitHandler<{ search: string }> = data => {
-        dispatch(checkWeatherCache(`${name}-${country}`));
-    };
+
     const handleChange: SubmitHandler<{ search: string }> = ({ search }) => {
         dispatch(checkCache(search));
     };
     const onHandleTargetCity = (city: ICity) => () => {
         dispatch(setTargetCity(city));
+        setShowElasticContainer(false);
+    };
+    const openElasticContainer = () => {
+        if (!showElasticContainer) {
+            setShowElasticContainer(true);
+        }
     };
 
     useEffect(() => {
         if (id) {
             setValue('search', `${name}-${country}`);
-            setShowElasticContainer(false);
         }
     }, [id]);
+
+    useEffect(() => {
+        dispatch(checkWeatherCache(`${name}-${country}`));
+    }, [targetCity]);
+
     return (
         <SearchWrapper>
-            <Form action="" onSubmit={handleSubmit(formSubmit)}>
+            <Form action="">
                 <Input
                     data-test="searchInput"
                     disabled={isLoadingCityList}
@@ -68,46 +65,24 @@ const Search = () => {
                     {...register('search', {
                         onChange: handleSubmit(handleChange),
                     })}
-                    onFocus={() => {
-                        if (!showElasticContainer) {
-                            setShowElasticContainer(true);
-                        }
-                    }}
+                    onFocus={openElasticContainer}
                     placeholder="Serach..."
                     name="search"
                     id="search"
                 />
-                <SubmitButton
-                    data-test="submitButton"
-                    disabled={
-                        Object.keys(errors).length > 0 ||
-                        !id ||
-                        isLoadingCityList ||
-                        isDailyWeatherLoading
-                    }
-                    type="submit"
-                    value="Search"
-                >
-                    Search
-                </SubmitButton>
+                <SearchIconWrapper>
+                    <SearchIconImage src={SearchIcon} alt="search_panel" />
+                </SearchIconWrapper>
                 {showElasticContainer && (
                     <ElasticContainer>
-                        {isLoadingCityList
-                            ? 'Loading...'
-                            : cities.length > 0
-                            ? cities.map(city => {
-                                  return (
-                                      <ElasticItem
-                                          data-test="elastickItem"
-                                          key={city.id}
-                                          onClick={onHandleTargetCity(city)}
-                                      >
-                                          {city.name}, {city.country}{' '}
-                                          {city.state}
-                                      </ElasticItem>
-                                  );
-                              })
-                            : 'No data here'}
+                        {isLoadingCityList ? (
+                            'Loading...'
+                        ) : (
+                            <ElasticContainerItems
+                                cities={cities}
+                                onHandleTargetCity={onHandleTargetCity}
+                            />
+                        )}
                     </ElasticContainer>
                 )}
             </Form>

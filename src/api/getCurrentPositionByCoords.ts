@@ -1,58 +1,37 @@
+import axios from 'axios';
+import CyrillicToTranslit from 'cyrillic-to-translit-js/CyrillicToTranslit';
 import { v4 as uuidv4 } from 'uuid';
 
-import constants from '@/types/constants';
+import envData from '@/constants/envData';
 import ICity from '@/types/ICitiesList';
 import showAlert from '@/utils/showAlert';
 
-const swithcher = require('ai-switcher-translit');
+const { CURRENT_POSITION_URL, CURRENT_POSITION_KEY } = envData;
 
-interface responceAnswer {
-    suggestions: [
-        {
-            data: {
-                city: string;
-                latitude: number;
-                longitude: number;
-                country_iso_code: string;
-                region_with_type: string;
-            };
-        },
-    ];
-}
+const cyrillicToTranslit = CyrillicToTranslit();
 
 const getCurrentPositionByCoords = async ({
     coords: { latitude, longitude },
 }: GeolocationPosition) => {
-    const { GET_CURRENT_POSITION_URL } = constants;
     const query = {
         lat: latitude,
         lon: longitude,
     };
-
     try {
-        const request = await fetch(GET_CURRENT_POSITION_URL, {
-            method: 'POST',
-            mode: 'cors',
+        const { data } = await axios.post(CURRENT_POSITION_URL!, query, {
             headers: {
-                'Content-Type': 'application/json',
-                Accept: 'application/json',
-                Authorization: `Token ${process.env.CURRENT_POSITION_KEY!}`,
+                Authorization: `Token ${CURRENT_POSITION_KEY!}`,
             },
-            body: JSON.stringify(query),
         });
 
-        const responce: responceAnswer = await request.json();
-
-        if (responce.suggestions[0]) {
+        if (data.suggestions[0]) {
             const {
                 data: { city, country_iso_code, region_with_type },
-            } = responce.suggestions[0];
+            } = data.suggestions[0];
 
             const result: ICity = {
                 id: uuidv4(),
-                name: swithcher.getSwitch(city, {
-                    type: 'translit',
-                }),
+                name: cyrillicToTranslit.transform(city),
                 latitude,
                 longitude,
                 country: country_iso_code,

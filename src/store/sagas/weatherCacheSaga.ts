@@ -1,8 +1,8 @@
 import { call, debounce, put, select } from 'redux-saga/effects';
 
-import constants, { numberConstants } from '@/types/constants';
+import constants, { IPayload, numberConstants } from '@/types/constants';
 import IDailyWeather from '@/types/IDailyWeather';
-import IPayload from '@/types/IPayload';
+import filteredHourlyWeatherAccordingToCurrentTime from '@/utils/filterHourlyWeatherAccordingToCurrentTime';
 
 import citySelector from '../selectors/citySelector';
 import mainSelector from '../selectors/mainSelector';
@@ -16,7 +16,7 @@ import {
     setHourlyWeatherList,
     startHourlyWeatherFetch,
 } from '../slices/hourlyWeatherList';
-import { IMainInitialState } from '../slices/main/initialState';
+import { IMainInitialState } from '../slices/main/types';
 import { checkWeatherCache } from '../slices/weatherCache';
 
 const { REQUEST_DEBOUNCE } = numberConstants;
@@ -39,7 +39,9 @@ function* hourlyWeatherCache({ payload }: IPayload<string>) {
         return filteredWeatherCache(state, payload);
     });
     if (cache.length) {
-        yield put(setHourlyWeatherList(cache));
+        const filteredHourlyWeather: IDailyWeather[] =
+            yield filteredHourlyWeatherAccordingToCurrentTime(cache);
+        yield put(setHourlyWeatherList(filteredHourlyWeather));
     } else {
         const { targetCity }: IInitialCitiesState = yield select(citySelector);
         yield put(startHourlyWeatherFetch(targetCity));
@@ -56,6 +58,6 @@ function* weatherCachWorker({ payload }: IPayload<string>) {
     }
 }
 
-export function* weatherCachWatcher() {
+export function* weatherCacheWatcher() {
     yield debounce(REQUEST_DEBOUNCE, checkWeatherCache, weatherCachWorker);
 }

@@ -2,7 +2,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 import IDailyWeather from '@/types/IDailyWeather';
 
-import setCorrectDateFormat from './setCorrectDateFormat';
+import { setCorrectDateFormat } from './dateWorkers';
 
 interface IResponce {
     daily: {
@@ -12,7 +12,7 @@ interface IResponce {
 
 const dailyWeatherAdapter = (responce: IResponce): IDailyWeather[] => {
     const result: IDailyWeather[] = [];
-    responce.daily.data.map(({ day, all_day: { temperature }, icon }) => {
+    responce?.daily?.data?.map(({ day, all_day: { temperature }, icon }) => {
         const weatherItem: IDailyWeather = {} as IDailyWeather;
         (weatherItem.date = setCorrectDateFormat(day)),
             (weatherItem.temperature = Math.round(temperature)),

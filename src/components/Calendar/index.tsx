@@ -1,23 +1,22 @@
 import React from 'react';
 
 import { useAppDispatch, useAppSelector } from '@/hooks/useStore';
-import calendarSelector from '@/store/selectors/calendarSelector';
-import { calendarSagaHandle } from '@/store/slices/calendar';
-import constants from '@/types/constants';
+import { messagesToUI } from '@/types/constants';
 
+import CalendarItems from './CalendarItems';
+import * as imports from './imports';
 import {
     CalendarInfo,
     CalendarInfoWrapper,
-    CalendarItem,
     CalendarWrapper,
-    ItemContent,
-    ItemTime,
     LogInButton,
     LogInButtonWrapper,
 } from './styles';
 
+const { calendarSagaHandle, calendarSelector } = imports;
+const { CALENDAR_DEFAULT_MESSAGE } = messagesToUI;
+
 const Calendar = () => {
-    const { CALENDAR_DEFAULT_MESSAGE, NO_CALENDAR_EVENTS } = constants;
     const { calendarEventsList, accessToken } =
         useAppSelector(calendarSelector);
     const dispatch = useAppDispatch();
@@ -35,26 +34,13 @@ const Calendar = () => {
             </LogInButtonWrapper>
             <CalendarInfoWrapper>
                 <CalendarInfo>
-                    {accessToken
-                        ? calendarEventsList.length > 0
-                            ? calendarEventsList.map(
-                                  ({ id, start, summary }) => {
-                                      return (
-                                          <CalendarItem key={id}>
-                                              <ItemTime>
-                                                  {start.dateTime
-                                                      ? start.dateTime
-                                                      : 'all day'}
-                                              </ItemTime>
-                                              <ItemContent>
-                                                  {summary}
-                                              </ItemContent>
-                                          </CalendarItem>
-                                      );
-                                  },
-                              )
-                            : NO_CALENDAR_EVENTS
-                        : CALENDAR_DEFAULT_MESSAGE}
+                    {accessToken ? (
+                        <CalendarItems
+                            calendarEventsList={calendarEventsList}
+                        />
+                    ) : (
+                        CALENDAR_DEFAULT_MESSAGE
+                    )}
                 </CalendarInfo>
             </CalendarInfoWrapper>
         </CalendarWrapper>

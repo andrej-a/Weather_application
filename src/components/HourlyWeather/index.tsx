@@ -1,24 +1,26 @@
 import React, { useEffect } from 'react';
 import { ClockLoader } from 'react-spinners';
+import { useTheme } from 'styled-components';
 
+import { DefaultTheme } from '@/globalStyles';
 import { useAppDispatch, useAppSelector } from '@/hooks/useStore';
-import citySelector from '@/store/selectors/citySelector';
-import hourlyWeatherSelector from '@/store/selectors/hourlyWeatherSelector';
-import { checkWeatherCache } from '@/store/slices/weatherCache';
-import constants from '@/types/constants';
 
-import { WeatherData, WeatherDataWrapper } from '../DailyWeather/styles';
-import { HourlyWeatherCard, HourlyWeatherWrapper, Time } from './styles';
+import HourlyWeatherItems from './HourlyWeatherItems';
+import * as imports from './imports';
+import { HourlyWeatherWrapper } from './styles';
 
+const { checkWeatherCache, citySelector, hourlyWeatherSelector } = imports;
 const HourlyWeather = () => {
-    const { NO_WEATHER_DATA, SPINNER_COLOR } = constants;
+    const {
+        colors: { black },
+    } = useTheme() as DefaultTheme;
     const { hourlyWeatherList, isHourlyWeatherLoading } = useAppSelector(
         hourlyWeatherSelector,
     );
-    const { targetCity } = useAppSelector(citySelector);
-    const { id, name, country } = targetCity;
+    const {
+        targetCity: { id, name, country },
+    } = useAppSelector(citySelector);
     const dispatch = useAppDispatch();
-
     useEffect(() => {
         if (id) {
             dispatch(checkWeatherCache(`${name}-${country}`));
@@ -28,31 +30,9 @@ const HourlyWeather = () => {
     return (
         <HourlyWeatherWrapper>
             {isHourlyWeatherLoading ? (
-                <ClockLoader color={SPINNER_COLOR} />
-            ) : hourlyWeatherList.length > 0 ? (
-                <React.Fragment>
-                    {hourlyWeatherList.map(
-                        ({ id, date, code, temperature }) => {
-                            return (
-                                <HourlyWeatherCard
-                                    data-test="hourlyWeatherCard"
-                                    key={id}
-                                >
-                                    <img
-                                        src={`./icons/${code}.png`}
-                                        alt={`weatherCode-${code}`}
-                                    />
-                                    <WeatherDataWrapper>
-                                        <Time>{date}</Time>
-                                        <WeatherData>{temperature}</WeatherData>
-                                    </WeatherDataWrapper>
-                                </HourlyWeatherCard>
-                            );
-                        },
-                    )}
-                </React.Fragment>
+                <ClockLoader color={black} />
             ) : (
-                NO_WEATHER_DATA
+                <HourlyWeatherItems hourlyWeatherList={hourlyWeatherList} />
             )}
         </HourlyWeatherWrapper>
     );

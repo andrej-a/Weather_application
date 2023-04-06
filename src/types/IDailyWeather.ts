@@ -5,4 +5,12 @@ interface IDailyWeather {
     code: number;
 }
 
+export interface IWeatherCache {
+    city: string;
+    timeOfTheLastUpdateOfDailyWeather: number;
+    timeOfTheLastUpdateOfHourlyWeather: number;
+    dailyWeatherList: IDailyWeather[];
+    hourlyWeatherList: IDailyWeather[];
+}
+
 export default IDailyWeather;

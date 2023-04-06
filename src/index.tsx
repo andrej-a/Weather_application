@@ -15,13 +15,13 @@ const container = document.getElementById('root') as HTMLElement;
 const root = ReactDOMClient.createRoot(container);
 
 root.render(
-    <PersistGate loading={null} persistor={persistor}>
-        <Provider store={store}>
-            <ThemeProvider theme={theme}>
-                <ErrorBoundary>
+    <ErrorBoundary>
+        <PersistGate loading={null} persistor={persistor}>
+            <Provider store={store}>
+                <ThemeProvider theme={theme}>
                     <App />
-                </ErrorBoundary>
-            </ThemeProvider>
-        </Provider>
-    </PersistGate>,
+                </ThemeProvider>
+            </Provider>
+        </PersistGate>
+    </ErrorBoundary>,
 );

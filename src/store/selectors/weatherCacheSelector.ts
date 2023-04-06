@@ -1,9 +1,9 @@
-import constants from '@/types/constants';
-import { createSelector } from '@reduxjs/toolkit';
+import constants, { numberConstants } from '@/types/constants';
 
 import { RootState } from '..';
 
 const { DAILY_TYPE_OF_THE_WEATHER } = constants;
+const { NUMBER_MS_IN_THE_SECOND, NUMBER_SECONDS_IN_THE_HOUR } = numberConstants;
 
 const filteredWeatherCache = (state: RootState, city: string) => {
     const filteredCache = state.weatherCach.weatherCache.filter(
@@ -15,24 +15,25 @@ const filteredWeatherCache = (state: RootState, city: string) => {
         if (typeOfTheWeather === DAILY_TYPE_OF_THE_WEATHER) {
             const { timeOfTheLastUpdateOfDailyWeather, dailyWeatherList } =
                 filteredCache[0];
-            return timeOfTheLastUpdateOfDailyWeather / 1000 <=
-                new Date().getTime() / 1000 - 3600
+            return timeOfTheLastUpdateOfDailyWeather /
+                NUMBER_MS_IN_THE_SECOND <=
+                new Date().getTime() / NUMBER_MS_IN_THE_SECOND -
+                    NUMBER_SECONDS_IN_THE_HOUR
                 ? []
                 : dailyWeatherList;
         }
         const { timeOfTheLastUpdateOfHourlyWeather, hourlyWeatherList } =
             filteredCache[0];
-        return timeOfTheLastUpdateOfHourlyWeather / 1000 <=
-            new Date().getTime() / 1000 - 3600
+        return timeOfTheLastUpdateOfHourlyWeather / NUMBER_MS_IN_THE_SECOND <=
+            new Date().getTime() / NUMBER_MS_IN_THE_SECOND -
+                NUMBER_SECONDS_IN_THE_HOUR
             ? []
             : hourlyWeatherList;
     }
     return [];
 };
 
-export const weatherCacheSelector = createSelector(
-    (state: RootState) => state.weatherCach.weatherCache,
-    weatherCach => weatherCach,
-);
+export const weatherCacheSelector = (state: RootState) =>
+    state.weatherCach.weatherCache;
 
 export default filteredWeatherCache;

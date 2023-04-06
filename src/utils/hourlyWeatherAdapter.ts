@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import IDailyWeather from '@/types/IDailyWeather';
 
 import getCorrectWeatherCode from './getCorrectWeatherCode';
-import setCorrectTimeFormat from './setCorrectTimeFormat';
+import { setCorrectTimeFormat } from './timeWorkers';
 
 interface IResponce {
     hourly: {

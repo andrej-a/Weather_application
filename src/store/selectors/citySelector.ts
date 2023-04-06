@@ -1,10 +1,5 @@
-import { createSelector } from '@reduxjs/toolkit';
-
 import { RootState } from '..';
 
-const citySelector = createSelector(
-    (state: RootState) => state.citiesState,
-    citiesState => citiesState,
-);
+const citySelector = (state: RootState) => state.citiesState;
 
 export default citySelector;

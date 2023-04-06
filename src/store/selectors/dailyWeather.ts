@@ -1,10 +1,5 @@
-import { createSelector } from '@reduxjs/toolkit';
-
 import { RootState } from '..';
 
-const dailyWeatherSelector = createSelector(
-    (state: RootState) => state.dailyWeatherState,
-    dailyWeatherList => dailyWeatherList,
-);
+const dailyWeatherSelector = (state: RootState) => state.dailyWeatherState;
 
 export default dailyWeatherSelector;

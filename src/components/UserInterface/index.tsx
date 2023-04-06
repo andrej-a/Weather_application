@@ -6,7 +6,7 @@ import WeatherContainer from '@/components/WeatherContainer';
 
 import { InterfaceWrapper } from './styles';
 
-const UserInterface = React.memo(() => {
+const UserInterface = () => {
     return (
         <InterfaceWrapper>
             <Header />
@@ -14,6 +14,6 @@ const UserInterface = React.memo(() => {
             <WeatherContainer />
         </InterfaceWrapper>
     );
-});
+};
 
 export default UserInterface;

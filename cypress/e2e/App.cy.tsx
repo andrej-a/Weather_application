@@ -1,4 +1,4 @@
-import getCurrentDate from '@/utils/getCurrentDate';
+import { getCurrentDate } from '@/utils/dateWorkers';
 
 describe('Houme page', () => {
     it('visit application', () => {
@@ -34,7 +34,6 @@ describe('Houme page', () => {
         cy.get(`[data-test="searchInput"]`).should('have.value', 'London-GB');
     });
     it('submit with new value', () => {
-        cy.get(`[data-test="submitButton"]`).click();
         cy.get(`[data-test="dailyWeatherCard"]`).should('have.length', 7);
         cy.get(`[data-test="hourlyButton"]`).click();
         cy.get(`[data-test="hourlyWeatherCard"]`).should('have.length', 24);

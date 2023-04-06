@@ -1,4 +1,4 @@
-import ICityCache from '@/types/ICityCache';
+import { ICityCache } from '@/types/ICitiesList';
 
 const initialState: ICityCache = {
     citiesCache: [],

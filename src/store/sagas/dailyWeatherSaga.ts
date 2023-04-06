@@ -2,10 +2,9 @@ import { call, put, select, takeLatest } from 'redux-saga/effects';
 
 import getDailyWeatherInfo from '@/api/getDailyWeatherInfo';
 import { setWeatherToCache } from '@/store/slices/weatherCache';
+import { IPayload } from '@/types/constants';
 import ICity from '@/types/ICitiesList';
-import IDailyWeather from '@/types/IDailyWeather';
-import IPayload from '@/types/IPayload';
-import IWeatherCache from '@/types/IWeatherCache';
+import IDailyWeather, { IWeatherCache } from '@/types/IDailyWeather';
 import showAlert from '@/utils/showAlert';
 
 import { weatherCacheSelector } from '../selectors/weatherCacheSelector';
@@ -33,23 +32,26 @@ export function* dailyWeatherWorker({ payload }: IPayload<ICity>) {
         );
 
         if (index !== -1) {
-            yield put(
-                setWeatherToCache({
-                    ...weatherCache[index],
-                    city: `${payload.name}-${payload.country}`,
-                    timeOfTheLastUpdateOfDailyWeather: new Date().getTime(),
-                    dailyWeatherList: weatherList,
-                }),
-            );
+            const weatherCacheCopy = JSON.parse(JSON.stringify(weatherCache));
+            weatherCacheCopy[index] = {
+                ...weatherCacheCopy[index],
+                city: `${payload.name}-${payload.country}`,
+                timeOfTheLastUpdateOfDailyWeather: new Date().getTime(),
+                dailyWeatherList: weatherList,
+            };
+            yield put(setWeatherToCache(weatherCacheCopy));
         } else {
             yield put(
-                setWeatherToCache({
-                    city: `${payload.name}-${payload.country}`,
-                    timeOfTheLastUpdateOfDailyWeather: new Date().getTime(),
-                    timeOfTheLastUpdateOfHourlyWeather: 0,
-                    dailyWeatherList: weatherList,
-                    hourlyWeatherList: [],
-                }),
+                setWeatherToCache([
+                    ...weatherCache,
+                    {
+                        city: `${payload.name}-${payload.country}`,
+                        timeOfTheLastUpdateOfDailyWeather: new Date().getTime(),
+                        timeOfTheLastUpdateOfHourlyWeather: 0,
+                        dailyWeatherList: weatherList,
+                        hourlyWeatherList: [],
+                    },
+                ]),
             );
         }
     } catch (error) {

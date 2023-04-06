@@ -1,12 +1,19 @@
+import envData from '@/constants/envData';
+
 import ApiCalendar from './googleCalendarApi/ApiCalendar';
 
+const {
+    CLIEND_ID,
+    GOOGLE_API_KEY,
+    GOOGLE_CONFIG_SCOPE,
+    GOOGLE_CONFIG_DISCOVERY_DOCS,
+} = envData;
+
 const config = {
-    clientId: process.env.CLIEND_ID!,
-    apiKey: process.env.GOOGLE_API_KEY!,
-    scope: 'https://www.googleapis.com/auth/calendar',
-    discoveryDocs: [
-        'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest',
-    ],
+    clientId: CLIEND_ID!,
+    apiKey: GOOGLE_API_KEY!,
+    scope: GOOGLE_CONFIG_SCOPE!,
+    discoveryDocs: [GOOGLE_CONFIG_DISCOVERY_DOCS!],
 };
 const apiCalendar = new ApiCalendar(config);
 
