@@ -6,7 +6,7 @@ import { numberConstants } from '@/types/constants';
 import { ICalendareResponce } from '@/types/responce';
 import showAlert from '@/utils/showAlert';
 
-import calendarSelector from '../selectors/calendarSelector';
+import { calendarSelector } from '../selectors';
 import {
     calendarSagaHandle,
     setAccessToken,

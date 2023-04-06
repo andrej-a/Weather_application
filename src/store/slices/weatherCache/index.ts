@@ -1,10 +1,12 @@
 import { IPayload, sliceNames } from '@/types/constants';
 import { IWeatherCache } from '@/types/IDailyWeather';
+import { IWeatherCacheInitialState } from '@/types/storeInitialization';
 import { createSlice } from '@reduxjs/toolkit';
 
-import initialState from './initialState';
-
 const { WEATHER_CACHE_SLICE_NAME } = sliceNames;
+export const initialState: IWeatherCacheInitialState = {
+    weatherCache: [],
+};
 
 const weatherCache = createSlice({
     name: WEATHER_CACHE_SLICE_NAME,

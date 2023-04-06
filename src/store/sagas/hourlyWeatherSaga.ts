@@ -7,7 +7,7 @@ import IDailyWeather, { IWeatherCache } from '@/types/IDailyWeather';
 import filteredHourlyWeatherAccordingToCurrentTime from '@/utils/filterHourlyWeatherAccordingToCurrentTime';
 import showAlert from '@/utils/showAlert';
 
-import { weatherCacheSelector } from '../selectors/weatherCacheSelector';
+import { weatherCacheSelector } from '../selectors';
 import {
     hourlyWeatherFetch,
     hourlyWeatherFetchFailure,

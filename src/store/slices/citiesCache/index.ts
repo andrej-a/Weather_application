@@ -1,10 +1,11 @@
 import { IPayload, sliceNames } from '@/types/constants';
-import ICity from '@/types/ICitiesList';
+import ICity, { ICityCache } from '@/types/ICitiesList';
 import { createSlice } from '@reduxjs/toolkit';
 
-import initialState from './initialState';
-
 const { CITIES_CACHE_SLICE_NAME } = sliceNames;
+export const initialState: ICityCache = {
+    citiesCache: [],
+};
 
 const citiesSlice = createSlice({
     name: CITIES_CACHE_SLICE_NAME,

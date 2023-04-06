@@ -1,7 +1,7 @@
 import { days, months } from '@/constants/dateConfig';
-import { ICalendarEvent } from '@/store/slices/calendar/initialState';
 import constants from '@/types/constants';
 import IDate from '@/types/IDate';
+import { ICalendarEvent } from '@/types/storeInitialization';
 
 export const setCorrectDateFormat = (date: string) => {
     const correctDateFormat = /(\d+)-(?<month>\d+)-(?<day>\d+)/;

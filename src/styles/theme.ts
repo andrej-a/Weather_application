@@ -8,7 +8,7 @@ const theme = {
         s: 80,
         buttonDefault: '5px 40px',
         buttonLaptop: '3px 15px',
-        buttonTablet: '2px 0',
+        buttonTablet: '10px 0',
     },
     margin: {
         l: 10,

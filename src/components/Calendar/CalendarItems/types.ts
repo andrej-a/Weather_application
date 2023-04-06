@@ -1,4 +1,4 @@
-import { ICalendarEvent } from '@/store/slices/calendar/initialState';
+import { ICalendarEvent } from '@/types/storeInitialization';
 
 type CalendarItemsProps = {
     calendarEventsList: ICalendarEvent[];

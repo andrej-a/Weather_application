@@ -1,2 +1,2 @@
-export { default as calendarSelector } from '@/store/selectors/calendarSelector';
+export { calendarSelector } from '@/store/selectors';
 export { calendarSagaHandle } from '@/store/slices/calendar';

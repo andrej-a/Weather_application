@@ -1,9 +1,16 @@
 import { IPayload, sliceNames } from '@/types/constants';
+import {
+    ICalendarEvent,
+    ICalendarInitialState,
+} from '@/types/storeInitialization';
 import { createSlice } from '@reduxjs/toolkit';
 
-import initialState, { ICalendarEvent } from './initialState';
-
 const { CALENDAR_LIST_SLICE_NAME } = sliceNames;
+export const initialState: ICalendarInitialState = {
+    accessToken: '',
+    isLoading: false,
+    calendarEventsList: [],
+};
 
 const calendarListSlice = createSlice({
     name: CALENDAR_LIST_SLICE_NAME,

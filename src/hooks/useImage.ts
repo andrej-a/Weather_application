@@ -15,10 +15,9 @@ const {
 } = imports;
 
 const useImage = () => {
-    const { typeOfTheWeather } = useAppSelector(mainSelector);
+    const { typeOfTheWeather, isImageReady } = useAppSelector(mainSelector);
     const { dailyWeatherList } = useAppSelector(dailyWeatherSelector);
     const { hourlyWeatherList } = useAppSelector(hourlyWeatherSelector);
-    const { isImageReady } = useAppSelector(mainSelector);
     const {
         targetCity: { id },
     } = useAppSelector(citySelector);

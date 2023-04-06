@@ -1,11 +1,14 @@
 import { IPayload, sliceNames } from '@/types/constants';
 import ICity from '@/types/ICitiesList';
 import IDailyWeather from '@/types/IDailyWeather';
+import { IDailyWeatherInitialState } from '@/types/storeInitialization';
 import { createSlice } from '@reduxjs/toolkit';
 
-import initialState from './initialState';
-
 const { DAILY_WEATHER_SLICE_NAME } = sliceNames;
+export const initialState: IDailyWeatherInitialState = {
+    isDailyWeatherLoading: false,
+    dailyWeatherList: [],
+};
 
 const dailyWeatherSlice = createSlice({
     name: DAILY_WEATHER_SLICE_NAME,

@@ -58,11 +58,11 @@ export const LogInButton = styled.button`
     }
 
     @media (max-width: ${tablet}px) {
-        width: ${({ theme: { width } }) => width.xs}px;
-        height: auto;
+        min-width: ${({ theme: { width } }) => width.l}px;
         padding: ${({ theme: { padding } }) => padding.buttonTablet};
         font-size: ${({ theme: { fontSize } }) => fontSize.xs}px;
-        border-radius: ${({ theme: { borderRadius } }) => borderRadius.none};
+        transform: rotateZ(90deg);
+        border-radius: ${({ theme: { borderRadius } }) => borderRadius.l}px;
     }
 `;
 
@@ -103,5 +103,9 @@ export const CalendarInfo = styled.div`
         max-height: none;
         width: ${({ theme: { width } }) => width.l}%;
         height: ${({ theme: { height } }) => height.l}%;
+    }
+
+    @media (max-width: ${tablet}px) {
+        font-size: ${({ theme: { fontSize } }) => fontSize.xs}px;
     }
 `;

@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { useAppDispatch } from '@/hooks/useStore';
-import { weatherTypes } from '@/store/slices/main/types';
 import constants from '@/types/constants';
+import { weatherTypes } from '@/types/storeInitialization';
 
 import * as imports from './imports';
 import {

@@ -2,12 +2,13 @@ import { call, debounce, put, select } from 'redux-saga/effects';
 
 import constants, { IPayload, numberConstants } from '@/types/constants';
 import IDailyWeather from '@/types/IDailyWeather';
+import {
+    IInitialCitiesState,
+    IMainInitialState,
+} from '@/types/storeInitialization';
 import filteredHourlyWeatherAccordingToCurrentTime from '@/utils/filterHourlyWeatherAccordingToCurrentTime';
 
-import citySelector from '../selectors/citySelector';
-import mainSelector from '../selectors/mainSelector';
-import filteredWeatherCache from '../selectors/weatherCacheSelector';
-import { IInitialCitiesState } from '../slices/citiesList/initialState';
+import { citySelector, filteredWeatherCache, mainSelector } from '../selectors';
 import {
     setDailyWeatherList,
     startDailyWeatherFetch,
@@ -16,7 +17,6 @@ import {
     setHourlyWeatherList,
     startHourlyWeatherFetch,
 } from '../slices/hourlyWeatherList';
-import { IMainInitialState } from '../slices/main/types';
 import { checkWeatherCache } from '../slices/weatherCache';
 
 const { REQUEST_DEBOUNCE } = numberConstants;
