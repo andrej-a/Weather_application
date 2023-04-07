@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        "target": "ES6",
+        "jsx": "react",
+        "module": "es6",
+        "moduleResolution": "node",
+        "declaration": true,
+        "outDir": "./dist",
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "useUnknownInCatchVariables": false,
+        "strict": true,
+        "noImplicitAny": true,
+        "skipLibCheck": true,
+        "allowJs": true,
+        "baseUrl": ".",
+        "paths": {
+            "@/*": ["./src/*"]
+        },
+    }
+}

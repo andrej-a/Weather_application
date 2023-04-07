@@ -1,0 +1,115 @@
+{
+    "parser": "@typescript-eslint/parser",
+    "plugins": ["prettier", "simple-import-sort", "@typescript-eslint", "cypress"],
+    "extends": ["airbnb", "airbnb/hooks", "prettier"],
+    "parserOptions": {
+        "requireConfigFile": false,
+        "babelOptions": {
+            "presets": ["@babel/preset-react"]
+        }
+    },
+    "env": {
+        "node": true,
+        "browser": true,
+        "jest": true,
+        "cypress/globals": true
+    },
+    "rules": {
+        "simple-import-sort/imports": [
+            "error",
+            {
+                "groups": [
+                    ["^react$", "^[a-z]"],
+                    ["^redux"],
+                    ["^@"]
+                ]
+            }
+        ],
+        "import/extensions": 0,
+        "import/export": 0,
+        "comma-dangle": 0,
+        "no-plusplus": 0,
+        "no-continue": 0,
+        "no-unused-expressions": 0,
+        "simple-import-sort/exports": "error",
+        "import/first": "error",
+        "import/newline-after-import": "error",
+        "import/no-duplicates": "error",
+        "arrow-parens": ["error", "as-needed"],
+        "semi": "error",
+        "no-shadow": "off",
+        "react/jsx-props-no-spreading": "off",
+        "prefer-destructuring": "off",
+        "react/destructuring-assignment": "off",
+        "array-callback-return": "off",
+        "react/jsx-filename-extension": "off",
+        "no-return-assign": "off",
+        "no-nested-ternary": "off",
+        "camelcase": "off",
+        "no-sequences": "off",
+        "react-hooks/exhaustive-deps": "off",
+        "no-param-reassign": "off",
+        "react/prefer-stateless-function": "off",
+        "react/jsx-one-expression-per-line": "off",
+        "no-underscore-dangle": "off",
+        "no-useless-computed-key": "off",
+        "react/require-default-props": "off",
+        "import/no-cycle": "off",
+        "react/jsx-indent": ["error", 4],
+        "react/jsx-indent-props": ["error", 4],
+        "import/no-extraneous-dependencies": "off",
+        "no-undef": "off",
+        "max-len": [
+            "warn",
+            {
+                "code": 80,
+                "ignoreUrls": true,
+                "ignorePattern": "import"
+            }
+        ],
+        "no-unused-vars": "warn",
+        "operator-linebreak": "off",
+        "react-hooks/rules-of-hooks": "error",
+        "react/jsx-closing-tag-location": 2,
+        "react/jsx-closing-bracket-location": "off",
+        "import/prefer-default-export": "off",
+        "consistent-return": "off",
+        "react/jsx-max-props-per-line": [
+            2,
+            {
+                "maximum": 2,
+                "when": "always"
+            }
+        ],
+        "prefer-const": [
+            "error",
+            {
+                "destructuring": "all",
+                "ignoreReadBeforeAssign": false
+            }
+        ],
+        "react/prop-types": "off",
+        "react/no-unused-prop-types": "off"
+    },
+    "settings": {
+        "import/resolver": {
+            "alias": {
+                "map": [
+                    ["@", "./src"]
+                ],
+                "extensions": [".ts", ".tsx", ".json"]
+            }
+        }
+    },
+    "overrides": [{
+        "files": ["src/index.js"],
+        "rules": {
+            "prettier/prettier": [
+                "error",
+                {
+                    "singleQuote": true
+                }
+            ]
+        }
+    }]
+}
