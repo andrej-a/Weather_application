@@ -1,7 +1,6 @@
-import { getCurrentDate } from '@/utils/dateWorkers';
-import { calculateCards } from './helpers';
+import { myMockFunc } from './helpers';
 
-describe('Houme page', () => {
+/* describe('Houme page', () => {
     it('visit application', () => {
         cy.visit('http://localhost:3030/');
     });
@@ -51,5 +50,28 @@ describe('Houme page', () => {
         const currentDate = `${day}, ${date} ${month} ${year}`;
         cy.get(`[data-test="timeItem"]`).should('have.text', currentTime);
         cy.get(`[data-test="dateItem"]`).should('have.text', currentDate);
+    });
+});
+ */
+describe('calendar test', () => {
+    it('visit page', () => {
+        cy.visit('http://localhost:3030/', {
+            onBeforeLoad() {
+                myMockFunc();
+            },
+        });
+    });
+    it('should have correct number of calendar items', () => {
+        cy.wait(1000);
+        -cy
+            .get('[data-test="calendar_login_button"]')
+            .should('have.text', 'Sign Out');
+        cy.get('[data-test="calendar_items"]').should('have.length', 3);
+        cy.get('[data-test="calendar_login_button"]').click();
+        cy.wait(2000);
+        -cy
+            .get('[data-test="calendar_login_button"]')
+            .should('have.text', 'Sign In');
+        cy.get('[data-test="calendar_items"]').should('have.length', 0);
     });
 });

@@ -13,7 +13,7 @@ const CalendarItems = ({ calendarEventsList }: CalendarItemsProps) => {
             {calendarEventsList.length > 0
                 ? calendarEventsList.map(({ id, start, summary }) => {
                       return (
-                          <CalendarItem key={id}>
+                          <CalendarItem data-test="calendar_items" key={id}>
                               <ItemTime>
                                   {start.dateTime ? start.dateTime : 'all day'}
                               </ItemTime>

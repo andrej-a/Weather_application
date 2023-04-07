@@ -1,11 +1,12 @@
 import React from 'react';
 
-import { useAppSelector } from '@/hooks/useStore';
+import { useAppDispatch, useAppSelector } from '@/hooks/useStore';
 import { messagesToUI } from '@/types/constants';
 import { calendarManager } from '@/utils/calendarManager';
 
 import CalendarItems from './CalendarItems';
 import * as imports from './imports';
+import { calendarSagaHandle } from './imports';
 import {
     CalendarInfo,
     CalendarInfoWrapper,
@@ -19,13 +20,17 @@ const { CALENDAR_DEFAULT_MESSAGE } = messagesToUI;
 const Calendar = () => {
     const { calendarEventsList, accessToken } =
         useAppSelector(calendarSelector);
+    const dispatch = useAppDispatch();
 
+    const calendarManager = () => {
+        dispatch(calendarSagaHandle());
+    };
     return (
         <CalendarWrapper>
             <LogInButtonWrapper>
                 <LogInButton
                     data-test="calendar_login_button"
-                    onClick={calendarManager.startCalendareSaga}
+                    onClick={calendarManager}
                 >
                     Sign {accessToken ? 'Out' : 'In'}
                 </LogInButton>
