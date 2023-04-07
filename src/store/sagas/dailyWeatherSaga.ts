@@ -7,7 +7,7 @@ import ICity from '@/types/ICitiesList';
 import IDailyWeather, { IWeatherCache } from '@/types/IDailyWeather';
 import showAlert from '@/utils/showAlert';
 
-import { weatherCacheSelector } from '../selectors/weatherCacheSelector';
+import { weatherCacheSelector } from '../selectors';
 import {
     failureDailyWeatherFetch,
     fetchDailyWeather,

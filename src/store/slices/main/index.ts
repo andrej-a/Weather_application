@@ -1,7 +1,6 @@
 import constants, { IPayload, sliceNames } from '@/types/constants';
+import { IMainInitialState, weatherTypes } from '@/types/storeInitialization';
 import { createSlice } from '@reduxjs/toolkit';
-
-import { IMainInitialState, weatherTypes } from './types';
 
 const { DAILY_TYPE_OF_THE_WEATHER } = constants;
 const { MAIN_SLICE_NAME } = sliceNames;

@@ -8,7 +8,7 @@ const theme = {
         s: 80,
         buttonDefault: '5px 40px',
         buttonLaptop: '3px 15px',
-        buttonTablet: '2px 0',
+        buttonTablet: '10px 0',
     },
     margin: {
         l: 10,
@@ -100,6 +100,10 @@ const theme = {
     stroke: {
         s: 1,
         l: 1.5,
+    },
+    opacity: {
+        active: 1,
+        nonActive: 0.5,
     },
 };
 export default theme;

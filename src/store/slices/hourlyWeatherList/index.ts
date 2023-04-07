@@ -1,11 +1,14 @@
 import { IPayload, sliceNames } from '@/types/constants';
 import ICity from '@/types/ICitiesList';
 import IDailyWeather from '@/types/IDailyWeather';
+import { IHourlyWeatherInitialState } from '@/types/storeInitialization';
 import { createSlice } from '@reduxjs/toolkit';
 
-import initialState from './initialState';
-
 const { HOURLY_WEATHER_SLICE_NAME } = sliceNames;
+export const initialState: IHourlyWeatherInitialState = {
+    isHourlyWeatherLoading: false,
+    hourlyWeatherList: [],
+};
 
 const hourlyWeatherSlice = createSlice({
     name: HOURLY_WEATHER_SLICE_NAME,

@@ -1,3 +1,2 @@
-export { default as citySelector } from '@/store/selectors/citySelector';
-export { default as hourlyWeatherSelector } from '@/store/selectors/hourlyWeatherSelector';
+export { citySelector, hourlyWeatherSelector } from '@/store/selectors';
 export { checkWeatherCache } from '@/store/slices/weatherCache';

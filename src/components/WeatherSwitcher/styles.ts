@@ -20,7 +20,7 @@ export const SwitchWrapper = styled.div`
     }
 `;
 
-export const DailyWeatherButton = styled.button`
+export const DailyWeatherButton = styled.button<{ isTypeDaily: boolean }>`
     width: auto;
     height: auto;
     padding: ${({ theme: { padding } }) => padding.buttonDefault};
@@ -31,6 +31,8 @@ export const DailyWeatherButton = styled.button`
     cursor: pointer;
     background: ${({ theme: { colors } }) => colors.black};
     color: ${({ theme: { colors } }) => colors.white};
+    opacity: ${({ isTypeDaily, theme: { opacity } }) =>
+        isTypeDaily ? opacity.active : opacity.nonActive};
 
     &:hover {
         background: ${({ theme: { colors } }) => colors.white};
@@ -46,4 +48,8 @@ export const DailyWeatherButton = styled.button`
         padding: ${({ theme: { padding } }) => padding.buttonLaptop};
     }
 `;
-export const HourlyWeatherButton = styled(DailyWeatherButton)``;
+export const HourlyWeatherButton = styled(DailyWeatherButton)`
+    opacity: ${({ isTypeDaily, theme: { opacity } }) => {
+        return isTypeDaily ? opacity.nonActive : opacity.active;
+    }};
+`;

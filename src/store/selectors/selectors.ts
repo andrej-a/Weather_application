@@ -2,10 +2,18 @@ import constants, { numberConstants } from '@/types/constants';
 
 import { RootState } from '..';
 
+export const calendarSelector = (state: RootState) => state.calendarState;
+export const citySelector = (state: RootState) => state.citiesState;
+export const dailyWeatherSelector = (state: RootState) =>
+    state.dailyWeatherState;
+export const hourlyWeatherSelector = (state: RootState) =>
+    state.hourlyWeatherState;
+export const mainSelector = (state: RootState) => state.mainSlice;
+
 const { DAILY_TYPE_OF_THE_WEATHER } = constants;
 const { NUMBER_MS_IN_THE_SECOND, NUMBER_SECONDS_IN_THE_HOUR } = numberConstants;
 
-const filteredWeatherCache = (state: RootState, city: string) => {
+export const filteredWeatherCache = (state: RootState, city: string) => {
     const filteredCache = state.weatherCach.weatherCache.filter(
         item => item.city === city,
     );
@@ -35,5 +43,3 @@ const filteredWeatherCache = (state: RootState, city: string) => {
 
 export const weatherCacheSelector = (state: RootState) =>
     state.weatherCach.weatherCache;
-
-export default filteredWeatherCache;

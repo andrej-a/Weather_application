@@ -45,6 +45,14 @@ export const Input = styled.input`
     border-radius: ${({ theme: { borderRadius } }) => borderRadius.s}px;
     font-size: ${({ theme: { fontSize } }) => fontSize.l}px;
     line-height: ${({ theme: { lineHeight } }) => lineHeight.l}px;
+
+    @media (max-width: ${laptop}px) {
+        width: ${({ theme: { width } }) => width.x2l}px;
+    }
+
+    @media (max-width: ${tablet}px) {
+        width: ${({ theme: { width } }) => width.xxxl}px;
+    }
 `;
 
 export const SearchIconWrapper = styled.div`
@@ -67,8 +75,8 @@ export const SearchIconWrapper = styled.div`
 `;
 
 export const SearchIconImage = styled.img`
-    width: ${({ theme: { width } }) => width.xxl}%;
-    height: ${({ theme: { height } }) => height.s}%;
+    width: ${({ theme: { width } }) => width.s}%;
+    height: ${({ theme: { height } }) => height.ssx}%;
 `;
 
 export const SubmitButton = styled.button`

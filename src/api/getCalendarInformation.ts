@@ -1,6 +1,6 @@
 import apiCalendar from '@/service/calendar';
-import { ICalendarEvent } from '@/store/slices/calendar/initialState';
 import { numberConstants } from '@/types/constants';
+import { ICalendarEvent } from '@/types/storeInitialization';
 import { setCorrectCalendarDate } from '@/utils/dateWorkers';
 
 const { MAX_UPCOMING_EVENTS, NUMBER_MS_IN_THE_DAY } = numberConstants;

@@ -1,1 +1,1 @@
-export { default as mainSelector } from '@/store/selectors/mainSelector';
+export { mainSelector } from '@/store/selectors';

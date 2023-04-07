@@ -1,4 +1,4 @@
-import { ICalendarEvent } from '@/store/slices/calendar/initialState';
+import { ICalendarEvent } from './storeInitialization';
 
 interface ICurrentPositionResponce {
     suggestions: [

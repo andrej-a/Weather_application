@@ -3,7 +3,7 @@ import { debounce, put, select } from 'redux-saga/effects';
 import { IPayload, numberConstants } from '@/types/constants';
 import ICity from '@/types/ICitiesList';
 
-import filteredCitiesCache from '../selectors/cacheSelector';
+import { filteredCitiesCache } from '../selectors/memoizeSelectors';
 import { checkCache } from '../slices/citiesCache';
 import { setCitiesList, startFetch } from '../slices/citiesList';
 
