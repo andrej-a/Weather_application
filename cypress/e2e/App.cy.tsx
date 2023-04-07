@@ -1,6 +1,7 @@
-import { myMockFunc } from './helpers';
+import { getCurrentDate } from '@/utils/dateWorkers';
+import { calculateCards, myMockFunc } from './helpers';
 
-/* describe('Houme page', () => {
+describe('Houme page', () => {
     it('visit application', () => {
         cy.visit('http://localhost:3030/');
     });
@@ -52,7 +53,7 @@ import { myMockFunc } from './helpers';
         cy.get(`[data-test="dateItem"]`).should('have.text', currentDate);
     });
 });
- */
+
 describe('calendar test', () => {
     it('visit page', () => {
         cy.visit('http://localhost:3030/', {
