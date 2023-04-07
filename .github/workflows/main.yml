@@ -11,6 +11,8 @@ jobs:
             - uses: actions/checkout@v3
             - name: install modules
               run: yarn install
+            - name: jest tests check
+              run: yarn run test
             - name: eslint check
               run: yarn run eslint:test
             - name: application build

@@ -36,8 +36,8 @@ const __copyProps = (to, from, except, desc) => {
                 __defProp(to, key, {
                     get: () => from[key],
                     enumerable:
-                        !(desc = __getOwnPropDesc(from, key))
-                        || desc.enumerable,
+                        !(desc = __getOwnPropDesc(from, key)) ||
+                        desc.enumerable,
                 });
     }
     return to;
@@ -172,10 +172,9 @@ const ApiCalendar = class {
                 maxResults,
                 orderBy: 'startTime',
             });
-        } 
-            console.error('Error: this.gapi not loaded');
-            return false;
-        
+        }
+        console.error('Error: this.gapi not loaded');
+        return false;
     }
 
     listEvents(queryOptions, calendarId = this.calendar) {
@@ -188,10 +187,9 @@ const ApiCalendar = class {
                     queryOptions,
                 ),
             );
-        } 
-            console.error('Error: gapi not loaded');
-            return false;
-        
+        }
+        console.error('Error: gapi not loaded');
+        return false;
     }
 
     createEventFromNow(
@@ -224,10 +222,9 @@ const ApiCalendar = class {
                 sendUpdates,
                 conferenceDataVersion: 1,
             });
-        } 
-            console.error('Error: this.gapi not loaded');
-            return false;
-        
+        }
+        console.error('Error: this.gapi not loaded');
+        return false;
     }
 
     createEventWithVideoConference(
@@ -257,12 +254,9 @@ const ApiCalendar = class {
                 calendarId,
                 eventId,
             });
-        } 
-            console.error(
-                'Error: gapi is not loaded use onLoad before please.',
-            );
-            return null;
-        
+        }
+        console.error('Error: gapi is not loaded use onLoad before please.');
+        return null;
     }
 
     updateEvent(
@@ -278,12 +272,9 @@ const ApiCalendar = class {
                 resource: event,
                 sendUpdates,
             });
-        } 
-            console.error(
-                'Error: gapi is not loaded use onLoad before please.',
-            );
-            return null;
-        
+        }
+        console.error('Error: gapi is not loaded use onLoad before please.');
+        return null;
     }
 
     getEvent(eventId, calendarId = this.calendar) {
@@ -292,34 +283,25 @@ const ApiCalendar = class {
                 calendarId,
                 eventId,
             });
-        } 
-            console.error(
-                'Error: gapi is not loaded use onLoad before please.',
-            );
-            return null;
-        
+        }
+        console.error('Error: gapi is not loaded use onLoad before please.');
+        return null;
     }
 
     listCalendars() {
         if (gapi) {
             return gapi.client.calendar.calendarList.list();
-        } 
-            console.error(
-                'Error: gapi is not loaded use onLoad before please.',
-            );
-            return null;
-        
+        }
+        console.error('Error: gapi is not loaded use onLoad before please.');
+        return null;
     }
 
     createCalendar(summary) {
         if (gapi) {
             return gapi.client.calendar.calendars.insert({ summary });
-        } 
-            console.error(
-                'Error: gapi is not loaded use onLoad before please.',
-            );
-            return null;
-        
+        }
+        console.error('Error: gapi is not loaded use onLoad before please.');
+        return null;
     }
 };
 const ApiCalendar_default = ApiCalendar;

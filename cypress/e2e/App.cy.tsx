@@ -1,4 +1,5 @@
 import { getCurrentDate } from '@/utils/dateWorkers';
+import { calculateCards } from './helpers';
 
 describe('Houme page', () => {
     it('visit application', () => {
@@ -7,7 +8,10 @@ describe('Houme page', () => {
 
     it('switch to hourly mode', () => {
         cy.get(`[data-test="hourlyButton"]`).click();
-        cy.get(`[data-test="hourlyWeatherCard"]`).should('have.length', 24);
+        cy.get(`[data-test="hourlyWeatherCard"]`).should(
+            'have.length',
+            calculateCards(),
+        );
     });
     it('switch to daily mode', () => {
         cy.get(`[data-test="dailyButton"]`).click();
@@ -36,7 +40,10 @@ describe('Houme page', () => {
     it('submit with new value', () => {
         cy.get(`[data-test="dailyWeatherCard"]`).should('have.length', 7);
         cy.get(`[data-test="hourlyButton"]`).click();
-        cy.get(`[data-test="hourlyWeatherCard"]`).should('have.length', 24);
+        cy.get(`[data-test="hourlyWeatherCard"]`).should(
+            'have.length',
+            calculateCards(),
+        );
     });
     it('correct clock and calendar value', () => {
         const { hours, minutes, month, day, year, date } = getCurrentDate();

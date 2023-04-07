@@ -101,5 +101,9 @@ const theme = {
         s: 1,
         l: 1.5,
     },
+    opacity: {
+        active: 1,
+        nonActive: 0.5,
+    },
 };
 export default theme;

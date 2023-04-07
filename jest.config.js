@@ -3,7 +3,7 @@ module.exports = {
     preset: 'ts-jest/presets/js-with-ts-esm',
     testEnvironment: 'node',
     roots: ['<rootDir>'],
-    testMatch: ['<rootDir>/test/**/*.js'],
+    testMatch: ['<rootDir>/test/**/*.test.js'],
     moduleNameMapper: {
         '^@/(.*)$': '<rootDir>/src/$1',
     },
